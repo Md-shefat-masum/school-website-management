@@ -38,7 +38,7 @@
                     <!-- portal_area start -->
                     <div class="col-md-6">
                         <div class="portal_area">
-                            <a class="portal_text" href="login_page.html">Portal</a>
+                            <a class="portal_text" href="/login">Portal</a>
                         </div>
                     </div>
                     <!-- portal_area end -->

@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('check_token');
+require_once "frontend_routes.php";
 
 Route::get('/tuser', function () {
     $response = Http::withHeaders([
@@ -32,7 +30,7 @@ Route::get('/tuser', function () {
 })->middleware('check_token');
 
 Route::get('/tu', function () {
-    $user = User::find(1);
+    $user = User::find(2);
     $token = $user->createToken('access-token');
     return redirect('/')->withCookie(set_token_coockie($token->accessToken));
 });

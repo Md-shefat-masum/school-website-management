@@ -1,95 +1,46 @@
-@extends('layouts.app')
+@extends('frontend.layouts.website')
 
-@section('content')
+@section('contents')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" onsubmit="submit_login()" action="{{ route('login') }}">
-                        @csrf
+    <div class="login_or_sign_up_area">
+        <div class="container">
+            <div class="login_or_sign_up_content">
+                <form method="POST" onsubmit="submit_login()" action="{{ route('login') }}">
+                    @csrf
+                    <input name="email" class="input_area" type="text" placeholder="Email or Phone Number">
+                    <input name="password" class="input_area" type="password" placeholder="Password">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address')
-                                }}</label>
+                    <!-- login_in_area start -->
+                    <button class="login_in_area">Login in</button>
+                    <!-- login_in_area end -->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <!-- forgotten_password_area start -->
+                    {{-- <a href="#" class="forgotten_password_area">Forgotten Password?</a> --}}
+                    <!-- forgotten_password_area end -->
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <!-- create_an_account_area start -->
+                    {{-- <a href="/register" class="create_an_account_area">Create an Account</a> --}}
+                    <!-- create_an_account_area end-->
+                </form>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
-                                }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{
-                                        old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-
-                    <script>
-                        function submit_login(){
-                            event.preventDefault();
-                            fetch(event.target.action,{
-                                method: "POST",
-                                body: new FormData(event.target),
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                }
-                            })
-                            .then(res=>res.json())
-                            .then(res=>{
-                                console.log(res);
-                                location.href="/dashboard"
-                            })
-                        }
-                    </script>
-                </div>
+                <script>
+                    function submit_login(){
+                                event.preventDefault();
+                                fetch(event.target.action,{
+                                    method: "POST",
+                                    body: new FormData(event.target),
+                                    headers: {
+                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                    }
+                                })
+                                .then(res=>res.json())
+                                .then(res=>{
+                                    console.log(res);
+                                    location.href="/dashboard"
+                                })
+                            }
+                </script>
             </div>
         </div>
     </div>
