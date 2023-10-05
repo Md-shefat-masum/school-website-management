@@ -9,12 +9,34 @@
         </div>
         <ul class="sidebar-menu">
             <li>
+                <router-link :to="{name: `ContactMessageAll`}" class="sidebar-header">
+                    <i class="icon-settings"></i>
+                    <span>Base Setup</span>
+                </router-link>
+            </li>
+            <li>
+                <a href="#" class="sidebar-header">
+                    <i class="icon-settings"></i><span> Maintenance</span>
+                </a>
+            </li>
+            <li>
+                <a href="/" target="_blank" class="sidebar-header">
+                    <i class="icon-world"></i><span> Website</span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout" @click.prevent="logout_submit" class="sidebar-header">
+                    <i class="icon-lock"></i><span> Logout</span>
+                </a>
+            </li>
+
+            <!-- <li>
                 <div class="sidebar-title">Mangement</div>
-                <a href="javascript:void(0)" class="sidebar-header">
+                <a href="#" @click.prevent="$event.currentTarget.parentNode.classList.toggle('active')" class="sidebar-header">
                     <i class="icon-desktop"></i><span>Dashboard</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="sidebar-submenu">
+                <ul class="sidebar-submenu menu-open">
                     <li>
                         <a href="#">
                             <i class="fa fa-angle-right"></i>
@@ -22,12 +44,8 @@
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <router-link :to="{name: `ContactMessageAll`}" class="sidebar-header">
-                    <i class="icon-anchor"></i><span> contact message</span>
-                </router-link>
-            </li>
+            </li> -->
+
             <!-- <li>
                 <router-link :to="{ name: `news` }" class="sidebar-header">
                     <i class="icon-anchor"></i><span> news</span>
@@ -47,17 +65,6 @@
                                 class="fa fa-angle-right"></i>Layout Dark</a></li>
                 </ul>
             </li> -->
-
-            <li>
-                <a href="#" class="sidebar-header">
-                    <i class="icon-settings"></i><span> Maintenance</span>
-                </a>
-            </li>
-            <li>
-                <a href="/logout" @click.prevent="logout_submit" class="sidebar-header">
-                    <i class="icon-lock"></i><span> Logout</span>
-                </a>
-            </li>
         </ul>
 
         <!--Page Sidebar Ends-->
@@ -68,6 +75,11 @@
 import { mapActions } from 'pinia'
 import { use_auth_store } from '../../../store/auth_store';
 export default {
+    created: function(){
+        setTimeout(() => {
+            // sidebar_action_init();
+        }, 1000);
+    },
     methods: {
         ...mapActions(use_auth_store, ['log_out']),
         logout_submit: function () {
