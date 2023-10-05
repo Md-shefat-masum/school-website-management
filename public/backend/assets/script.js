@@ -80,7 +80,3 @@ function toggleFullScreen() {
             $(this).removeClass("is-active");
         });
 })(jQuery, window, document);
-
-$(".chat-menu-icons .toogle-bar").click(function(){
-    $(".chat-menu").toggleClass("show");
-});
