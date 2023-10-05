@@ -20,11 +20,12 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__ . '/Commands');
-        require base_path('routes/console.php');
-        // Other commands...
-        $this->commands([
-            \App\Console\Commands\DataReload::class,
-        ]);
+        // $this->load(__DIR__ . '/Commands');
+        // require base_path('routes/console.php');
+        // // Other commands...
+        // $this->commands([
+            // \App\Console\Commands\DataReload::class,
+            // \Laravel\Passport\Console\InstallCommand::class,
+        // ]);
     }
 }
