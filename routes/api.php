@@ -55,10 +55,11 @@ Route::prefix('v1')
         });
     });
 
-Route::prefix('v1')->group(function () {
-    Route::get('user', [ApiLoginController::class, 'check_auth'])
-        ->middleware('api:auth');
-});
+Route::prefix('v1')
+    ->middleware("auth:api")
+    ->group(function () {
+        Route::get('user', [ApiLoginController::class, 'check_auth']);
+    });
 
 
 Route::prefix('v1')
