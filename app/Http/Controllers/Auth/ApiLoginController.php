@@ -387,14 +387,8 @@ class ApiLoginController extends Controller
                 ->with([
                     'roles'=>function($q){
                         return $q->select([
-                            'name',
-                            'role_serial'
-                        ]);
-                    },
-                    'permissions'=>function($q){
-                        return $q->select([
                             'title',
-                            'permission_serial'
+                            'serial_no'
                         ]);
                     },
                 ])
