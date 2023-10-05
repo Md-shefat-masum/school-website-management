@@ -18,21 +18,21 @@ import { use_auth_store } from "../store/auth_store"
 export default {
     components: { TopHeader, SideBar },
     created: async function () {
-        console.log('Component mounted.');
+        console.log('App Started');
         await this.check_is_auth();
     },
     watch: {
         'auth_info': function (v) {
-            console.log(v);
+            // console.log(v);
             switch (v.role_sl) {
                 case 1:
-                    this.$router.push('super-admin')
+                    this.$router.replace('super-admin')
                     break;
                 case 2:
-                    this.$router.push('admin')
+                    this.$router.replace('admin')
                     break;
                 default:
-                    alert('no permission');
+                    alert('you have no permission');
                     break;
             }
         }
