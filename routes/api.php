@@ -23,6 +23,7 @@ use App\Http\Controllers\api\settings\SettingsTitleValueController;
 use App\Http\Controllers\api\student\StudentDueController;
 use App\Http\Controllers\api\student\StudentInformationController;
 use App\Http\Controllers\api\student\StudentResultController;
+use App\Http\Controllers\Auth\ApiLoginController;
 use Database\Seeders\DigitalBookCategorySeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,12 @@ Route::prefix('v1')
             Route::post('/logout-from-all-devices', 'Auth\ApiLoginController@logout_from_all_devices');
         });
     });
+
+Route::prefix('v1')->group(function () {
+    Route::get('user', [ApiLoginController::class, 'check_auth'])
+        ->middleware('check_token','api:auth');
+});
+
 
 Route::prefix('v1')
     // ->middleware(['api:auth'])
@@ -336,7 +343,7 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
-            Route::controller(SettingsTitleValueController::class)
+        Route::controller(SettingsTitleValueController::class)
             ->prefix('/setting-title-value')
             ->group(function () {
                 Route::get('/all', 'all');

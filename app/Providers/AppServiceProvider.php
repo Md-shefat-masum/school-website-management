@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Settings\SettingTitleValue;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
@@ -27,13 +28,13 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
 
-        // View::composer('*', function ($view) {
-        //     $app_settings = SettingTitleValue::get();
-        //     $GLOBALS['app_settings'] = $app_settings;
-        //     $view->with([
-        //         'app_settings'=> $app_settings,
-        //     ]);
-        // });
+        View::composer('*', function ($view) {
+            $app_settings = SettingTitleValue::get();
+            $GLOBALS['app_settings'] = $app_settings;
+            $view->with([
+                'app_settings'=> $app_settings,
+            ]);
+        });
 
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));

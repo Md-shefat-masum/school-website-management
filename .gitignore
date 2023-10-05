@@ -15,5 +15,4 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
-/.vscode
-public/frontend/assets/icon/**/*.svg
+/public/frontend/assets/icon/**/*.svg

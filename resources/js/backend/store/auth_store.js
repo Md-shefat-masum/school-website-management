@@ -32,7 +32,7 @@ export const use_auth_store = defineStore('auth_store', {
                     }
                     console.log('token set');
                     let token = `Bearer ${cookie.value}`;
-                    fetch("/api/user", {
+                    fetch("/api/v1/user", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",

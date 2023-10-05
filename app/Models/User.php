@@ -24,8 +24,6 @@ class User extends Authenticatable
     //     'password',
     // ];
 
-
-
     protected $guarded = [];
     protected static function booted()
     {

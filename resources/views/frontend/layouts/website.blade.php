@@ -1,40 +1,14 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Classification" content="Portfolio">
-    <meta name="identifier-URL" content="">
-    <meta name="directory" content="submission">
-    <meta name="category" content="Internet">
-    <meta name="coverage" content="Worldwide">
-    <meta name="distribution" content="Global">
-    <meta name="rating" content="General">
-    <meta name="target" content="all">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="author" content="nextechcode">
-    <meta name="developer" content="Alif Sagir">
-    <meta name="developer-email" content="alifsagir99@gmail.com">
-    <meta name="developer-company" content="nextechcode">
-    <meta name="copyright" content="school_management_system">
-    <meta name="revisit" content="1 days">
-    <meta name="keywords" content="">
-    <meta name="description" content="Personal-portfolio">
-    <meta property="og:title" content="school_management_system">
-    <meta property="og:site_name" content="school_management_system">
-    <meta property="og:description" content="school_management_system">
-    <meta property="og:type" content="school_management_system">
-    <meta property="og:url" content="/">
-    <meta property="og:image" content="{{ asset('frontend') }}/assets/images/logo/dark_logo.png">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="315">
-    <meta name="twitter:title" content="school_management_system">
-    <meta name="twitter:description" content="school_management_system">
-    <meta name="twitter:image" content="{{ asset('frontend') }}/assets/images/logo/dark_logo.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Home</title>
+
+    @include("frontend.layouts.includes.meta")
+
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/icon/fontawesome-free-6.2.0-web/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/styles/style.css">
@@ -45,404 +19,15 @@
 
 <body id="bottom_to_up">
     <!-- header_area start -->
-    <header class="header_area">
-        <!-- header_area_top start -->
-        <div class="header_area_top">
-            <div class="container">
-                <div class="header_area_top_content">
-                    <div class="row">
-                        <!-- email_and_contact_number_area start -->
-                        <div class="col-md-6">
-                            <div class="email_and_contact_number_area">
-                                <!-- email_area start -->
-                                <div class="email_area email_contact_area">
-                                    <a href="mailto:abcdefghi@gmail.com" class="content_area">
-                                        <div class="icon">
-                                            <i class="fa-regular fa-envelope-open"></i>
-                                        </div>
-                                        <div class="text_area">
-                                            <p class="email_text text">abcdefghi@gmail.com</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- email_area end-->
-                                <!-- contact_number_area start -->
-                                <div class="contact_number_area email_contact_area">
-                                    <a href="tel:+8801000000000" class="content_area">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-phone"></i>
-                                        </div>
-                                        <div class="text_area">
-                                            <p class="text">+8801000000000</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- contact_number_area end -->
-                            </div>
-                        </div>
-                        <!-- email_and_contact_number_area end -->
-
-                        <!-- portal_area start -->
-                        <div class="col-md-6">
-                            <div class="portal_area">
-                                <a class="portal_text" href="login_page.html">Portal</a>
-                            </div>
-                        </div>
-                        <!-- portal_area end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- header_area_top end -->
-
-        <!-- header_school_name_area start -->
-        <div class="header_school_name_area">
-            <div class="container">
-                <div class="header_area_content">
-
-                    <!-- logo_area start -->
-                    <a href="#" class="logo_area">
-                        <img src="{{ asset('frontend') }}/assets/images/website_logo/logo.png" alt="logo">
-                    </a>
-                    <!-- logo_area end-->
-
-                    <!-- school_name_area start -->
-                    <a href="#" class="school_name_area">
-                        <div class="school_name school_name_bangla">
-                            <h2 class="school_title">টেক পার্ক স্কুল এন্ড কলেজ,ঢাকা</h2>
-                        </div>
-                        <div class="school_name school_name_english">
-                            <h2 class="school_title">Tech Park School and College, Dhaka
-                            </h2>
-                        </div>
-                    </a>
-                    <!-- school_name_area  end-->
-
-                </div>
-            </div>
-        </div>
-        <!-- header_school_name_area end -->
-    </header>
+    @include('frontend.layouts.header')
     <!-- header_area end -->
 
     <!-- nav area start -->
-    <nav class="nav_area">
-        <div class="container">
-            <div class="nav_area_content">
-
-                <!-- responsive_menu_area start -->
-                <div class="responsive_menu_area">
-                    <button class="searchh_area icon" onclick="search_area_show.classList.toggle('active_search')"
-                        class="search_area">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <a href="login_page.html" class="Portal_area_responsive">
-                        <p class="Portal_text">Portal</p>
-                    </a>
-                    <button onclick="add_menu_area.classList.toggle('active_class')" class="menu_area icon">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-                <!-- responsive_menu_area end -->
-
-                <!-- all_nave area start -->
-                <div id="add_menu_area" class="all_nave">
-                    <ul>
-
-                        <li>
-                            <a href="index.html" class="main_manu">হোম</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main_manu">ক্যাম্পাস <span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">আমাদের সম্পর্কে</a>
-                                </li>
-                                <li>
-                                    <a href="#">ইতিহাস</a>
-                                </li>
-                                <li>
-                                    <a href="#">লক্ষ্য ও উদ্দেশ্য</a>
-                                </li>
-                                <li>
-                                    <a href="#">প্রাতিষ্ঠানিক কাঠামো</a>
-                                </li>
-                                <li>
-                                    <a href="#">প্রাতিষ্ঠানিক অবকাঠামো</a>
-                                </li>
-                                <li>
-                                    <a href="#">শুদ্ধাচার সংক্রান্ত তথ্য</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="main_manu">ভর্তি <span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">কিভাবে আবেদন করতে হবে ?</a>
-                                </li>
-                                <li>
-                                    <a href="#">ভর্তি পরীক্ষা</a>
-                                </li>
-                                <li>
-                                    <a href="#">ভর্তি নীতি</a>
-                                </li>
-                                <li>
-                                    <a href="#">রেজিস্ট্রেশন সিস্টেম</a>
-                                </li>
-                                <li>
-                                    <a href="#">বর্তমান শিক্ষা ব্যবস্থা</a>
-                                </li>
-                                <li>
-                                    <a href="#">সেমিস্টার পরিকল্পনা</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="main_manu">একাডেমিক প্রশাসন <span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">প্রতিষ্ঠাতা</a>
-                                </li>
-                                <li>
-                                    <a href="#">অধ্যক্ষ</a>
-                                </li>
-                                <li>
-                                    <a href="#">উপাধ্যক্ষ</a>
-                                </li>
-                                <li>
-                                    <a href="#">শিক্ষক</a>
-                                </li>
-                                <li>
-                                    <a href="#">অফিস</a>
-                                </li>
-                                <li>
-                                    <a href="#">কর্মচারী</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#" class="main_manu">একাডেমিক<span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">শ্রেণি সূচি</a>
-                                </li>
-                                <li>
-                                    <a href="#">অনলাইন শ্রেণি সূচি</a>
-                                </li>
-                                <li>
-                                    <a href="#">পরীক্ষার সময়সূচী</a>
-                                </li>
-                                <li>
-                                    <a href="#">একাডেমিক সিলেবাস</a>
-                                </li>
-                                <li>
-                                    <a href="#">শিক্ষা বর্ষপঞ্জি</a>
-                                </li>
-                                <li>
-                                    <a href="#">একাডেমিক প্রসপেক্টাস</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="main_manu">শিক্ষার্থী<span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">শিক্ষার্থীদের বেতন</a>
-                                </li>
-                                <li>
-                                    <a href="#">শিক্ষার্থীদের ইউনিফর্ম</a>
-                                </li>
-                                <li>
-                                    <a href="#">পরীক্ষার ব্যবস্থা</a>
-                                </li>
-                                <li>
-                                    <a href="#">নিয়ম এবং প্রবিধান</a>
-                                </li>
-                                <li>
-                                    <a href="#">আমাদের ছাত্র-ছাত্রী</a>
-                                </li>
-                                <li>
-                                    <a href="#">শিক্ষার্থীদের সাফল্যের গল্প</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="main_manu">ফলাফল<span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">একাডেমিক পরীক্ষার ফলাফল</a>
-                                </li>
-                                <li>
-                                    <a href="#">বোর্ড পরীক্ষার ফলাফল</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="notice.html" class="main_manu">নোটিশ<span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-                                <li>
-                                    <a href="notice.html">ভর্তি নোটিশ</a>
-                                </li>
-                                <li>
-                                    <a href="notice.html">পরীক্ষার নোটিশ</a>
-                                </li>
-                                <li>
-                                    <a href="notice.html">ফলাফলের নোটিশ</a>
-                                </li>
-                                <li>
-                                    <a href="notice.html">ইভেন্টস নোটিশ</a>
-                                </li>
-                                <li>
-                                    <a href="notice.html">প্রশাসন নোটিশ</a>
-                                </li>
-                                <li>
-                                    <a href="notice.html">জাতীয় কর্মসূচি</a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#" class="main_manu">আরো দেখুন<span class="arraw_icon"><i
-                                        class="fa-solid fa-angle-down"></i></span></a>
-
-                            <ul>
-
-                                <li>
-                                    <a href="#" class="main_manu">কোর্স সমূহ<span class="arra_icon"><i
-                                                class="fa-solid fa-angle-down"></i></span></a>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#">কিন্ডার গার্টেন</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">প্রাথমিক</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">ষষ্ঠ - দশম</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">একাদশ - দ্বাদশ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">ডিগ্রী</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">অনার্স</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_manu">বৃত্তি ও উপবৃত্তি<span class="arra_icon"><i
-                                                class="fa-solid fa-angle-down"></i></span></a>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#">বৃত্তি সংক্রান্ত নোটিশ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">উপবৃত্তি সংক্রান্ত নোটিশ</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_manu">রিসোর্স<span class="arra_icon"><i
-                                                class="fa-solid fa-angle-down"></i></span></a>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#">ডিজিটাল ক্লাস কনটেন্ট</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">গ্রন্থাগার</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">গবেষণাগার</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">খেলার মাঠ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">সহ-পাঠক্রম সংক্রান্ত কার্যক্রম</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_manu">গ্যালারি<span class="arraw_icon"><i
-                                                class="fa-solid fa-angle-down"></i></span></a>
-
-                                    <ul>
-                                        <li>
-                                            <a href="image_gallery_page.html">ফটো গ্যালারী</a>
-                                        </li>
-                                        <li>
-                                            <a href="video_gallery_page.html">ভিডিও গ্যালারী</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="contact.html" class="main_manu">যোগাযোগ</a>
-
-                                </li>
-                                <li>
-                                    <a href="news.html" class="main_manu">সংবাদ</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html" class="main_manu">ব্লগ</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="extra_area" onclick="add_menu_area.classList.toggle('active_class')">
-
-                    </div>
-                </div>
-                <!-- all_nave area end -->
-
-                <!-- search area start -->
-                <button onclick="search_area_show.classList.toggle('active_search')" class="search_area">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <div class="close_icon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                </button>
-
-                <div id="search_area_show" class="search_item">
-                    <input type="text" placeholder="খুঁজুন...">
-                    <button class="search_icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <!-- search area end -->
-
-
-            </div>
-        </div>
-    </nav>
+    @include("frontend.layouts.navbar")
     <!-- nav area end -->
-
-    @yield("contents")
+    <main>
+        @yield("contents")
+    </main>
 
     <!-- footer_area start -->
     <footer class="footer_area" data-aos="fade-up" data-aos-duration="1000">
@@ -486,39 +71,50 @@
                         <div class="importent_link_area">
                             <ul>
                                 <li>
-                                    <a href="https://moedu.gov.bd/" target="blank">শিক্ষা মন্ত্রনালয়</a>
+                                    <a href="https://moedu.gov.bd/" target="blank">
+                                        শিক্ষা মন্ত্রনালয়
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://www.dhakaeducationboard.gov.bd/" target="blank">মাধ্যমিক ও
                                         উচ্চমাধ্যমিক শিক্ষা বোর্ড,
-                                        ঢাকা</a>
+                                        ঢাকা
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://dshe.gov.bd/" class="link_name" target="blank">মাধ্যমিক ও
-                                        উচ্চশিক্ষা অধিদপ্তর</a>
+                                        উচ্চশিক্ষা অধিদপ্তর
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://www.nu.ac.bd/" class="link_name" target="blank">জাতীয়
-                                        বিশ্ববিদ্যালয়</a>
+                                        বিশ্ববিদ্যালয়
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://www.shed.gov.bd/" class="link_name" target="blank">মাধ্যমিক ও উচ্চ
-                                        শিক্ষা বিভাগ</a>
+                                        শিক্ষা বিভাগ
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://bteb.gov.bd/" class="link_name" target="blank">বাংলাদেশ কারিগরি
-                                        শিক্ষা বোর্ড</a>
+                                        শিক্ষা বোর্ড
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="http://www.pmeat.gov.bd/" class="link_name" target="blank">প্রধানমন্ত্রীর
-                                        শিক্ষা সহায়তা ট্রাস্ট</a>
+                                        শিক্ষা সহায়তা ট্রাস্ট
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="link_name" target="blank">প্রধানমন্ত্রীর কার্যালয়</a>
+                                    <a href="#" class="link_name" target="blank">
+                                        প্রধানমন্ত্রীর কার্যালয়
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="https://cabinet.gov.bd/" class="link_name" target="blank">মন্ত্রীপরিষদ
-                                        বিভাগ</a>
+                                        বিভাগ
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -592,8 +188,10 @@
         <div class="container">
             <div class="copyright_area_content">
                 <span class="copyright_text text"> Copy Right © 2023
-                    <a class="text" href="#">Tech Park School and College,
-                        Dhaka</a></span>
+                    <a class="text" href="#">
+                        Tech Park School and College, Dhaka
+                    </a>
+                </span>
             </div>
         </div>
     </footer>
