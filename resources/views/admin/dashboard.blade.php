@@ -31,6 +31,14 @@
     <link rel="stylesheet" type="text/css" href="/backend/assets/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" type="text/css" href="/backend/assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/backend/assets/custom.css">
+
+    <!-- latest jquery-->
+    <script src="/backend/assets/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="/backend/assets/bootstrap.bundle.min.js"></script>
+    <!-- Theme js-->
+    <script src="/backend/assets/script.js" defer></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/backend/app.js'])
@@ -54,14 +62,7 @@
     </div>
     <!--page-wrapper Ends-->
 
-    <!-- latest jquery-->
-    <script src="/backend/assets/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap js-->
-    <script src="/backend/assets/bootstrap.bundle.min.js"></script>
-    <!-- Sidebar jquery-->
-    <script src="/backend/assets/sidebar-menu.js"></script>
-    <!-- Theme js-->
-    <script src="/backend/assets/script.js"></script>
+    
 
 </body>
 
