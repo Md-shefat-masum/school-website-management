@@ -30,7 +30,6 @@ export const use_auth_store = defineStore('auth_store', {
                     if (!cookie) {
                         this.log_out();
                     }
-                    console.log('token set');
                     let token = `Bearer ${cookie.value}`;
                     fetch("/api/v1/user", {
                         method: "GET",
@@ -41,8 +40,8 @@ export const use_auth_store = defineStore('auth_store', {
                         },
                     }).then(res => res.json())
                         .then(res => {
-                            this.set_is_auth(1);
-                            this.auth_info = res;
+                            this.set_is_auth(res.auth_status);
+                            this.auth_info = res.auth_information;
                         })
                 })
         }
