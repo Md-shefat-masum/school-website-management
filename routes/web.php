@@ -70,8 +70,7 @@ Route::get('/data-reload', function () {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/', '--force' => true]);
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/*', '--force' => true]);
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'vendor/laravel/passport/database/migrations', '--force' => true]);
-    \Illuminate\Support\Facades\Artisan::call('passport:install');
+    // \Illuminate\Support\Facades\Artisan::call('passport:install');
     \Illuminate\Support\Facades\Artisan::call('db:seed');
-
     return redirect()->back();
 });
