@@ -13,7 +13,7 @@
             <div class="mobile-sidebar col-1 ps-0">
                 <div class="text-start switch-sm">
                     <label class="switch">
-                        <input type="checkbox" id="sidebar-toggle" checked="">
+                        <input type="checkbox" id="sidebar-toggle" @change="toggle_sidebar" checked="">
                         <span class="switch-state"></span>
                     </label>
                 </div>
@@ -30,12 +30,12 @@
                                 </div>
                             </form>
                         </li> -->
-                    <li>
-                        <a href="#!" onclick="javascript:toggleFullScreen()" class="text-dark">
+                    <!-- <li>
+                        <a href="#" @click.prevent="()=>toggleFullScreen()" class="text-dark">
                             <img class="align-self-center pull-right me-2" src="/backend/assets/browser.png"
                                 alt="header-browser">
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="onhover-dropdown">
                         <div class="d-flex align-items-center">
@@ -75,7 +75,11 @@
 
 <script>
 export default {
-
+    methods: {
+        toggle_sidebar: function () {
+            document.querySelector(".page-body-wrapper").classList.toggle("sidebar-close");
+        }
+    }
 }
 </script>
 
