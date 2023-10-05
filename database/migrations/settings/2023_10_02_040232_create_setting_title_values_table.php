@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('setting_title_values', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('setting_titles_id')->nullable();
+            $table->bigInteger('setting_title_id')->nullable();
             $table->string('title', 100)->nullable();
             $table->text('value')->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();

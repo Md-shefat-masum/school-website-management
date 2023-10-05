@@ -32,11 +32,11 @@ class DatabaseSeeder extends Seeder
             GalleryVideoCategorySeeder::class,
             GalleryVideoSeeder::class,
             NavbarMenuSeeder::class,
-            NavbarMenuDetailsSeeder::class,
             NavbarMenuItemSeeder::class,
+            NavbarMenuDetailsSeeder::class,
             NewsCategorySeeder::class,
             NewsSeeder::class,
-            SettingTitleSeeder::class,
+            SettingSeeder::class,
             TagSeeder::class,
 
         ]);

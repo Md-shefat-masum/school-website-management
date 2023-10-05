@@ -14,9 +14,9 @@ class NavbarMenuDetailsSeeder extends Seeder
     public function run(): void
     {
         NavbarMenuDetail::create([
+            "navbar_menu_id" => 1,
             "navbar_menu_items_id" => 1,
             "navbar_menu_items_navbar_menus_id" => 1,
-            "navbar_menu_items_id" => 1,
             "description" => "description"
         ]);
     }

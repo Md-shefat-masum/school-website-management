@@ -1,0 +1,13 @@
+php artisan db:wipe
+php artisan migrate  --path="database/migrations/"
+php artisan migrate  --path="database/migrations/*"
+php artisan db:seed
+
+Route::get('/data-reload', function () {
+    \Illuminate\Support\Facades\Artisan::call('db:wipe');
+    \Illuminate\Support\Facades\Artisan::call('migrate, ['--path' => 'database/migrations/', '--force' => true]);
+    \Illuminate\Support\Facades\Artisan::call('migrate, ['--path' => 'database/migrations/*', '--force' => true]);
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'vendor/laravel/passport/database/migrations', '--force' => true]);
+    \Illuminate\Support\Facades\Artisan::call('passport:install');
+    return redirect()->back();
+});

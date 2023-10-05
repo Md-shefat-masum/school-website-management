@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('navbar_menu_details', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('navbar_menu_id')->nullable();
             $table->bigInteger('navbar_menu_items_id')->nullable();
             $table->bigInteger('navbar_menu_items_navbar_menus_id')->nullable();
-            $table->bigInteger('navbar_menu_id')->nullable();
             $table->text('description')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();

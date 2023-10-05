@@ -57,7 +57,7 @@ Route::prefix('v1')
 
 Route::prefix('v1')->group(function () {
     Route::get('user', [ApiLoginController::class, 'check_auth'])
-        ->middleware('check_token','api:auth');
+        ->middleware('api:auth');
 });
 
 
