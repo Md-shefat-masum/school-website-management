@@ -13,8 +13,9 @@ class NewsCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        NewsCategory::truncate();
         NewsCategory::create([
-            "title" => "one"
+            "title" => "new academic routines"
         ]);
     }
 }
