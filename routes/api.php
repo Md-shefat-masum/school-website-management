@@ -17,12 +17,14 @@ use App\Http\Controllers\api\navbar\NavbarMenuController;
 use App\Http\Controllers\api\navbar\NavbarMenuItemController;
 use App\Http\Controllers\api\news\NewsCategoryController;
 use App\Http\Controllers\api\news\NewsController;
+use App\Http\Controllers\api\settings\BannerController;
 use App\Http\Controllers\api\settings\SettingsController;
 use App\Http\Controllers\api\settings\SettingsTitleController;
 use App\Http\Controllers\api\settings\SettingsTitleValueController;
 use App\Http\Controllers\api\student\StudentDueController;
 use App\Http\Controllers\api\student\StudentInformationController;
 use App\Http\Controllers\api\student\StudentResultController;
+use App\Http\Controllers\api\website\SuccessAtAGlanceController;
 use App\Http\Controllers\Auth\ApiLoginController;
 use Database\Seeders\DigitalBookCategorySeeder;
 use Illuminate\Http\Request;
@@ -63,7 +65,7 @@ Route::prefix('v1')
 
 
 Route::prefix('v1')
-    // ->middleware(['api:auth'])
+    ->middleware(["check_token", "auth:api"])
     ->group(function () {
 
         Route::controller(AcademicClassController::class)
@@ -95,6 +97,7 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
+
         Route::controller(BlogCategoryController::class)
             ->prefix('/blog-category')
             ->group(function () {
@@ -109,6 +112,7 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
+
         Route::controller(BlogController::class)
             ->prefix('/blog')
             ->group(function () {
@@ -123,8 +127,6 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
-
-
 
         Route::controller(TagController::class)
             ->prefix('/blog-tag')
@@ -141,8 +143,6 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
-
-
         Route::controller(DigitalBookCategoryController::class)
             ->prefix('/digital-book-category')
             ->group(function () {
@@ -157,7 +157,6 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
-
 
         Route::controller(DigitalBookController::class)
             ->prefix('/digital-book')
@@ -174,7 +173,6 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
-
         Route::controller(EmployeeRoleController::class)
             ->prefix('/employee-role')
             ->group(function () {
@@ -189,7 +187,6 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
-
 
         Route::controller(EmployeeController::class)
             ->prefix('/employee')
@@ -206,7 +203,6 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
-
         Route::controller(GalleryPhotoCategoryController::class)
             ->prefix('/gallery-photo-category')
             ->group(function () {
@@ -222,7 +218,6 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
-
         Route::controller(GalleryPhotoController::class)
             ->prefix('/gallery-photo')
             ->group(function () {
@@ -237,7 +232,6 @@ Route::prefix('v1')
                 Route::post('/destroy', 'destroy');
                 Route::post('/bulk-import', 'bulk_import');
             });
-
 
         Route::controller(GalleryVideoCategoryController::class)
             ->prefix('/gallery-video-category')
@@ -347,8 +341,46 @@ Route::prefix('v1')
         Route::controller(SettingsTitleValueController::class)
             ->prefix('/setting-title-value')
             ->group(function () {
-                Route::get('/all', 'all');
                 Route::post('/selected', 'selected');
+                Route::post('/update-single', 'upate_single');
+
+                Route::get('/all', 'all');
+                Route::get('/{id}', 'show');
+                Route::post('/store', 'store');
+                Route::post('/canvas-store', 'canvas_store');
+                Route::post('/update', 'update');
+                Route::post('/canvas-update', 'canvas_update');
+                Route::post('/soft-delete', 'soft_delete');
+                Route::post('/restore', 'restore');
+                Route::post('/destroy', 'destroy');
+                Route::post('/bulk-import', 'bulk_import');
+            });
+
+        Route::controller(BannerController::class)
+            ->prefix('/banner')
+            ->group(function () {
+                Route::get('/first', 'first');
+                Route::post('/update-first', 'update_data');
+
+                Route::get('/all', 'all');
+                Route::get('/{id}', 'show');
+                Route::post('/store', 'store');
+                Route::post('/canvas-store', 'canvas_store');
+                Route::post('/update', 'update');
+                Route::post('/canvas-update', 'canvas_update');
+                Route::post('/soft-delete', 'soft_delete');
+                Route::post('/restore', 'restore');
+                Route::post('/destroy', 'destroy');
+                Route::post('/bulk-import', 'bulk_import');
+            });
+
+        Route::controller(SuccessAtAGlanceController::class)
+            ->prefix('/success-at-a-glance')
+            ->group(function () {
+                Route::get('/get-all', 'get_all');
+                Route::post('/update-list', 'update_list');
+
+                Route::get('/all', 'all');
                 Route::get('/{id}', 'show');
                 Route::post('/store', 'store');
                 Route::post('/canvas-store', 'canvas_store');
