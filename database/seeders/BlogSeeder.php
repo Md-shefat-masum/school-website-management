@@ -13,9 +13,10 @@ class BlogSeeder extends Seeder
      */
     public function run(): void
     {
+        Blog::truncate();
         Blog::create([
             "blog_categories_id" =>  1,
-            "title" => "one",
+            "title" => "Future of ICT",
             "image" => "",
             "description" => ""
         ]);
