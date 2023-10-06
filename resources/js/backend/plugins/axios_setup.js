@@ -10,10 +10,13 @@ async function setToken(config = {}){
     await window.cookieStore.get('AXRF-TOKEN')
         .then(cookie=>{
             console.log('token set');
-            if(!cookie.value){
-                location.href = '/login'
+            if(!cookie){
+               return location.href = '/login'
             }
             config.headers.set('Authorization',`Bearer ${cookie.value}`);
+        })
+        .catch(err=>{
+            console.log(err);
         })
 }
 
