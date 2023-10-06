@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Settings\SettingTitleValue;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class SettingsTitleValueController extends Controller
 {
@@ -40,8 +41,26 @@ class SettingsTitleValueController extends Controller
 
     public function selected()
     {
-        $values = SettingTitleValue::select('title','id','value')->whereIn("title",request()->titles)->get();
+        $values = SettingTitleValue::select('title', 'id', 'value')
+        ->whereIn("title", request()->titles)
+        ->orderBy("title", "ASC")
+        ->get();
         return $values;
+    }
+
+    public function upate_single()
+    {
+        $setting = SettingTitleValue::find(request()->id);
+        if ($setting) {
+            if (count($_FILES)) {
+                $path = upload(request()->value, 'uploads/settings/' . $setting->title);
+                $setting->value = $path;
+            } else {
+                $setting->value = request()->value;
+            }
+            $setting->save();
+        }
+        return $setting;
     }
 
     public function show($id)
@@ -219,7 +238,7 @@ class SettingsTitleValueController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {
