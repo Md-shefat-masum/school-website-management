@@ -8,6 +8,7 @@
             <h6 class="mt-3 f-12">Admin</h6>
         </div>
         <ul class="sidebar-menu">
+
             <li>
                 <router-link :to="{name: `BaseSetup`}" class="sidebar-header">
                     <i class="icon-settings"></i>
@@ -15,11 +16,20 @@
                 </router-link>
             </li>
             <li>
-                <a href="#" class="sidebar-header">
-                    <i class="icon-settings"></i><span> Maintenance</span>
-                </a>
+                <router-link :to="{name: `Banner`}" class="sidebar-header">
+                    <i class="icon-image"></i>
+                    <span>Banner</span>
+                </router-link>
             </li>
             <li>
+                <router-link :to="{name: `Success`}" class="sidebar-header">
+                    <i class="icon-crown"></i>
+                    <span>Our Success</span>
+                </router-link>
+            </li>
+
+            <li>
+                <div class="sidebar-title"></div>
                 <a href="/" target="_blank" class="sidebar-header">
                     <i class="icon-world"></i><span> Website</span>
                 </a>
