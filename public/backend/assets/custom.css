@@ -52,7 +52,7 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
   padding-left: 30px;
 }
 .setting_pages_body .form_area {
-  height: calc(100vh - 225px);
+  height: calc(100vh - 240px);
   overflow-y: auto;
 }
 .setting_pages_body .setting_form {
@@ -96,5 +96,8 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
 }
 .custom_scroll::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
+}
+.tox-notifications-container {
+  display: none!important;
 }
 /*# sourceMappingURL=./custom.css.map */
