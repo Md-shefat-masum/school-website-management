@@ -27,6 +27,12 @@
                     <span>Our Success</span>
                 </router-link>
             </li>
+            <li>
+                <router-link :to="{name: `PageContents`}" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Page Contents</span>
+                </router-link>
+            </li>
 
             <li>
                 <div class="sidebar-title"></div>
