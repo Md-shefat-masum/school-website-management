@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Navbar\NavbarMenu;
 use App\Models\Navbar\NavbarMenuItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,257 +20,257 @@ class NavbarMenuItemSeeder extends Seeder
         $submenu = [
             [
                 [
-                    "name" => "আমাদের সম্পর্কে",
-                    "serial" => true,
+                    "title" => "আমাদের সম্পর্কে",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>            "ইতিহাস",
-                    "serial" => true,
+                    "title" =>            "ইতিহাস",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>       "লক্ষ্য ও উদ্দেশ্য",
-                    "serial" => true,
+                    "title" =>       "লক্ষ্য ও উদ্দেশ্য",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>   "প্রাতিষ্ঠানিক কাঠামো",
-                    "serial" => true,
+                    "title" =>   "প্রাতিষ্ঠানিক কাঠামো",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "প্রাতিষ্ঠানিক অবকাঠামো",
-                    "serial" => true,
+                    "title" => "প্রাতিষ্ঠানিক অবকাঠামো",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "শুদ্ধাচার সংক্রান্ত তথ্য",
-                    "serial" => true,
+                    "title" => "শুদ্ধাচার সংক্রান্ত তথ্য",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
             ],
             [
                 [
-                    "name" =>  "কিভাবে আবেদন করতে হবে ?",
-                    "serial" => true,
+                    "title" =>  "কিভাবে আবেদন করতে হবে ?",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>  "ভর্তি পরীক্ষা",
-                    "serial" => true,
+                    "title" =>  "ভর্তি পরীক্ষা",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>   "ভর্তি নীতি",
-                    "serial" => true,
+                    "title" =>   "ভর্তি নীতি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>   "রেজিস্ট্রেশন সিস্টেম",
-                    "serial" => true,
+                    "title" =>   "রেজিস্ট্রেশন সিস্টেম",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>    "বর্তমান শিক্ষা ব্যবস্থা",
-                    "serial" => true,
+                    "title" =>    "বর্তমান শিক্ষা ব্যবস্থা",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
 
                 [
-                    "name" =>   "সেমিস্টার পরিকল্পনা",
-                    "serial" => true,
+                    "title" =>   "সেমিস্টার পরিকল্পনা",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
             ],
             [
                 [
-                    "name" =>     "প্রতিষ্ঠাতা",
-                    "serial" => true,
+                    "title" =>     "প্রতিষ্ঠাতা",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>       "অধ্যক্ষ",
-                    "serial" => true,
+                    "title" =>       "অধ্যক্ষ",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>      "উপাধ্যক্ষ",
-                    "serial" => true,
+                    "title" =>      "উপাধ্যক্ষ",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>   "শিক্ষক",
-                    "serial" => true,
+                    "title" =>   "শিক্ষক",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>   "অফিস",
-                    "serial" => true,
+                    "title" =>   "অফিস",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "কর্মচারী",
-                    "serial" => true,
+                    "title" => "কর্মচারী",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
 
             ],
             [
                 [
-                    "name" =>  "শ্রেণি সূচি",
-                    "serial" => true,
+                    "title" =>  "শ্রেণি সূচি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "অনলাইন শ্রেণি সূচি",
-                    "serial" => true,
+                    "title" => "অনলাইন শ্রেণি সূচি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "পরীক্ষার সময়সূচী",
-                    "serial" => true,
+                    "title" => "পরীক্ষার সময়সূচী",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "একাডেমিক সিলেবাস",
-                    "serial" => true,
+                    "title" => "একাডেমিক সিলেবাস",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" =>  "শিক্ষা বর্ষপঞ্জি",
-                    "serial" => true,
+                    "title" =>  "শিক্ষা বর্ষপঞ্জি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
                 [
-                    "name" => "একাডেমিক প্রসপেক্টাস",
-                    "serial" => true,
+                    "title" => "একাডেমিক প্রসপেক্টাস",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-            ],
-            [
-
-                [
-                    "name" => "শিক্ষার্থীদের বেতন",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" => "শিক্ষার্থীদের ইউনিফর্ম",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>  "পরীক্ষার ব্যবস্থা",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" => "নিয়ম এবং প্রবিধান",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>  "আমাদের ছাত্র-ছাত্রী",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>  "শিক্ষার্থীদের সাফল্যের গল্প",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-            ],
-            [
-                [
-                    "name" =>  "একাডেমিক পরীক্ষার ফলাফল",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>   "বোর্ড পরীক্ষার ফলাফল",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-            ],
-            [
-                [
-                    "name" =>   "ভর্তি নোটিশ",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-
-                [
-                    "name" =>   "পরীক্ষার নোটিশ",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>    "ফলাফলের নোটিশ",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>    "ইভেন্টস নোটিশ",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>    "প্রশাসন নোটিশ",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
-                ],
-                [
-                    "name" =>   "জাতীয় কর্মসূচি",
-                    "serial" => true,
-                    "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                 ],
             ],
             [
 
                 [
-                    "name" =>    "কোর্স সমূহ",
-                    "serial" => true,
+                    "title" => "শিক্ষার্থীদের বেতন",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" => "শিক্ষার্থীদের ইউনিফর্ম",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>  "পরীক্ষার ব্যবস্থা",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" => "নিয়ম এবং প্রবিধান",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>  "আমাদের ছাত্র-ছাত্রী",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>  "শিক্ষার্থীদের সাফল্যের গল্প",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+            ],
+            [
+                [
+                    "title" =>  "একাডেমিক পরীক্ষার ফলাফল",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>   "বোর্ড পরীক্ষার ফলাফল",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+            ],
+            [
+                [
+                    "title" =>   "ভর্তি নোটিশ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+
+                [
+                    "title" =>   "পরীক্ষার নোটিশ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>    "ফলাফলের নোটিশ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>    "ইভেন্টস নোটিশ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>    "প্রশাসন নোটিশ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+                [
+                    "title" =>   "জাতীয় কর্মসূচি",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
+                ],
+            ],
+            [
+
+                [
+                    "title" =>    "কোর্স সমূহ",
+                    "serial" => "",
+                    "is_visible" => true,
+                    "goto_external_link" => 0,
                     "child" => [
                         "কিন্ডার গার্টেন",
                         "প্রাথমিক",
@@ -281,20 +282,20 @@ class NavbarMenuItemSeeder extends Seeder
 
                 ],
                 [
-                    "name" =>    "বৃত্তি ও উপবৃত্তি",
-                    "serial" => true,
+                    "title" =>    "বৃত্তি ও উপবৃত্তি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                     "child" => [
                         "বৃত্তি সংক্রান্ত নোটিশ",
                         "উপবৃত্তি সংক্রান্ত নোটিশ",
                     ]
                 ],
                 [
-                    "name" =>      "রিসোর্স",
-                    "serial" => true,
+                    "title" =>      "রিসোর্স",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                     "child" => [
                         "ডিজিটাল ক্লাস কনটেন্ট",
                         "গ্রন্থাগার",
@@ -304,20 +305,20 @@ class NavbarMenuItemSeeder extends Seeder
                     ]
                 ],
                 [
-                    "name" =>    "গ্যালারি",
-                    "serial" => true,
+                    "title" =>    "গ্যালারি",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                     "child" => [
                         "ফটো গ্যালারী",
                         "ভিডিও গ্যালারী",
                     ]
                 ],
                 [
-                    "name" =>    "যোগাযোগ",
-                    "serial" => true,
+                    "title" =>    "যোগাযোগ",
+                    "serial" => "",
                     "is_visible" => true,
-                    "goto_external_link" => true,
+                    "goto_external_link" => 0,
                     "child" => [
                         "সংবাদ",
                         "ব্লগ",
@@ -328,18 +329,18 @@ class NavbarMenuItemSeeder extends Seeder
 
         ];
 
-
-        foreach ($submenu as $index => $menu) {
-            $id = $index + 1;
-            foreach ($menu as $item) {
-                NavbarMenuItem::create([
-                    "navbar_menus_id" => $id,
-                    "title" => $item['name'],
-                    "serial" => $item['serial'],
-                    "is_visible" => $item['is_visible'],
-                    "goto_external_link" => $item['goto_external_link'],
-                ]);
-            }
-        }
+        // NavbarMenuItem::truncate();
+        // foreach ($submenu as $index => $menu) {
+        //     $id = $index + 1;
+        //     foreach ($menu as $key => $item) {
+        //         NavbarMenuItem::create([
+        //             "navbar_menus_id" => $id,
+        //             "title" => $item['name'],
+        //             "serial" => $key + 1,
+        //             "is_visible" => $item['is_visible'],
+        //             "goto_external_link" => $item['goto_external_link'],
+        //         ]);
+        //     }
+        // }
     }
 }
