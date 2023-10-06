@@ -39,6 +39,8 @@ class SettingsTitleController extends Controller
         return response()->json($query);
     }
 
+    
+
     public function show($id)
     {
         $data = SettingTitle::where('id', $id)->first();
@@ -200,7 +202,7 @@ class SettingsTitleController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {
