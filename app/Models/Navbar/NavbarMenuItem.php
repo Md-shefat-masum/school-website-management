@@ -24,4 +24,9 @@ class NavbarMenuItem extends Model
     {
         return $q->where('status', 'active');
     }
+
+    public function details()
+    {
+        return $this->hasOne(NavbarMenuDetail::class,"navbar_menu_items_id");
+    }
 }
