@@ -13,6 +13,7 @@ class AcademyCalssSeeder extends Seeder
      */
     public function run(): void
     {
+        AcademicClass::truncate();
         AcademicClass::create([
             "title" => " Class One",
         ]);
