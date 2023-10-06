@@ -2,6 +2,7 @@
 
 namespace App\Models\Settings;
 
+use App\Models\Navbar\NavbarMenuItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -25,4 +26,6 @@ class SettingTitle extends Model
     {
         return $q->where('status', 'active');
     }
+
+    
 }
