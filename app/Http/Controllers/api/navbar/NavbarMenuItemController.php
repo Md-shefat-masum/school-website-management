@@ -41,11 +41,11 @@ class NavbarMenuItemController extends Controller
 
     public function show($id)
     {
-        $data = NavbarMenuItem::where('id', $id)->first();
+        $data = NavbarMenuItem::where('id', $id)->orWhere('slug',$id)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
-                'errors' => ['role' => ['data not found']],
+                'errors' => ['data' => ['data not found']],
             ], 422);
         }
         return response()->json($data, 200);
