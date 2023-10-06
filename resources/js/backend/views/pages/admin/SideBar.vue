@@ -9,7 +9,7 @@
         </div>
         <ul class="sidebar-menu">
             <li>
-                <router-link :to="{name: `ContactMessageAll`}" class="sidebar-header">
+                <router-link :to="{name: `BaseSetup`}" class="sidebar-header">
                     <i class="icon-settings"></i>
                     <span>Base Setup</span>
                 </router-link>
