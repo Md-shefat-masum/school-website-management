@@ -266,6 +266,8 @@ Route::prefix('v1')
         Route::controller(NavbarMenuController::class)
             ->prefix('/navbar-menu')
             ->group(function () {
+                Route::get('/get-all', 'get_all');
+
                 Route::get('/all', 'all');
                 Route::get('/{id}', 'show');
                 Route::post('/store', 'store');
