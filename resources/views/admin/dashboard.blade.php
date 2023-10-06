@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="/backend/assets/responsive.css">
 
     <link rel="stylesheet" type="text/css" href="/plugins/pace.css">
+    <script src="/plugins/sweet_alert.js" defer></script>
     <script src="/plugins/pace.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/backend/assets/custom.css">
