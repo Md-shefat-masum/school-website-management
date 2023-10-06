@@ -5,6 +5,7 @@ import contact_message_routes from "./management/contact_messages/setup/routes";
 import base_setup_routes from "./management/base_setup/setup/routes";
 import banner_routes from "./management/banner/setup/routes";
 import success_at_a_glance_routes from "./management/success_at_a_glance/setup/routes";
+import menu_description_contents_routes from "./management/menu_description_contents/setup/routes";
 
 const routes = {
     path: '/admin',
@@ -18,6 +19,7 @@ const routes = {
         base_setup_routes,
         banner_routes,
         success_at_a_glance_routes,
+        menu_description_contents_routes,
     ]
 };
 
