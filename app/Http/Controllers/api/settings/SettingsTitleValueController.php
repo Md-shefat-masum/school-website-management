@@ -38,6 +38,12 @@ class SettingsTitleValueController extends Controller
         return response()->json($query);
     }
 
+    public function selected()
+    {
+        $values = SettingTitleValue::select('title','id','value')->whereIn("title",request()->titles)->get();
+        return $values;
+    }
+
     public function show($id)
     {
         $data = SettingTitleValue::where('id', $id)->first();
