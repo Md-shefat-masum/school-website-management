@@ -41,7 +41,11 @@ class NavbarMenuItemController extends Controller
 
     public function show($id)
     {
-        $data = NavbarMenuItem::where('id', $id)->orWhere('slug',$id)->first();
+        $query = NavbarMenuItem::where('id', $id)->orWhere('slug',$id);
+        if(request()->has('with_details')){
+            $query->with('details');
+        }
+        $data = $query->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
@@ -175,6 +179,29 @@ class NavbarMenuItemController extends Controller
         $data->save();
 
         return response()->json($data, 200);
+    }
+
+    public function disable()
+    {
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required'],
+            'status' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = NavbarMenuItem::find(request()->id);
+        $data->is_visible = request()->status;
+        $data->save();
+
+        return response()->json([
+            'result' => $data,
+        ], 200);
     }
 
     public function soft_delete()
