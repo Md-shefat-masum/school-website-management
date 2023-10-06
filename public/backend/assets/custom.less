@@ -3,6 +3,17 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
     color: #ab8ce4;
 }
 
+@font-face {
+    font-family: 'bangla';
+    src: url("/backend/assets/bangla.ttf");
+}
+
+.bn{
+    font-family: 'bangla' !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+}
+
 @color_1: var(--white);
 @background_color_1: rgba(67, 89, 113, 0.3);
 @background_color_2: #161D31;
@@ -39,10 +50,18 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
                     &:hover {
                         background-color: @background_color_1;
                     }
+
+                    &.bn{
+                        padding: 10px;
+                    }
                 }
 
                 a.router-link-active.router-link-exact-active{
                     background-color: @background_color_2 !important;
+                }
+
+                ul{
+                    padding-left: 30px;
                 }
             }
         }
