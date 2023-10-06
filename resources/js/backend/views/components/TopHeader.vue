@@ -3,9 +3,10 @@
         <!--Page Header Start-->
         <div class="main-header-left" semilight-bg-color="bg-default-light-colo">
             <div class="logo-wrapper">
-                <a href="http://admin.pixelstrap.com/universal/default/index.html">
-                    <img src="/backend/assets/logo-light.png" class="image-dark" alt="">
-                    <img src="/backend/assets/logo-light-dark-layout.png" class="image-light" alt="">
+                <a href="#" class="d-flex align-items-end gap-1">
+                    <img src="https://md-shefat-masum.github.io/index/images/logo.png" class="image-dark" alt="">
+                    <img src="https://md-shefat-masum.github.io/index/images/logo.png" class="image-light" alt="">
+                    <span class="text-white h4">Dashboard</span>
                 </a>
             </div>
         </div>
