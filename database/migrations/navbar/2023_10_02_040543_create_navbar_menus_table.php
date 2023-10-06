@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100)->nullable();
             $table->string('icon_image', 100)->nullable();
-            $table->tinyInteger('is_visible')->nullable();
+            $table->tinyInteger('is_visible')->default(1);
             $table->tinyInteger('serial')->nullable();
+            $table->tinyInteger('goto_external_link')->default(0);
+            $table->string('external_link', 100)->nullable();
+
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
