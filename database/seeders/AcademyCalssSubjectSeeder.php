@@ -13,6 +13,7 @@ class AcademyCalssSubjectSeeder extends Seeder
      */
     public function run(): void
     {
+        AcademicClassSubject::truncate();
         AcademicClassSubject::create([
             "academy_classes_id" => 1,
             "teacher_id" => 1,
