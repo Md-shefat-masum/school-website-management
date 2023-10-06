@@ -14,21 +14,27 @@
                                         <i class="fa-regular fa-envelope-open"></i>
                                     </div>
                                     <div class="text_area">
-                                        <p class="email_text text">abcdefghi@gmail.com</p>
+                                        <p class="email_text text">
+                                            {{setting(key:"emails",multiple:false)}}
+                                        </p>
                                     </div>
                                 </a>
                             </div>
                             <!-- email_area end-->
                             <!-- contact_number_area start -->
-                            <div class="contact_number_area email_contact_area">
-                                <a href="tel:+8801000000000" class="content_area">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </div>
-                                    <div class="text_area">
-                                        <p class="text">+8801000000000</p>
-                                    </div>
-                                </a>
+                            <div class="contact_number_area email_contact_area d-flex gap-1">
+                                @foreach (setting(key:"phone_numbers",multiple:true) as $item)
+                                    @if ($item->value)
+                                        <a href="tel:{{$item->value}}" class="content_area">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-phone"></i>
+                                            </div>
+                                            <div class="text_area">
+                                                <p class="text">{{$item->value}}</p>
+                                            </div>
+                                        </a>
+                                    @endif
+                                @endforeach
                             </div>
                             <!-- contact_number_area end -->
                         </div>
@@ -55,17 +61,20 @@
 
                 <!-- logo_area start -->
                 <a href="#" class="logo_area">
-                    <img src="{{ asset('frontend') }}/assets/images/website_logo/logo.png" alt="logo">
+                    <img src="{{ asset(setting(key:"header_logo",multiple:false)) }}" alt="logo">
                 </a>
                 <!-- logo_area end-->
 
                 <!-- school_name_area start -->
                 <a href="#" class="school_name_area">
                     <div class="school_name school_name_bangla">
-                        <h2 class="school_title">টেক পার্ক স্কুল এন্ড কলেজ,ঢাকা</h2>
+                        <h2 class="school_title">
+                            {{setting(key: "institue_name_bangla", multiple: false)}}
+                        </h2>
                     </div>
                     <div class="school_name school_name_english">
-                        <h2 class="school_title">Tech Park School and College, Dhaka
+                        <h2 class="school_title">
+                            {{setting(key: "institue_name_arabic", multiple: false)}}
                         </h2>
                     </div>
                 </a>
