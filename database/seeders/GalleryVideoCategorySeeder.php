@@ -13,6 +13,7 @@ class GalleryVideoCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        GalleryVideoCategory::truncate();
         GalleryVideoCategory::create([
             "title" => "one"
         ]);
