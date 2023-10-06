@@ -13,8 +13,9 @@ class BlogCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        BlogCategory::truncate();
         BlogCategory::create([
-            "title" => "one"
+            "title" => "ict"
         ]);
     }
 }
