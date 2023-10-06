@@ -13,7 +13,8 @@ const routes =
     children: [
         {
             path: ":slug",
-            name: "Details",
+            name: "ContentPageDetails",
+            props: true,
             component: Content,
         },
 

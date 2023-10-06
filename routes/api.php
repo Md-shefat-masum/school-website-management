@@ -14,6 +14,7 @@ use App\Http\Controllers\api\gallery\GalleryPhotoController;
 use App\Http\Controllers\api\gallery\GalleryVideoCategoryController;
 use App\Http\Controllers\api\gallery\GalleryVideoController;
 use App\Http\Controllers\api\navbar\NavbarMenuController;
+use App\Http\Controllers\api\navbar\NavbarMenuDetailsController;
 use App\Http\Controllers\api\navbar\NavbarMenuItemController;
 use App\Http\Controllers\api\news\NewsCategoryController;
 use App\Http\Controllers\api\news\NewsController;
@@ -280,6 +281,21 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
 
+        Route::controller(NavbarMenuDetailsController::class)
+            ->prefix('/navbar-menu-details')
+            ->group(function () {
+                Route::get('/all', 'all');
+                Route::get('/{id}', 'show');
+                Route::post('/store', 'store');
+                Route::post('/canvas-store', 'canvas_store');
+                Route::post('/update', 'update');
+                Route::post('/canvas-update', 'canvas_update');
+                Route::post('/soft-delete', 'soft_delete');
+                Route::post('/restore', 'restore');
+                Route::post('/destroy', 'destroy');
+                Route::post('/bulk-import', 'bulk_import');
+            });
+
         Route::controller(NavbarMenuItemController::class)
             ->prefix('/navbar-menu-item')
             ->group(function () {
@@ -289,6 +305,7 @@ Route::prefix('v1')
                 Route::post('/canvas-store', 'canvas_store');
                 Route::post('/update', 'update');
                 Route::post('/canvas-update', 'canvas_update');
+                Route::post('/disable', 'disable');
                 Route::post('/soft-delete', 'soft_delete');
                 Route::post('/restore', 'restore');
                 Route::post('/destroy', 'destroy');

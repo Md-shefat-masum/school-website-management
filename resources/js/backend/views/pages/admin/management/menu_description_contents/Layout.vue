@@ -21,9 +21,9 @@
         <!-- Container-fluid Ends -->
         <div>
             <div class="setting_pages_body">
-                <div class="left_setting_nav custom_scroll">
+                <div class="left_setting_nav " style="overflow: hidden;">
                     <div class="card rounded-none h-100 mb-0">
-                        <div class="card-body p-2">
+                        <div class="card-body p-2 custom_scroll" style="overflow-y: scroll;">
                             <ul>
                                 <!-- <li>
                                     <router-link :to="{name: `${route_prefix}Campus`}">
@@ -31,21 +31,23 @@
                                         Campus Information
                                     </router-link>
                                 </li> -->
-                                <li v-for="menu in menus" :key="menu.id">
-                                    <a href="" @click.prevent="()=>''" class="bn">
-                                        <!-- <i class="icon-pencil-alt"></i> -->
-                                        <img :src="`/${menu.icon_image}`" style="height: 18px;" alt="">
-                                        {{ menu.title }}
-                                    </a>
-                                    <ul>
-                                        <li v-for="submenu in menu.sub_menus" :key="submenu.id">
-                                            <router-link :to="{ name: `Details`, params: { slug: submenu.slug } }" class="bn">
-                                                <i class="icon-hand-point-right"></i>
-                                                {{ submenu.title }}
-                                            </router-link>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <template v-for="menu in menus" :key="menu.id">
+                                    <li v-if="menu.sub_menus.length">
+                                        <a href="" @click.prevent="()=>''" class="bn">
+                                            <!-- <i class="icon-pencil-alt"></i> -->
+                                            <img :src="`/${menu.icon_image}`" style="height: 18px;" alt="">
+                                            {{ menu.title }}
+                                        </a>
+                                        <ul>
+                                            <li v-for="submenu in menu.sub_menus" :key="submenu.id">
+                                                <router-link :to="{ name: `ContentPageDetails`, params: { slug: submenu.slug } }" class="bn">
+                                                    <i class="icon-hand-point-right"></i>
+                                                    {{ submenu.title }}
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </template>
                             </ul>
                         </div>
                     </div>
@@ -80,7 +82,7 @@ export default {
         get_value: function () {
             axios.get('/navbar-menu/get-all')
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.menus = res.data;
                 })
         },
