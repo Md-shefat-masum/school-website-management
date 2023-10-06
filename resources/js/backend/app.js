@@ -1,5 +1,6 @@
 import './bootstrap';
 import './plugins/axios_setup.js';
+import './plugins/sweet_alert.js';
 import { createApp } from 'vue';
 import Dashbord from './views/App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -47,7 +48,12 @@ const routes = [
 const router = createRouter({
     history: createWebHashHistory(),
     routes, // short for `routes: routes`
-})
+});
+router.beforeEach((to, from, next) => {
+    to.href.length > 2 &&
+        window.sessionStorage.setItem('prevurl', to.href);
+    next();
+});
 
 const pinia = createPinia()
 const app = createApp({});
