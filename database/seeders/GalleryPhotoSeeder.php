@@ -13,6 +13,7 @@ class GalleryPhotoSeeder extends Seeder
      */
     public function run(): void
     {
+        GalleryPhoto::truncate();
         GalleryPhoto::create([
             "gallery_photo_categories_id" => 1,
             "title" => "asdf",
