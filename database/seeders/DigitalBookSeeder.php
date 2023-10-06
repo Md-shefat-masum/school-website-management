@@ -13,6 +13,7 @@ class DigitalBookSeeder extends Seeder
      */
     public function run(): void
     {
+        DigitalBook::truncate();
         DigitalBook::create([
             "digital_book_categories_id" => 1,
             "title" => "title",
