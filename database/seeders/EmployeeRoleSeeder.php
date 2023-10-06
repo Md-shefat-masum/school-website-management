@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,7 @@ class EmployeeRoleSeeder extends Seeder
      */
     public function run(): void
     {
+        Employee::truncate();
         EmployeeRole::create([
             "title" => "প্রতিষ্ঠাতা",
             "serial" => 1
