@@ -18,14 +18,14 @@ function setting($key, $multiple = false)
 {
     try {
         if (!$multiple) {
-            $vlaue = $GLOBALS['app_settings']->where("setting_title", $key)->first();
+            $vlaue = $GLOBALS['app_settings']->where("title", $key)->first();
             if ($vlaue) {
                 return $vlaue->value;
             } else {
                 return '';
             }
         } else {
-            $vlaues = $GLOBALS['app_settings']->where("setting_title", $key)->all();
+            $vlaues = $GLOBALS['app_settings']->where("title", $key)->all();
             return $vlaues;
         }
     } catch (\Throwable $th) {
