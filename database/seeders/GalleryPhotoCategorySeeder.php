@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Gallery\GalleryPhoto;
 use App\Models\Gallery\GalleryPhotoCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,7 @@ class GalleryPhotoCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        GalleryPhotoCategory::truncate();
         GalleryPhotoCategory::create([
             "title" => "খেলাধুলা",
         ]);
