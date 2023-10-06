@@ -13,8 +13,9 @@ class BannerSeeder extends Seeder
      */
     public function run(): void
     {
+        Banner::truncate();
         Banner::create([
-            "background" => "/assets/images/banner_image/bg2.jpg",
+            "background" => "frontend/assets/images/banner_image/bg2.jpg",
             "title" => "শিক্ষা প্রতিষ্ঠান মেধা ও প্রতিভা বিকাশের অন্যতম স্থান",
             "button_text" => "আবেদন করুন",
             "button_url" => "#",
