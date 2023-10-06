@@ -31,6 +31,36 @@
                                         Meta Information
                                     </router-link>
                                 </li>
+                                <li>
+                                    <router-link :to="{name: `${route_prefix}ContactInfo`}">
+                                        <i class="icon-headphone-alt"></i>
+                                        Contact Information
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: `${route_prefix}SeoInfo`}">
+                                        <i class="icon-zoom-in"></i>
+                                        SEO Information
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: `${route_prefix}InstituteDetails`}">
+                                        <i class="icon-file"></i>
+                                        Institute Details
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: `${route_prefix}InstituteSummery`}">
+                                        <i class="icon-menu-alt"></i>
+                                        Institute Summary
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: `${route_prefix}PrincipalInfo`}">
+                                        <i class="icon-user"></i>
+                                        Principal Info
+                                    </router-link>
+                                </li>
                             </ul>
                         </div>
                     </div>

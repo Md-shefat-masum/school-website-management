@@ -2,7 +2,7 @@
     <div class="">
         <div class="card rounded-none">
             <div class="card-header">
-                <h4> Meta Informations</h4>
+                <h4> Contact Informations</h4>
             </div>
             <div class="card-body px-4 pt-4 form_area custom_scroll">
 
@@ -20,30 +20,9 @@ export default {
     data: () => ({
         fields: [
             {
-                title: 'institue_name_bangla',
+                title: 'map_link',
                 type: 'text',
             },
-            {
-                title: 'institue_name_english',
-                type: 'text',
-            },
-            {
-                title: 'institue_name_arabic',
-                type: 'text',
-            },
-            {
-                title: 'header_logo',
-                type: 'file',
-            },
-            {
-                title: 'footer_logo',
-                type: 'file',
-            },
-            {
-                title: 'fabicon',
-                type: 'file',
-            },
-
             {
                 title: 'address_bangla',
                 type: 'text',
@@ -52,14 +31,46 @@ export default {
                 title: 'address_english',
                 type: 'text',
             },
-
+            {
+                title: 'phone_numbers',
+                type: 'text',
+                is_multiple: true,
+                values:[],
+            },
+            {
+                title: 'emails',
+                type: 'text',
+                is_multiple: true,
+                values: [],
+            },
+            {
+                title: 'whatsapp',
+                type: 'text',
+            },
 
             {
-                title: 'map_link',
+                title: 'telegram',
+                type: 'text',
+            },
+
+            {
+                title: 'facebook',
                 type: 'text',
             },
             {
-                title: 'copy_right',
+                title: 'youtube',
+                type: 'text',
+            },
+            {
+                title: 'instagram',
+                type: 'text',
+            },
+            {
+                title: 'linkedin',
+                type: 'text',
+            },
+            {
+                title: 'twitter',
                 type: 'text',
             },
 
@@ -76,13 +87,17 @@ export default {
             .then(res=>{
                 // console.log(res.data);
                 this.fields.map(e=>{
-                    let item = res.data.find(i=>i.title==e.title);
-                    e.value = item.value;
-                    e.id = item.id;
+                    if(e.is_multiple){
+                        let item = res.data.filter(i=>i.title==e.title);
+                        e.values = item;
+                    }else{
+                        let item = res.data.find(i=>i.title==e.title);
+                        e.value = item.value;
+                        e.id = item.id;
+                    }
                 });
             })
         },
-
     }
 }
 </script>
