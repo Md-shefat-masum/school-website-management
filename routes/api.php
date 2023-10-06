@@ -56,7 +56,7 @@ Route::prefix('v1')
     });
 
 Route::prefix('v1')
-    ->middleware("auth:api")
+    ->middleware(["check_token", "auth:api"])
     ->group(function () {
         Route::get('user', [ApiLoginController::class, 'check_auth']);
     });
@@ -348,6 +348,7 @@ Route::prefix('v1')
             ->prefix('/setting-title-value')
             ->group(function () {
                 Route::get('/all', 'all');
+                Route::post('/selected', 'selected');
                 Route::get('/{id}', 'show');
                 Route::post('/store', 'store');
                 Route::post('/canvas-store', 'canvas_store');
