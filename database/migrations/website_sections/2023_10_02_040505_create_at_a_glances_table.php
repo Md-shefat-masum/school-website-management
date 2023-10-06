@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('at_a_glances', function (Blueprint $table) {
             $table->id();
-            $table->string('icon', 100)->nullable();
-            $table->string('title', 100)->nullable();
+            $table->string('icon', 100)->default('<i class="fa-solid fa-graduation-cap"></i>');
+            $table->text('title')->nullable();
             $table->text('description')->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
