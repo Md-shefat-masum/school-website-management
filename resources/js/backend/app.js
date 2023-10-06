@@ -1,4 +1,5 @@
 import './bootstrap';
+import './plugins/axios_setup.js';
 import { createApp } from 'vue';
 import Dashbord from './views/App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -9,12 +10,13 @@ import SuperAdminDashboard from "./views/pages/superadmin/Dashboard.vue";
 import SuperAdminReportAll from "./views/pages/superadmin/management/reports/All.vue";
 import SuperAdminUserAll from "./views/pages/superadmin/management/users/All.vue";
 
+import App from "./views/App.vue"
 import admin_routes from "./views/pages/admin/routes"
 
 const routes = [
     {
         path: '/',
-        component: () => "<h1>wellcome</h1>"
+        component: App,
     },
     admin_routes,
 
