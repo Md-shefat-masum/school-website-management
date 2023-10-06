@@ -23,12 +23,13 @@ export default {
     watch: {
         'auth_info': function (v) {
             // console.log(v);
+            let prev_url = window.sessionStorage.getItem('prevurl');
             switch (v.role_sl) {
                 case 1:
-                    window.location.hash = window.location.hash?window.location.hash:"#/super-admin";
+                    window.location.hash = prev_url || "#/super-admin";
                     break;
                 case 2:
-                    window.location.hash = window.location.hash?window.location.hash:"#/admin";
+                    window.location.hash = prev_url || "#/admin";
                     break;
                 default:
                     alert('you have no permission');
