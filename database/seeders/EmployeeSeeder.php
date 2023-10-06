@@ -13,6 +13,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
+        Employee::truncate();
         Employee::create([
             "employee_roles_id" =>  "1",
             "name" => "Md Lutfor Rahman",
