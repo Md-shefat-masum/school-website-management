@@ -11,7 +11,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="https://md-shefat-masum.github.io/index/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="https://md-shefat-masum.github.io/index/images/logo.png" type="image/x-icon">
-    <title>Admin Panel</title>
+    <title>Dashbaord</title>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -31,6 +31,10 @@
     <link rel="stylesheet" type="text/css" href="/backend/assets/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" type="text/css" href="/backend/assets/responsive.css">
+
+    <link rel="stylesheet" type="text/css" href="/plugins/pace.css">
+    <script src="/plugins/pace.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/backend/assets/custom.css">
 
     <!-- latest jquery-->
@@ -62,7 +66,7 @@
     </div>
     <!--page-wrapper Ends-->
 
-    
+
 
 </body>
 
