@@ -39,6 +39,20 @@ class NavbarMenuController extends Controller
         return response()->json($query);
     }
 
+    public function get_all()
+    {
+        $data = NavbarMenu::where("goto_external_link", 0)
+            ->with([
+                "sub_menus" => function ($q) {
+                    $q->where("goto_external_link", 0)->orderBy('serial', 'ASC');
+                }
+            ])
+            ->orderBy('serial', 'ASC')
+            ->get();
+
+        return response()->json($data, 200);
+    }
+
     public function show($id)
     {
         $data = NavbarMenu::where('id', $id)->first();
@@ -212,7 +226,7 @@ class NavbarMenuController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {
