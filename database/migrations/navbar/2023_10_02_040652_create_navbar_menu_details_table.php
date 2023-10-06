@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('navbar_menu_id')->nullable();
             $table->bigInteger('navbar_menu_items_id')->nullable();
-            $table->bigInteger('navbar_menu_items_navbar_menus_id')->nullable();
-            $table->text('description')->nullable();
+            $table->text('title')->nullable();
+            $table->longText('description')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();

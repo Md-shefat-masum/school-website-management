@@ -16,8 +16,8 @@ return new class extends Migration
             $table->bigInteger('navbar_menus_id')->nullable();
             $table->string('title', 100)->nullable();
             $table->tinyInteger('serial')->nullable();
-            $table->tinyInteger('is_visible')->nullable();
-            $table->tinyInteger('goto_external_link')->nullable();
+            $table->tinyInteger('is_visible')->default(1);
+            $table->tinyInteger('goto_external_link')->default(0);
             $table->string('external_link', 100)->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
