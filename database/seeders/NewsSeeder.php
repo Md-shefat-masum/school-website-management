@@ -13,6 +13,7 @@ class NewsSeeder extends Seeder
      */
     public function run(): void
     {
+        News::truncate();
         News::create([
             "news_category_id" => 1,
             "title" => "বৃত্তি নিয়ে বিদেশে পড়তে যাওয়ার আগ্রহ বেশি শিক্ষার্থীদের । এর কারণ হিসেবে কি দেখছে বিশ্লেষকরা ?",
