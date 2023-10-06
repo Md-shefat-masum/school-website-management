@@ -2,4 +2,84 @@
 body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.active {
   color: #ab8ce4;
 }
+.setting_pages_body {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 10px;
+}
+.setting_pages_body .left_setting_nav {
+  height: calc(100vh - 127px);
+  overflow-y: auto;
+}
+.setting_pages_body .left_setting_nav ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.setting_pages_body .left_setting_nav ul li {
+  margin-bottom: 10px;
+}
+.setting_pages_body .left_setting_nav ul li a {
+  display: block;
+  color: var(--white);
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 10px 15px;
+}
+.setting_pages_body .left_setting_nav ul li a i {
+  padding-right: 5px;
+  width: 30px;
+}
+.setting_pages_body .left_setting_nav ul li a:hover {
+  background-color: rgba(67, 89, 113, 0.3);
+}
+.setting_pages_body .left_setting_nav ul li a.router-link-active.router-link-exact-active {
+  background-color: #161D31 !important;
+}
+.setting_pages_body .form_area {
+  height: calc(100vh - 225px);
+  overflow-y: auto;
+}
+.setting_pages_body .setting_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+}
+.setting_pages_body .setting_form label {
+  width: 200px;
+  font-weight: 700;
+  padding-right: 40px;
+  text-transform: capitalize;
+}
+.setting_pages_body .setting_form > div {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: grid;
+  gap: 20px;
+}
+.setting_pages_body .setting_form > div > .images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+.setting_pages_body .setting_form > div > .images img {
+  height: 60px;
+}
+.custom_scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom_scroll::-webkit-scrollbar-track {
+  background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb {
+  background: #b4b7be;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
 /*# sourceMappingURL=./custom.css.map */
