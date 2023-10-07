@@ -19,6 +19,7 @@ return new class extends Migration
             $table->tinyInteger('is_visible')->default(1);
             $table->tinyInteger('goto_external_link')->default(0);
             $table->string('external_link', 100)->nullable();
+            $table->tinyInteger('is_multiple')->default(0);
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
