@@ -293,7 +293,8 @@ class NavbarMenuSeeder extends Seeder
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
 
                     [
@@ -301,35 +302,40 @@ class NavbarMenuSeeder extends Seeder
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                     [
                         "title" =>    "ফলাফলের নোটিশ",
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                     [
                         "title" =>    "ইভেন্টস নোটিশ",
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                     [
                         "title" =>    "প্রশাসন নোটিশ",
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                     [
                         "title" =>   "জাতীয় কর্মসূচি",
                         "serial" => "",
                         "is_visible" => true,
                         "goto_external_link" => 0,
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                 ],
             ],
@@ -367,11 +373,13 @@ class NavbarMenuSeeder extends Seeder
                 "childrens" => [
                     [
                         "title" =>  "বৃত্তি সংক্রান্ত নোটিশ",
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                     [
                         "title" =>  "উপবৃত্তি সংক্রান্ত নোটিশ",
-                        "description" => "description"
+                        "description" => "description",
+                        "is_multiple" => 1,
                     ],
                 ],
             ],
