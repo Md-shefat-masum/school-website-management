@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Navbar\NavbarMenuDetail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class NavbarMenuDetailsController extends Controller
 {
@@ -134,6 +136,11 @@ class NavbarMenuDetailsController extends Controller
         }
 
         $data->description = request()->description;
+        $data->source_title = request()->source_title;
+        $data->source_url = request()->source_url;
+        if(request()->hasFile('source_file')){
+            $data->source_file = Storage::putFile('uploads/content_source/'.Str::slug($data->title),request()->file('source_file'));
+        }
         $data->save();
 
         return response()->json($data, 200);
