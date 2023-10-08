@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('gallery_photo_categories_id')->nullable();
             $table->string('title', 100)->nullable();
+            $table->string('image', 200)->nullable();
             $table->string('link', 100)->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();

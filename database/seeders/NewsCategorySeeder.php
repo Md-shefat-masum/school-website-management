@@ -15,7 +15,20 @@ class NewsCategorySeeder extends Seeder
     {
         NewsCategory::truncate();
         NewsCategory::create([
-            "title" => "new academic routines"
+            "title" => "Academic Achievements"
         ]);
+        NewsCategory::create([
+            "title" => "Extracurricular Activities"
+        ]);
+        NewsCategory::create([
+            "title" => "Faculty and Staff Updates"
+        ]);
+        NewsCategory::create([
+            "title" => "School Events and Announcements"
+        ]);
+        NewsCategory::create([
+            "title" => "Student Life and Well-being"
+        ]);
+
     }
 }

@@ -66,7 +66,7 @@ Route::prefix('v1')
 
 
 Route::prefix('v1')
-    ->middleware(["check_token", "auth:api"])
+    // ->middleware(["check_token", "auth:api"])
     ->group(function () {
 
         Route::controller(AcademicClassController::class)

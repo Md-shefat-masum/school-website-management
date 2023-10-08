@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Blog extends Model
+class BlogComment extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -23,16 +23,5 @@ class Blog extends Model
     public function scopeActive($q)
     {
         return $q->where('status', 'active');
-    }
-
-
-    public function blog_categories()
-    {
-        return $this->belongsTo(BlogCategory::class);
-    }
-
-    public function blog_comments()
-    {
-        return $this->hasMany(BlogComment::class);
     }
 }

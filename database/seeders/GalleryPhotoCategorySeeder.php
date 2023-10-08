@@ -18,5 +18,20 @@ class GalleryPhotoCategorySeeder extends Seeder
         GalleryPhotoCategory::create([
             "title" => "খেলাধুলা",
         ]);
+        GalleryPhotoCategory::create([
+            "title" => "ভ্রমণ",
+        ]);
+        GalleryPhotoCategory::create([
+            "title" => " প্রতিষ্ঠাতা",
+        ]);
+        GalleryPhotoCategory::create([
+            "title" => " ক্যাম্পাস ভ্রমণ",
+        ]);
+        GalleryPhotoCategory::create([
+            "title" => "প্রধান শিক্ষক",
+        ]);
+        GalleryPhotoCategory::create([
+            "title" => "প্রতিষ্ঠান",
+        ]);
     }
 }

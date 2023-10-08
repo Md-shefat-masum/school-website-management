@@ -24,4 +24,9 @@ class GalleryVideo extends Model
     {
         return $q->where('status', 'active');
     }
+
+    public function gallery_video_categories()
+    {
+        return $this->belongsTo(GalleryVideoCategory::class);
+    }
 }

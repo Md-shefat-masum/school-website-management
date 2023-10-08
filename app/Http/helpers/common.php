@@ -17,16 +17,17 @@ function set_token_coockie($token)
 function setting($key, $multiple = false)
 {
     try {
+
         if (!$multiple) {
-            $vlaue = $GLOBALS['app_settings']->where("title", $key)->first();
-            if ($vlaue) {
-                return $vlaue->value;
+            $value = $GLOBALS['app_settings']->where("title", $key)->first();
+            if ($value) {
+                return $value->value;
             } else {
                 return '';
             }
         } else {
-            $vlaues = $GLOBALS['app_settings']->where("title", $key)->all();
-            return $vlaues;
+            $value = $GLOBALS['app_settings']->where("title", $key)->all();
+            return $value;
         }
     } catch (\Throwable $th) {
         var_dump($th->getMessage());
@@ -62,7 +63,7 @@ function upload($source, $path, $width = null, $height = null, $file_name = null
         $file_name = Carbon::now()->toDateTimeString();
         $file_name = Str::slug($file_name);
         $file_name .= "." . $source->getClientOriginalExtension();
-    }else{
+    } else {
         $file_name = Str::slug($file_name);
     }
 

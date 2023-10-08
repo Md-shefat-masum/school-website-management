@@ -24,4 +24,9 @@ class News extends Model
     {
         return $q->where('status', 'active');
     }
+
+    public function news_category()
+    {
+        return $this->belongsTo(NewsCategory::class);
+    }
 }

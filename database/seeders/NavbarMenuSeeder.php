@@ -483,6 +483,7 @@ class NavbarMenuSeeder extends Seeder
                     "serial" => $sub_key + 1,
                     "goto_external_link" => $sub_item["goto_external_link"] ?? 0,
                     "external_link" => $sub_item["external_link"] ?? "",
+                    "is_multiple" => $sub_item["is_multiple"] ?? 0,
                     "is_visible" => true,
                 ]);
 
@@ -490,8 +491,8 @@ class NavbarMenuSeeder extends Seeder
                     NavbarMenuDetail::create([
                         "navbar_menu_id" => $menu->id,
                         "navbar_menu_items_id" => $menu_item->id,
-                        "title" => $sub_item["title"],
-                        "description" => $sub_item["description"],
+                        "title" => "মুরাদপুর ইসলামিয়া হাফেজিয়া মাদ্রাসা 9, 10, 11 তারিখ স্কুল বন্ধ থাকবে",
+                        "description" => "প্রথম সেমিস্টার পরীক্ষা শেষ হওয়ার কারণে আগামী 9 10 11 তারিখ স্কুল বন্ধ থাকবে উচ্চশিক্ষার জন্য দেশের বাইরে পড়তে যান অনেকেই। কেউ বৃত্তি পেয়ে, কেউ নিজ পকেটের অর্থ খরচ করে পড়াশোনা করেন। বিদেশে পড়ার সময়ে অর্থ কীভাবে খরচ করতে হবে, তার একটি পরিকল্পনা দরকার। কারণ, অর্থের অপচয় বা অযথা ব্যয় বিপদে ফেলতে পারে শিক্ষার্থীদের। প্রথমবার বিদেশে পড়তে যাওয়া শিক্ষার্থীদের অর্থ ব্যয় বা অর্থ ব্যবস্থাপনা নিয়ে নানান ঝক্কিঝামেলায় পড়তে হয়। এখানে কিছু পরামর্শ দেওয়া হলো।",
                     ]);
                 }
             }

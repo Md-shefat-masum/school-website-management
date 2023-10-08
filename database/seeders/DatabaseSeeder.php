@@ -32,8 +32,6 @@ class DatabaseSeeder extends Seeder
             GalleryVideoCategorySeeder::class,
             GalleryVideoSeeder::class,
             NavbarMenuSeeder::class,
-            NavbarMenuItemSeeder::class,
-            NavbarMenuDetailsSeeder::class,
             NewsCategorySeeder::class,
             NewsSeeder::class,
             SettingSeeder::class,

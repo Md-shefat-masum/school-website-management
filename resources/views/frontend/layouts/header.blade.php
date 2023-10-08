@@ -24,16 +24,16 @@
                             <!-- contact_number_area start -->
                             <div class="contact_number_area email_contact_area d-flex gap-1">
                                 @foreach (setting(key:"phone_numbers",multiple:true) as $item)
-                                    @if ($item->value)
-                                        <a href="tel:{{$item->value}}" class="content_area">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-phone"></i>
-                                            </div>
-                                            <div class="text_area">
-                                                <p class="text">{{$item->value}}</p>
-                                            </div>
-                                        </a>
-                                    @endif
+                                @if ($item->value)
+                                <a href="tel:{{$item->value}}" class="content_area">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div class="text_area">
+                                        <p class="text">{{$item->value}}</p>
+                                    </div>
+                                </a>
+                                @endif
                                 @endforeach
                             </div>
                             <!-- contact_number_area end -->
