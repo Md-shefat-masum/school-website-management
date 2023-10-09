@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\navbar;
 
 use App\Http\Controllers\Controller;
 use App\Models\Navbar\NavbarMenuDetail;
+use App\Models\Navbar\NavbarMenuItem;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -37,16 +38,21 @@ class NavbarMenuDetailsController extends Controller
             });
         }
 
-        $query = $query->paginate($paginate);
-        return response()->json($query);
+        if(request()->has('sub_menu_slug')){
+            $sub_menu = NavbarMenuItem::where('slug',request()->get('sub_menu_slug'))->first();
+            if($sub_menu){
+                $query->where('navbar_menu_items_id',$sub_menu->id);
+            }
+        }
+
+        $data = $query->paginate($paginate);
+        $data->setPath(url()->full());
+        return response()->json($data);
     }
 
     public function show($id)
     {
-        $query = NavbarMenuDetail::where('id', $id)->orWhere('slug',$id);
-        if(request()->has('with_details')){
-            $query->with('details');
-        }
+        $query = NavbarMenuDetail::where('id', $id)->orWhere('slug', $id);
         $data = $query->first();
         if (!$data) {
             return response()->json([
@@ -61,6 +67,7 @@ class NavbarMenuDetailsController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'title' => ['required'],
+            'description' => ['required'],
             'navbar_menus_id' => ['required'],
         ], []);
 
@@ -72,12 +79,15 @@ class NavbarMenuDetailsController extends Controller
         }
 
         $data = new NavbarMenuDetail();
-        $data->navbar_menus_id = request()->navbar_menus_id;
+        $data->navbar_menu_id = request()->navbar_menu_id;
+        $data->navbar_menu_items_id = request()->navbar_menu_items_id;
         $data->title = request()->title;
-        $data->serial = request()->serial;
-        $data->is_visible = request()->is_visible;
-        $data->goto_external_link = request()->goto_external_link;
-        $data->external_link = request()->external_link;
+        $data->description = request()->description;
+        $data->source_title = request()->source_title;
+        $data->source_url = request()->source_url;
+        if($_FILES["source_file"]["size"]){
+            $data->source_file = upload(request()->source_file,"uploads/notices");
+        }
         $data->save();
 
         return response()->json($data, 200);
@@ -117,13 +127,15 @@ class NavbarMenuDetailsController extends Controller
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
-                'errors' => ['name' => ['Data not found by given id ' . (request()->id ? request()->id : 'null')]],
+                'errors' => ['title' => ['Data not found by given id ' . (request()->id ? request()->id : 'null')]],
             ], 422);
         }
 
         $rules = [
             'id' => ['required'],
+            'title' => ['required'],
             'description' => ['required'],
+            'navbar_menus_id' => ['required'],
         ];
 
         $validator = Validator::make(request()->all(), $rules, []);
@@ -135,11 +147,14 @@ class NavbarMenuDetailsController extends Controller
             ], 422);
         }
 
+        $data->navbar_menu_id = request()->navbar_menu_id;
+        $data->navbar_menu_items_id = request()->navbar_menu_items_id;
+        $data->title = request()->title;
         $data->description = request()->description;
         $data->source_title = request()->source_title;
         $data->source_url = request()->source_url;
-        if(request()->hasFile('source_file')){
-            $data->source_file = Storage::putFile('uploads/content_source/'.Str::slug($data->title),request()->file('source_file'));
+        if($_FILES["source_file"]["size"]){
+            $data->source_file = upload(request()->source_file,"uploads/notices");
         }
         $data->save();
 
@@ -218,6 +233,9 @@ class NavbarMenuDetailsController extends Controller
         }
 
         $data = NavbarMenuDetail::find(request()->id);
+        if($data->source_file && file_exists(public_path($data->source_file))){
+            unlink(public_path($data->source_file));
+        }
         if ($data) {
             $data->delete();
             return response()->json([
