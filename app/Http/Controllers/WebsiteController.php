@@ -15,16 +15,12 @@ class WebsiteController extends Controller
         $notice = NavbarMenuDetail::where('navbar_menu_items_id', $id)->get();
         return view('frontend.pages.notice.notice', compact('notice'));
     }
+
     public function getNoticeDetailsBynoticeId($id)
     {
         $noticeDetails = NavbarMenuDetail::where('id', $id)->first();
         return view('frontend.pages.notice.notice_detailse', compact('noticeDetails'));
     }
-
-
-
-
-
 
     public function pageDetails($pageSlug)
     {

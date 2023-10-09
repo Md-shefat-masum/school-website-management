@@ -25,7 +25,7 @@
                         <div class="blog_image_and_details_button_area">
                             <!-- blog_image start -->
                             <div class="blog_image">
-                                <img src="{{asset('frontend/'.$item->image)}}" alt="img">
+                                <img src="{{asset($item->image)}}" alt="img">
                             </div>
                             <!-- blog_image end -->
                             <!-- details_button start -->
@@ -119,7 +119,7 @@
                             <li>
                                 <a href="{{url('blog-details')}}/{{$item->id}}" class="latest_post_item">
                                     <div class="post_image">
-                                        <img src="{{asset('frontend/').$item->image}}" alt="image">
+                                        <img src="{{asset($item->image)}}" alt="image">
                                     </div>
                                     <div class="post_date_and_title">
                                         <div class="date_area">

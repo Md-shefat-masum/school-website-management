@@ -119,7 +119,7 @@
                             <li>
                                 <a href="{{url('blog-details')}}/{{$item->id}}" class="latest_post_item">
                                     <div class="post_image">
-                                        <img src="{{asset('/').$item->image}}" alt="image">
+                                        <img src="{{asset($item->image)}}" alt="image">
                                     </div>
                                     <div class="post_date_and_title">
                                         <div class="date_area">

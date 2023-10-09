@@ -152,7 +152,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
 <section class="introduction_and_notice">
     <div class="container">
         <div class="introduction_and_notice_content"
-            style="background-image: url({{ asset('frontend') }}/assets/images/introduction_and_notice_area_image/img1.jpg);">
+            style="background-image: url({{ asset('frontend/assets/images/introduction_and_notice_area_image/img1.jpg') }});">
             <div class="content_bg_color">
                 <!-- introduction_area start -->
                 <div class="introduction_area" data-aos="fade-right" data-aos-duration="1000">
@@ -272,7 +272,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
 
 <!-- countdown_area start -->
 <section class="countdown_area"
-    style="background-image: url({{ asset('frontend') }}/assets/images/countdoun_image/bg.jpg);" data-aos="fade-up"
+    style="background-image: url({{ asset('frontend/assets/images/countdoun_image/bg.jpg') }});" data-aos="fade-up"
     data-aos-duration="1000">
     <div class="countdown_area_bg_color">
         <div class="container">
@@ -324,14 +324,14 @@ $banner = \App\Models\WebsiteSection\Banner::first();
             <!-- principal_image_area start -->
             <div class="principal_image_area" data-aos="fade-right" data-aos-duration="1000">
                 <div class="principal_image">
-                    <img src="{{ asset('frontend') }}/assets/images/principal_image/teacher2.jpg" alt="img">
+                    <img src="{{ asset('frontend/assets/images/principal_image/teacher2.jpg') }}" alt="img">
                 </div>
             </div>
             <!-- principal_image_area end -->
 
             <!-- principal_message_area start-->
             <div class="principal_message_area"
-                style="background-image: url({{ asset('frontend') }}/assets/images/principal_image/bg.jpg);"
+                style="background-image: url({{ asset('frontend/assets/images/principal_image/bg.jpg') }});"
                 data-aos="fade-left" data-aos-duration="1000">
                 <div class="principal_message_area_bg_color">
                     <div class="message_content">
@@ -383,7 +383,7 @@ $q->where('is_visible',1)
                 @foreach ($menus as $key => $item )
                 <!-- item_area start -->
                 <li class="bg_img"
-                    style="background-image: url({{ asset('frontend') }}/assets/images/all_index-area_image/bg_img.jpg);"
+                    style="background-image: url({{ asset('frontend/assets/images/all_index-area_image/bg_img.jpg') }});"
                     data-aos="fade-up" data-aos-duration="300">
                     <div class="item_area">
                         <!-- item_logo_and_title start -->
@@ -444,7 +444,7 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                         <div class="news_item">
                             <!-- news_image start -->
                             <div class="news_image">
-                                <img src="{{ asset('frontend') }}{{$news[0]->image}}" alt="news">
+                                <img src="{{$news[0]->image}}" alt="news">
                             </div>
                             <!-- news_image end -->
 
@@ -453,7 +453,8 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                                 <!-- date_area start -->
                                 <div class="date_area d_c_area">
                                     <p class="date_text d_c_text">
-                                        12 Aug <span class="year_text text">2023</span>
+                                        {{$news[0]->created_at->format('d MM')}} <span class="year_text text">
+                                            {{$news[0]->created_at->format('Y')}}</span>
                                     </p>
                                 </div>
                                 <!-- date_area end -->
@@ -492,7 +493,7 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                             <div class="news_item">
                                 <!-- news_image start -->
                                 <div class="news_image">
-                                    <img src="{{ asset('frontend/') }}{{$item->image}}" alt="news">
+                                    <img src="{{$item->image}}" alt="news">
                                 </div>
                                 <!-- news_image end -->
 
@@ -749,7 +750,7 @@ $photoGallery = \App\Models\Gallery\GalleryPhoto::with('gallery_photo_categories
                     <a href="{{$item->image}}" data-lightbox="compulsory" data-title="Office" class="overlay-area">
                         <div class="date_area">
                             <p class="date_text">
-                                20.April.2023
+                                {{$item->created_at->format('d MM Y')}}
                             </p>
                         </div>
 

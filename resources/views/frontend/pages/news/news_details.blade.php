@@ -20,7 +20,7 @@
                     <div class="news_item news_and_blog_item">
                         <!-- news_image start -->
                         <div class="news_image">
-                            <img src="{{asset('frontend/')}}{{$newsDetails->image}}" alt="news">
+                            <img src="{{asset($newsDetails->image)}}" alt="news">
                         </div>
                         <!-- news_image end -->
 
@@ -180,7 +180,7 @@
                             <li>
                                 <a href="{{url('news-details')}}/{{$item->id}}" class="latest_post_item">
                                     <div class="post_image">
-                                        <img src="{{asset('/frontend/').$item->image}}" alt="image">
+                                        <img src="{{asset($item->image)}}" alt="image">
                                     </div>
                                     <div class="post_date_and_title">
                                         <div class="date_area">
