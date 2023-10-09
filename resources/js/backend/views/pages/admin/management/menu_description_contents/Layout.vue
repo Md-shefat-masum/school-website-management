@@ -33,14 +33,16 @@
                                 </li> -->
                                 <template v-for="menu in menus" :key="menu.id">
                                     <li v-if="menu.sub_menus.length">
-                                        <a href="" @click.prevent="()=>''" class="bn">
+                                        <a href="" @click.prevent="() => ''" class="bn">
                                             <!-- <i class="icon-pencil-alt"></i> -->
                                             <img :src="`/${menu.icon_image}`" style="height: 18px;" alt="">
                                             {{ menu.title }}
                                         </a>
                                         <ul>
                                             <li v-for="submenu in menu.sub_menus" :key="submenu.id">
-                                                <router-link :to="{ name: `ContentPageDetails`, params: { slug: submenu.slug } }" class="bn">
+                                                <router-link
+                                                    :to="{ name: `ContentPageDetails`, params: { slug: submenu.slug } }"
+                                                    class="bn">
                                                     <i class="icon-hand-point-right"></i>
                                                     {{ submenu.title }}
                                                 </router-link>
@@ -78,6 +80,16 @@ export default {
 
         this.get_value();
     },
+    watch: {
+        ["$route"]: {
+            handler: function (v) {
+                setTimeout(() => {
+                    this.track_route(v)
+                }, 500);
+            },
+            deep: true,
+        }
+    },
     methods: {
         get_value: function () {
             axios.get('/navbar-menu/get-all')
@@ -86,6 +98,26 @@ export default {
                     this.menus = res.data;
                 })
         },
+        track_route: function (v) {
+            let links = document.querySelectorAll(".setting_pages_body ul li a");
+            links = [...links];
+
+            links.forEach(e => {
+                e.classList.remove('router-link-active');
+                e.classList.remove('router-link-exact-active');
+            })
+
+            links.forEach(e => {
+                if (e.hash.length) {
+                    let check = e.hash.includes(`#${v.matched[1]['path']}/${v.params.slug}`);
+                    if (check) {
+                        e.classList.add('router-link-active');
+                        e.classList.add('router-link-exact-active');
+                        e.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }
+                }
+            })
+        }
     }
 }
 </script>
