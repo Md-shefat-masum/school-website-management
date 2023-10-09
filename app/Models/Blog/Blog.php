@@ -24,4 +24,15 @@ class Blog extends Model
     {
         return $q->where('status', 'active');
     }
+
+
+    public function blog_categories()
+    {
+        return $this->belongsTo(BlogCategory::class);
+    }
+
+    public function blog_comments()
+    {
+        return $this->hasMany(BlogComment::class);
+    }
 }

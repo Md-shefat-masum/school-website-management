@@ -25,79 +25,80 @@
                         <a href="/" class="main_manu">হোম</a>
                     </li>
                     @php
-                        $menus = \App\Models\Navbar\NavbarMenu::where('is_visible',1)
-                                ->with([
-                                    "sub_menus" => function ($q) {
-                                        $q->where('is_visible',1)
-                                            ->orderBy('serial', 'ASC');
-                                    }
-                                ])
-                                ->orderBy('serial', 'ASC')
-                                ->get();
+                    $menus = \App\Models\Navbar\NavbarMenu::where('is_visible',1)
+                    ->with([
+                    "sub_menus" => function ($q) {
+                    $q->where('is_visible',1)
+                    ->orderBy('serial', 'ASC');
+                    }
+                    ])
+                    ->orderBy('serial', 'ASC')
+                    ->get();
+
                     @endphp
                     @foreach ($menus as $key=>$menu)
-                        @if ($key <= 8)
-                            <li>
-                                <a href="#" class="main_manu">
-                                    {{ $menu->title }}
-                                    @if ($menu->sub_menus->count())
-                                    <span class="arra_icon">
-                                        <i class="fa-solid fa-angle-down"></i>
-                                    </span>
-                                    @endif
-                                </a>
-                                @if ($menu->sub_menus->count())
-                                    <ul>
-                                        @foreach ($menu->sub_menus as $sub_menu)
-                                            <li>
-                                                <a href="#">
-                                                    {{$sub_menu->title}}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
-                        @endif
-                    @endforeach
-                    <li>
-                        <a href="#" class="main_manu">
-                            আরো দেখুন
-                            <span class="arraw_icon">
+                    @if ($key <= 8) <li>
+                        <a href="{{$menu->external_link ? $menu->external_link :" #"}}" class="main_manu">
+                            {{ $menu->title }}
+                            @if ($menu->sub_menus->count())
+                            <span class="arra_icon">
                                 <i class="fa-solid fa-angle-down"></i>
                             </span>
+                            @endif
                         </a>
-
+                        @if ($menu->sub_menus->count())
                         <ul>
-                            @foreach ($menus as $key=>$menu)
-                                @if ($key > 8)
-                                    <li>
-                                        <a href="#" class="main_manu">
-                                            {{ $menu->title }}
-
-                                            @if ($menu->sub_menus->count())
-                                            <span class="arra_icon">
-                                                <i class="fa-solid fa-angle-down"></i>
-                                            </span>
-                                            @endif
-                                        </a>
-
-                                        @if ($menu->sub_menus->count())
-                                            <ul>
-                                                @foreach ($menu->sub_menus as $sub_menu)
-                                                    <li>
-                                                        <a href="#">
-                                                            {{$sub_menu->title}}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </li>
-                                @endif
+                            @foreach ($menu->sub_menus as $sub_menu)
+                            <li>
+                                <a href="{{$sub_menu->external_link ? $sub_menu->external_link : url($sub_menu->slug)}}">
+                                    {{$sub_menu->title}}
+                                </a>
+                            </li>
                             @endforeach
                         </ul>
-                    </li>
+                        @endif
+                        </li>
+                        @endif
+                        @endforeach
+                        <li>
+                            <a href="#" class="main_manu">
+                                আরো দেখুন
+                                <span class="arraw_icon">
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </span>
+                            </a>
+
+                            <ul>
+                                @foreach ($menus as $key=>$menu)
+                                @if ($key > 8)
+                                <li>
+                                    <a href="{{$menu->external_link ? $menu->external_link :" #"}}" class="main_manu">
+                                        {{ $menu->title }}
+
+                                        @if ($menu->sub_menus->count())
+                                        <span class="arra_icon">
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                        @endif
+                                    </a>
+
+                                    @if ($menu->sub_menus->count())
+                                    <ul>
+                                        @foreach ($menu->sub_menus as $sub_menu)
+                                        <li>
+                                            <a
+                                                href="{{$sub_menu->external_link ? $sub_menu->external_link : url($sub_menu->slug)}}">
+                                                {{$sub_menu->title}}
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                        </li>
 
                 </ul>
                 <div class="extra_area" onclick="add_menu_area.classList.toggle('active_class')">

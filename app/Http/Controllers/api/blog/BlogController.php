@@ -21,7 +21,7 @@ class BlogController extends Controller
             $status = request()->status;
         }
 
-        $query = Blog::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = Blog::with('blog_categories:id,title')->where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -216,7 +216,7 @@ class BlogController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {

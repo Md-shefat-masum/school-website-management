@@ -216,11 +216,13 @@ class SettingSeeder extends Seeder
                         "value" => "+8801000000000",
                     ],
                     [
-                        "value" => "+8801000000000",
+                        "value" => "",
                     ],
                     [
-                        "value" => "+8801000000000",
+                        "value" => "",
                     ],
+
+
                 ]
             ],
             [
@@ -251,9 +253,14 @@ class SettingSeeder extends Seeder
 
                     ],
                     [
-                        "value" => "muradpurislamiaalimmadrasa@gmail.com",
+                        "value" => "",
 
                     ],
+                    [
+                        "value" => "",
+
+                    ],
+
                 ]
             ],
         ];

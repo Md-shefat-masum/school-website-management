@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 require_once "frontend_routes.php";
 
+
 Route::get('/tuser', function () {
     $response = Http::withHeaders([
         'Accept' => 'application/json',
@@ -49,7 +50,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])
     ->middleware('check_token');
 
 Route::post('/login', function () {
-    $user = User::where('email',request()->email)->first();
+    $user = User::where('email', request()->email)->first();
     auth()->login($user);
     DB::table('oauth_access_tokens')->where('user_id', $user->id)->update([
         'revoked' => 1,
@@ -74,3 +75,6 @@ Route::get('/data-reload', function () {
     \Illuminate\Support\Facades\Artisan::call('db:seed');
     return redirect()->back();
 });
+
+
+Route::get('/{pageSlug}', [App\Http\Controllers\WebsiteController::class, 'pageDetails']);

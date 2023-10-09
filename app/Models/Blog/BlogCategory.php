@@ -24,4 +24,6 @@ class BlogCategory extends Model
     {
         return $q->where('status', 'active');
     }
+
+    
 }

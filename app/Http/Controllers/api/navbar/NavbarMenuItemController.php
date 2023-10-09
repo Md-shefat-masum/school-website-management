@@ -42,8 +42,10 @@ class NavbarMenuItemController extends Controller
     public function show($id)
     {
         $query = NavbarMenuItem::where('id', $id)->orWhere('slug',$id);
-        if(request()->has('with_details')){
-            $query->with('details');
+        if (request()->has('with_details')) {
+            $query->with(['details' => function ($q) {
+                return $q->orderBy('id','DESC');
+            }]);
         }
         $data = $query->first();
         if (!$data) {

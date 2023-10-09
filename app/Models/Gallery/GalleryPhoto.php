@@ -24,4 +24,8 @@ class GalleryPhoto extends Model
     {
         return $q->where('status', 'active');
     }
+    public function gallery_photo_categories()
+    {
+        return $this->belongsTo(GalleryPhotoCategory::class);
+    }
 }

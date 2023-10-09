@@ -483,6 +483,7 @@ class NavbarMenuSeeder extends Seeder
                     "serial" => $sub_key + 1,
                     "goto_external_link" => $sub_item["goto_external_link"] ?? 0,
                     "external_link" => $sub_item["external_link"] ?? "",
+                    "is_multiple" => $sub_item["is_multiple"] ?? 0,
                     "is_visible" => true,
                 ]);
 

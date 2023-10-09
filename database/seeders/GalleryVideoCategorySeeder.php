@@ -15,7 +15,13 @@ class GalleryVideoCategorySeeder extends Seeder
     {
         GalleryVideoCategory::truncate();
         GalleryVideoCategory::create([
-            "title" => "one"
+            "title" => "শিক্ষা সফর"
+        ]);
+        GalleryVideoCategory::create([
+            "title" => "খেলাধুলা"
+        ]);
+        GalleryVideoCategory::create([
+            "title" => "বৃক্ষরোপণ"
         ]);
     }
 }

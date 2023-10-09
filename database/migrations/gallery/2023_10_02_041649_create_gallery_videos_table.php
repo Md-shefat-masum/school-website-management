@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('gallery_video_categories_id')->nullable();
             $table->string('title', 100)->nullable();
-            $table->string('link', 100)->nullable();
+            $table->text('link')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();

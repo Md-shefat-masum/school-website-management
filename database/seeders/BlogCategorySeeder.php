@@ -15,7 +15,19 @@ class BlogCategorySeeder extends Seeder
     {
         BlogCategory::truncate();
         BlogCategory::create([
-            "title" => "ict"
+            "title" => "Ict"
+        ]);
+        BlogCategory::create([
+            "title" => "Parenting and Education"
+        ]);
+        BlogCategory::create([
+            "title" => "Student Success"
+        ]);
+        BlogCategory::create([
+            "title" => "Career "
+        ]);
+        BlogCategory::create([
+            "title" => "Education"
         ]);
     }
 }
