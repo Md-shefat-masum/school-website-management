@@ -13,7 +13,7 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
 }
 .setting_pages_body {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 310px calc(100vw - 360px);
   gap: 10px;
 }
 .setting_pages_body .left_setting_nav {
@@ -82,6 +82,20 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
 }
 .setting_pages_body .setting_form > div > .images img {
   height: 60px;
+}
+.error {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.custom_table {
+  overflow-x: scroll;
+}
+.custom_table.nowrap tr td,
+.custom_table.nowrap tr th {
+  white-space: nowrap;
+}
+.custom_table tr th {
+  white-space: nowrap;
 }
 .custom_scroll::-webkit-scrollbar {
   width: 8px;

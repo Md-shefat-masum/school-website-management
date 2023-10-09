@@ -20,7 +20,7 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
 
 .setting_pages_body {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 310px calc(100vw - 360px);
     gap: 10px;
 
     .left_setting_nav {
@@ -106,6 +106,27 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
     }
 }
 
+.error{
+    margin:0;
+    margin-bottom: 10px;
+}
+
+.custom_table{
+    overflow-x: scroll;
+    &.nowrap{
+        tr{
+            td,
+            th{
+                white-space: nowrap;
+            }
+        }
+    }
+    tr{
+        th{
+            white-space: nowrap;
+        }
+    }
+}
 
 .custom_scroll {
 	&::-webkit-scrollbar {
