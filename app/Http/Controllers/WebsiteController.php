@@ -24,9 +24,9 @@ class WebsiteController extends Controller
 
     public function pageDetails($pageSlug)
     {
-        $query = NavbarMenuItem::where('slug', $pageSlug)->first();
-        if ($query) {
-            $pageDetails = NavbarMenuDetail::where('navbar_menu_items_id', $query->id)->first();
+        $navbar_menu_item = NavbarMenuItem::where('slug', $pageSlug)->first();
+        if ($navbar_menu_item) {
+            $pageDetails = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->first();
             return view('frontend.pages.page-details', compact('pageDetails'));
         }
     }
