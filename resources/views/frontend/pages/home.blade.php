@@ -74,22 +74,14 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                                             <div class="icon">
                                                 <i class="fa-solid fa-angles-right"></i>
                                             </div>
-                                            <a href="{{url('notice')}}/{{$item->id}}"
+                                            <a href="{{route('menu_item_list',[$item->slug])}}"
                                                 class="link_name">{{$item->title}}</a>
                                         </li>
                                         <!-- link_item end  -->
                                         @endforeach
-
-
                                     </ul>
-
-
-
                                 </div>
                                 <!-- all_link_item end -->
-
-
-
                             </div>
                             @endif
                         </div>
@@ -114,7 +106,6 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                     <li>
                         {{$banner->breaking_news}}
                     </li>
-
                 </ul>
             </marquee>
         </div>
@@ -162,7 +153,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                         </div>
                         <p class="description_text">
                             {{-- {{setting(key:"emails",multiple:false)}} --}}
-                            {{setting(key:"institute_long_intro",multiple:false)}}
+                            {!! setting(key:"institute_short_intro",multiple:false) !!}
                         </p>
                     </div>
 
@@ -176,7 +167,6 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                 <!-- introduction_area end -->
                 @php
                 $notice = \App\Models\Navbar\NavbarMenu::where("title","নোটিশ")->first();
-
                 @endphp
                 @if ($notice)
                 <!-- notice_area start -->
@@ -196,7 +186,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                         $notice = \App\Models\Navbar\NavbarMenu::where("title","নোটিশ")->first();
 
                         $subMenuDetails = \App\Models\Navbar\NavbarMenuDetail::query()
-                        ->where('navbar_menu_id',$notice->id)->limit(3)
+                        ->where('navbar_menu_id',$notice->id)->orderBy('id','DESC')->limit(3)
                         ->get();
 
                         // dd($subMenuDetails);
@@ -230,15 +220,14 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                                     <!-- notice_title_and_description_area start -->
                                     <div class="notice_title_and_description_area">
                                         <div class="notice_title">
-                                            <a href="{{url('notice-details')}}/{{$item->id}}"
+                                            <a href="{{route('menu_details',[$item->slug,$item->id])}}"
                                                 class="title_text">{{$item->title}}</a>
                                         </div>
                                         <div class="notice_description">
-                                            <span class="description_text">{{substr($item->description,0,50)}}<a
-                                                    href="{{url('notice-details')}}/{{$item->id}}"
+                                            <span class="description_text">{{substr($item->description,0,100)}}<a
+                                                    href="{{route('menu_details',[$item->slug,$item->id])}}"
                                                     class="read_more_area">Read more ...</a>
                                             </span>
-
                                         </div>
                                     </div>
                                     <!-- notice_title_and_description_area end-->
@@ -254,8 +243,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                     <!-- view_all_button_area start -->
                     @if ($subMenuDetails && count($subMenuDetails) )
                     <div class="view_all_button_area">
-                        <a href="{{url('notice')}}/{{$subMenuDetails[0]['navbar_menu_items_id']}}"
-                            class="view_all_button">আরো দেখুন</a>
+                        <a href="{{route('all_notice')}}" class="view_all_button">আরো দেখুন</a>
                     </div>
                     @endif
 
@@ -324,7 +312,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
             <!-- principal_image_area start -->
             <div class="principal_image_area" data-aos="fade-right" data-aos-duration="1000">
                 <div class="principal_image">
-                    <img src="{{ asset('frontend/assets/images/principal_image/teacher2.jpg') }}" alt="img">
+                    <img src="{{ asset(setting(key:"principal_image",multiple:false)) }}" alt="img">
                 </div>
             </div>
             <!-- principal_image_area end -->
@@ -339,9 +327,8 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                             <h2 class="area_title_text">অধ্যক্ষের বাণী</h2>
                         </div>
                         <div class="message_text_area">
-                            <p class="message_text text">বিসমিল্লাহির রাহমানির রাহীম ।
-
-                                {{setting('principal_message')}}
+                            <p class="message_text text">
+                                {!!setting('principal_message')!!}
                             </p>
                         </div>
                         <div class="principal_name_and_school_name_area">
