@@ -16,9 +16,37 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
   grid-template-columns: 310px calc(100vw - 360px);
   gap: 10px;
 }
+@media (max-width: 991.9px) {
+  .setting_pages_body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .setting_pages_body .left_setting_nav {
+    position: fixed;
+    z-index: 8;
+    left: -300px;
+    width: 284px;
+  }
+  .setting_pages_body .left_setting_nav.active {
+    left: 0;
+  }
+  .setting_pages_body .left_setting_nav.active .left_nav_overlay {
+    right: 0px;
+  }
+  .setting_pages_body .left_setting_nav .left_nav_overlay {
+    position: fixed;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9;
+    transition-duration: 0.3s;
+    right: 110vh;
+    width: calc(100vw - 284px);
+  }
+}
 .setting_pages_body .left_setting_nav {
   height: calc(100vh - 127px);
   overflow-y: auto;
+  transition-duration: 0.3s;
 }
 .setting_pages_body .left_setting_nav ul {
   padding: 0;
@@ -60,6 +88,12 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 30px;
+}
+@media (max-width: 991.9px) {
+  .setting_pages_body .setting_form {
+    display: grid;
+    gap: 10px;
+  }
 }
 .setting_pages_body .setting_form label {
   width: 200px;
@@ -112,6 +146,34 @@ body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .
   background: #7367f0;
 }
 .tox-notifications-container {
-  display: none!important;
+  display: none !important;
+}
+.tox-tinymce {
+  margin-bottom: 30px;
+}
+.responsive_setting_nav_trigger {
+  display: none;
+}
+@media (max-width: 991px) {
+  .responsive_setting_nav_trigger {
+    display: block;
+  }
+}
+.responsive_setting_nav_trigger i {
+  border: 1px solid white;
+  font-size: 22px;
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 700;
+  display: inline-block;
+  z-index: 9;
+  position: fixed;
+  top: 50vh;
+  left: 0;
+  background: #2f2f2f61;
+  cursor: pointer;
 }
 /*# sourceMappingURL=./custom.css.map */
