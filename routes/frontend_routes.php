@@ -4,8 +4,13 @@ Route::get('/', function () {
     return view('frontend.pages.home');
 })->middleware('check_token');
 
-Route::get('/notice/{id}', [App\Http\Controllers\WebsiteController::class, 'getNoticeBynoticeId']);
-Route::get('/notice-details/{id}', [App\Http\Controllers\WebsiteController::class, 'getNoticeDetailsBynoticeId']);
+
+Route::get('/administration', [App\Http\Controllers\WebsiteController::class, 'all_employee'])->name('all_employee');
+Route::get('/administration/{category}', [App\Http\Controllers\WebsiteController::class, 'group_employee'])->name('group_employee');
+
+Route::get('/notices', [App\Http\Controllers\WebsiteController::class, 'all_notice'])->name('all_notice');
+Route::get('/{pageSlug}/all', [App\Http\Controllers\WebsiteController::class, 'menu_item_list'])->name('menu_item_list');
+Route::get('/{slug}/details/{id}', [App\Http\Controllers\WebsiteController::class, 'getNoticeDetailsBynoticeId'])->name('menu_details');
 
 Route::get('/news', [App\Http\Controllers\NewsController::class, 'getNews']);
 Route::get('/news-by-category/{catId}', [App\Http\Controllers\NewsController::class, 'getNewsByCategory']);
