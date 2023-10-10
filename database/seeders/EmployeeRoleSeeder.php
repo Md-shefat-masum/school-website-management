@@ -14,7 +14,7 @@ class EmployeeRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Employee::truncate();
+        EmployeeRole::truncate();
         EmployeeRole::create([
             "title" => "প্রতিষ্ঠাতা",
             "serial" => 1
