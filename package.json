@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
+        "scss": "npx sass public/frontend/assets/sass/style.scss public/frontend/assets/styles/style.css -w",
         "reload": "php artisan db:wipe && php artisan migrate && php artisan migrate --path=database/migrations/* && php artisan db:seed && php artisan passport:install"
     },
     "devDependencies": {
