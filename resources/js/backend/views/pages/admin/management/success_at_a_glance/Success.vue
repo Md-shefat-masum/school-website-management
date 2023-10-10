@@ -4,10 +4,10 @@
             <div class="card-header py-2 position-sticky d-flex justify-content-end">
                 <button class="btn btn-info btn-sm">update</button>
             </div>
-            <div class="card-body">
+            <div class="card-body success_info_card">
                 <div v-for="(item, index) in data" :key="item.id" class="form-group border rounded-1 p-2 mb-3">
                     <div class="d-flex align-items-center gap-3">
-                        <label for="" style="width: 100px;">
+                        <label for="" >
                             Title
                         </label>
                         <div class="mt-1" style="flex: 1;">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <label for="" style="width: 100px;">
+                        <label for="" >
                             Details
                         </label>
                         <div class="mt-1" style="flex: 1;">
