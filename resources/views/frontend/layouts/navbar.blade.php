@@ -8,7 +8,7 @@
                     class="search_area">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <a href="login_page.html" class="Portal_area_responsive">
+                <a href="/login" class="Portal_area_responsive">
                     <p class="Portal_text">Portal</p>
                 </a>
                 <button onclick="add_menu_area.classList.toggle('active_class')" class="menu_area icon">
@@ -37,7 +37,7 @@
 
                     @endphp
                     @foreach ($menus as $key=>$menu)
-                    @if ($key <= 8) <li>
+                    @if ($key <= 7) <li>
                         <a href="{{$menu->external_link ? $menu->external_link :" #"}}" class="main_manu">
                             {{ $menu->title }}
                             @if ($menu->sub_menus->count())
@@ -70,7 +70,7 @@
 
                             <ul>
                                 @foreach ($menus as $key=>$menu)
-                                @if ($key > 8)
+                                @if ($key > 7)
                                 <li>
                                     <a href="{{$menu->external_link ? $menu->external_link :" #"}}" class="main_manu">
                                         {{ $menu->title }}
