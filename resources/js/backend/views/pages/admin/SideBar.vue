@@ -10,6 +10,12 @@
         <ul class="sidebar-menu">
 
             <li>
+                <router-link to="/admin" class="sidebar-header">
+                    <i class="icon-pie-chart"></i>
+                    <span>Analytics</span>
+                </router-link>
+            </li>
+            <li>
                 <router-link :to="{name: `BaseSetup`}" class="sidebar-header">
                     <i class="icon-settings"></i>
                     <span>Base Setup</span>

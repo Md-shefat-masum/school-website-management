@@ -12,7 +12,7 @@ import SideBar from './SideBar.vue';
 export default {
     components: { SideBar },
     created: function () {
-
+        document.getElementById('logo').href = "#/admin"
     }
 }
 </script>

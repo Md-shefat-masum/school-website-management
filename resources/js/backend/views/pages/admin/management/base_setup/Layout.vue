@@ -20,8 +20,12 @@
         </div>
         <!-- Container-fluid Ends -->
         <div>
+            <div @click.prevent="open_nav" class="responsive_setting_nav_trigger">
+                <i class="icon-align-left"></i>
+            </div>
             <div class="setting_pages_body">
                 <div class="left_setting_nav custom_scroll">
+                    <div class="left_nav_overlay" @click.prevent="open_nav"></div>
                     <div class="card rounded-none h-100 mb-0">
                         <div class="card-body">
                             <ul>
@@ -87,6 +91,11 @@ export default {
     created:function(){
         document.querySelector('#sidebar-toggle').checked = false;
         document.querySelector('.page-body-wrapper').classList.add('sidebar-close');
+    },
+    methods:{
+        open_nav: function(){
+            document.querySelector('.left_setting_nav').classList.toggle('active');
+        },
     }
 }
 </script>

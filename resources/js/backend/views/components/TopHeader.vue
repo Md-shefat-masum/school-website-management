@@ -3,7 +3,7 @@
         <!--Page Header Start-->
         <div class="main-header-left" semilight-bg-color="bg-default-light-colo">
             <div class="logo-wrapper">
-                <a href="#" class="d-flex align-items-end gap-1">
+                <a href="#" id="logo" class="d-flex align-items-end gap-1">
                     <img src="https://md-shefat-masum.github.io/index/images/logo.png" class="image-dark" alt="">
                     <img src="https://md-shefat-masum.github.io/index/images/logo.png" class="image-light" alt="">
                     <span class="text-white h4">Dashboard</span>
