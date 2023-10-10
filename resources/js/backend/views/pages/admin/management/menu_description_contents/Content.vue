@@ -37,6 +37,11 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label for="">Content Title</label>
+                                <input type="text" v-model="data.details.title" name="title"
+                                    class="form-control mt-1 mb-2">
+                            </div>
+                            <div class="form-group">
                                 <label for="">Source Title</label>
                                 <input type="text" v-model="data.details.source_title" name="source_title"
                                     class="form-control mt-1 mb-2">
