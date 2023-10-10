@@ -4,23 +4,33 @@
     .header_area_top {
         border: $border;
         background-color: $master_color_2;
-        @include xs {
-            display: none;
-        }
-        @include sm {
-            display: none;
-        }
+
         .header_area_top_content {
             border: $border;
             // email_and_contact_number_area start
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+
             .email_and_contact_number_area {
                 border: $border;
                 display: flex;
                 align-items: center;
                 height: 100%;
                 gap: 10px;
+                flex-wrap: wrap;
+
+                @include custom(0px, 991.9px){
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
                 .email_contact_area {
                     border: $border;
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+
                     .content_area {
                         border: $border;
                         display: flex;
@@ -29,11 +39,6 @@
                                 i {
                                     color: $white;
                                     // color: green;
-                                }
-                            }
-                            .text_area {
-                                .text {
-                                    color: $white;
                                 }
                             }
                         }
@@ -58,6 +63,10 @@
                                 color: $off_white;
                                 line-height: 15px;
                                 transition-duration: 0.4s;
+
+                                &:hover{
+                                    color: $white;
+                                }
                             }
                             .email_text {
                                 text-transform: lowercase;
@@ -71,6 +80,9 @@
             .portal_area {
                 border: $border;
                 text-align: end;
+                @include custom(0px, 991.9px){
+                    display: none;
+                }
                 .portal_text {
                     border: $border;
                     background-color: $master_color_1;
@@ -205,6 +217,17 @@
                     .school_title {
                         font-size: 30px;
                         line-height: 30px;
+                        &.arabic{
+                            font-size: 35px;
+                            @include xs {
+                                font-size: 20px;
+                                line-height: 20px;
+                            }
+                            @include sm {
+                                font-size: 20px;
+                                line-height: 20px;
+                            }
+                        }
                         @include xs {
                             font-size: 11px;
                             line-height: 13px;

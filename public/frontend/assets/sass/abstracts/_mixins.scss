@@ -31,4 +31,9 @@
         @content();
     }
 }
+@mixin custom($min, $max) {
+    @media (min-width: $min) and (max-width: $max) {
+        @content();
+    }
+}
 /* responsive_desine_mixin end*/
