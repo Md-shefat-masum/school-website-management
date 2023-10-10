@@ -14,9 +14,8 @@
             </div>
             <!-- page_title_area end -->
 
-            <div class="news_and_blog_details_and_site_bar_area">
-
-                <p>{{$pageDetails->description ?? ''}}</p>
+            <div class="">
+                {!!$pageDetails->description ?? ''!!}
             </div>
 
 
