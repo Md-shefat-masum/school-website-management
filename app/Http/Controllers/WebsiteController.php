@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Navbar\NavbarMenu;
 use App\Models\Navbar\NavbarMenuDetail;
 use App\Models\Navbar\NavbarMenuItem;
-use App\Models\News\News;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use ZipArchive;
 
 class WebsiteController extends Controller
 {
@@ -67,6 +68,24 @@ class WebsiteController extends Controller
             }
             $pageDetails = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->orderBy('id','DESC')->first();
             return view('frontend.pages.page-details', compact('pageDetails', 'navbar_menu_item'));
+        }
+    }
+
+    public function databaseBackup()
+    {
+        Artisan::call('app:backup');
+        $publicFolderPath = public_path('uploads');
+        $zip = new ZipArchive;
+        $zipFileName = 'images.zip';
+        if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
+            $files = File::allFiles($publicFolderPath);
+            foreach ($files as $file) {
+                $zip->addFile($file->getPathname(), $file->getRelativePathname());
+            }
+            $zip->close();
+            return response()->download($zipFileName)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()->with('error', 'Failed to create the zip file.');
         }
     }
 }

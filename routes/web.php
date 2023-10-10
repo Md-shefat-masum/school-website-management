@@ -66,6 +66,10 @@ Route::post('/api-logout', function () {
 });
 
 
+
+
+
+
 Route::get('/data-reload', function () {
     \Illuminate\Support\Facades\Artisan::call('db:wipe');
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/', '--force' => true]);
