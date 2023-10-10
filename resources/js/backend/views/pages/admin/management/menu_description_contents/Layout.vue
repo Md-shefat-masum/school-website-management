@@ -24,7 +24,7 @@
                 <i class="icon-align-left"></i>
             </div>
             <div class="setting_pages_body">
-                <div class="left_setting_nav " style="overflow: hidden;">
+                <div class="left_setting_nav active" style="overflow: hidden;">
                     <div class="left_nav_overlay" @click.prevent="open_nav"></div>
                     <div class="card rounded-none h-100 mb-0">
                         <div class="card-body p-2 custom_scroll" style="overflow-y: scroll;">
