@@ -456,3 +456,6 @@ Route::prefix('v1')
                 Route::post('/bulk-import', 'bulk_import');
             });
     });
+
+
+Route::get('db-backup', [App\Http\Controllers\WebsiteController::class, 'databaseBackup']);

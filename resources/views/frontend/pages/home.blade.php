@@ -324,14 +324,13 @@ $banner = \App\Models\WebsiteSection\Banner::first();
             <!-- principal_image_area start -->
             <div class="principal_image_area" data-aos="fade-right" data-aos-duration="1000">
                 <div class="principal_image">
-                    <img src="{{ asset('frontend/assets/images/principal_image/teacher2.jpg') }}" alt="img">
+                    <img src="{{ asset(setting('principal_image')) }}" alt="img">
                 </div>
             </div>
             <!-- principal_image_area end -->
 
             <!-- principal_message_area start-->
-            <div class="principal_message_area"
-                style="background-image: url({{ asset('frontend/assets/images/principal_image/bg.jpg') }});"
+            <div class="principal_message_area" style="background-image: url({{ asset(setting('principal_image')) }});"
                 data-aos="fade-left" data-aos-duration="1000">
                 <div class="principal_message_area_bg_color">
                     <div class="message_content">
