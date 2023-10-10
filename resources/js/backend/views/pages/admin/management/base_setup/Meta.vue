@@ -32,6 +32,14 @@ export default {
                 type: 'text',
             },
             {
+                title: 'institute_code',
+                type: 'text',
+            },
+            {
+                title: 'eiin',
+                type: 'text',
+            },
+            {
                 title: 'header_logo',
                 type: 'file',
             },
