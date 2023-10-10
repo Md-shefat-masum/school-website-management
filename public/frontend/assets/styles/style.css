@@ -581,18 +581,12 @@ html ::-webkit-scrollbar-thumb:hover {
   border: 0px solid red;
   background-color: #144f61;
 }
-@media screen and (max-width: 575.9px) {
-  .header_area .header_area_top {
-    display: none;
-  }
-}
-@media (min-width: 576px) and (max-width: 767.9px) {
-  .header_area .header_area_top {
-    display: none;
-  }
-}
 .header_area .header_area_top .header_area_top_content {
   border: 0px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area {
   border: 0px solid red;
@@ -600,18 +594,25 @@ html ::-webkit-scrollbar-thumb:hover {
   align-items: center;
   height: 100%;
   gap: 10px;
+  flex-wrap: wrap;
+}
+@media (min-width: 0px) and (max-width: 991.9px) {
+  .header_area .header_area_top .header_area_top_content .email_and_contact_number_area {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area {
   border: 0px solid red;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area {
   border: 0px solid red;
   display: flex;
 }
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area:hover .icon i {
-  color: #ffffff;
-}
-.header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area:hover .text_area .text {
   color: #ffffff;
 }
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area .icon {
@@ -637,12 +638,20 @@ html ::-webkit-scrollbar-thumb:hover {
   line-height: 15px;
   transition-duration: 0.4s;
 }
+.header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area .text_area .text:hover {
+  color: #ffffff;
+}
 .header_area .header_area_top .header_area_top_content .email_and_contact_number_area .email_contact_area .content_area .text_area .email_text {
   text-transform: lowercase;
 }
 .header_area .header_area_top .header_area_top_content .portal_area {
   border: 0px solid red;
   text-align: end;
+}
+@media (min-width: 0px) and (max-width: 991.9px) {
+  .header_area .header_area_top .header_area_top_content .portal_area {
+    display: none;
+  }
 }
 .header_area .header_area_top .header_area_top_content .portal_area .portal_text {
   border: 0px solid red;
@@ -797,6 +806,21 @@ html ::-webkit-scrollbar-thumb:hover {
   font-size: 30px;
   line-height: 30px;
 }
+.header_area .header_school_name_area .header_area_content .school_name_area .school_name_english .school_title.arabic {
+  font-size: 35px;
+}
+@media screen and (max-width: 575.9px) {
+  .header_area .header_school_name_area .header_area_content .school_name_area .school_name_english .school_title.arabic {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.9px) {
+  .header_area .header_school_name_area .header_area_content .school_name_area .school_name_english .school_title.arabic {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
 @media screen and (max-width: 575.9px) {
   .header_area .header_school_name_area .header_area_content .school_name_area .school_name_english .school_title {
     font-size: 11px;
@@ -919,7 +943,7 @@ html ::-webkit-scrollbar-thumb:hover {
   color: #ffffff;
   margin-left: 10px;
 }
-@media (min-width: 768px) and (max-width: 991.9px) {
+@media (min-width: 992px) and (max-width: 1199.9px) {
   .nav_area .nav_area_content .responsive_menu_area .Portal_area_responsive {
     display: none;
   }
@@ -934,7 +958,7 @@ html ::-webkit-scrollbar-thumb:hover {
     top: 0px;
     width: 100%;
     height: 100vh;
-    left: 300px;
+    left: -100%;
     visibility: hidden;
     opacity: 0;
     transition-duration: 0.4s;
@@ -1026,17 +1050,17 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 @media screen and (max-width: 575.9px) {
   .nav_area .nav_area_content .all_nave > ul > li:hover > ul {
-    margin-left: 20px;
+    padding-left: 20px;
   }
 }
 @media (min-width: 576px) and (max-width: 767.9px) {
   .nav_area .nav_area_content .all_nave > ul > li:hover > ul {
-    margin-left: 20px;
+    padding-left: 20px;
   }
 }
 @media (min-width: 768px) and (max-width: 991.9px) {
   .nav_area .nav_area_content .all_nave > ul > li:hover > ul {
-    margin-left: 20px;
+    padding-left: 20px;
   }
 }
 .nav_area .nav_area_content .all_nave > ul > li a {
@@ -1073,7 +1097,8 @@ html ::-webkit-scrollbar-thumb:hover {
   }
 }
 .nav_area .nav_area_content .all_nave > ul > li a:hover {
-  color: #96a2b8;
+  background: #607d86;
+  color: white;
 }
 .nav_area .nav_area_content .all_nave > ul > li a:hover .arraw_icon i {
   color: #96a2b8;
@@ -1155,6 +1180,12 @@ html ::-webkit-scrollbar-thumb:hover {
     box-shadow: unset;
   }
 }
+@media (min-width: 0px) and (max-width: 991.9px) {
+  .nav_area .nav_area_content .all_nave > ul > li > ul {
+    display: block;
+    padding-left: 20px;
+  }
+}
 .nav_area .nav_area_content .all_nave > ul > li > ul > li {
   border-bottom: 1px solid #96a2b8;
 }
@@ -1175,6 +1206,8 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 .nav_area .nav_area_content .all_nave > ul > li > ul > li:hover > ul {
   display: block;
+  right: -5px;
+  left: unset;
 }
 .nav_area .nav_area_content .all_nave > ul > li > ul > li a {
   width: 100%;
@@ -1226,12 +1259,18 @@ html ::-webkit-scrollbar-thumb:hover {
   box-shadow: 0px 0px 5px #144f61;
   display: none;
 }
+@media (min-width: 0px) and (max-width: 991.9px) {
+  .nav_area .nav_area_content .all_nave > ul > li > ul > li ul {
+    position: unset;
+    display: block;
+  }
+}
 @media screen and (max-width: 575.9px) {
   .nav_area .nav_area_content .all_nave > ul > li > ul > li ul {
     left: -88px;
     position: unset;
     width: 100%;
-    margin-left: 40px;
+    padding-left: 40px;
     box-shadow: unset;
   }
 }
@@ -1240,7 +1279,7 @@ html ::-webkit-scrollbar-thumb:hover {
     left: -88px;
     position: unset;
     width: 100%;
-    margin-left: 40px;
+    padding-left: 40px;
     box-shadow: unset;
   }
 }
@@ -1249,7 +1288,7 @@ html ::-webkit-scrollbar-thumb:hover {
     left: -88px;
     position: unset;
     width: 100%;
-    margin-left: 40px;
+    padding-left: 40px;
     box-shadow: unset;
   }
 }
