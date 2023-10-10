@@ -65,9 +65,9 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="d-lg-none mobile-toggle">
+                <!-- <div class="mobile-toggle">
                     <i class="icon-more"></i>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--Page Header Ends-->
