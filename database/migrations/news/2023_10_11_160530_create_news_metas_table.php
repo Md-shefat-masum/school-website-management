@@ -11,21 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('news_metas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('news_id')->nullable();
             $table->bigInteger('news_category_id')->nullable();
-            $table->string('title', 100)->nullable();
-            $table->string('writer', 100)->nullable();
-            $table->string('published_date', 100)->nullable();
-            $table->tinyInteger('is_published')->default(0);
-            $table->text('short_description')->nullable();
-            $table->longText('description')->nullable();
-            $table->string('image', 100)->nullable();
-            $table->string('image_alt', 100)->nullable();
+            $table->enum('type', ['title', 'description', 'keyword', 'tag', 'schema_tag'])->nullable();
+            $table->text('value')->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();
-            $table->string('slug', 250)->nullable();
+            $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-
             $table->timestamps();
         });
     }
@@ -35,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('news_metas');
     }
 };

@@ -69,7 +69,10 @@ class BlogController extends Controller
         $data = new Blog();
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
+        $data->short_description = request()->short_description;
         $data->save();
 
         return response()->json($data, 200);
@@ -94,6 +97,7 @@ class BlogController extends Controller
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
         $data->description = request()->description;
+        $data->short_description = request()->short_description;
         $data->save();
 
         return response()->json($data, 200);
@@ -130,6 +134,7 @@ class BlogController extends Controller
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
         $data->description = request()->description;
+        $data->short_description = request()->short_description;
         $data->save();
         return response()->json($data, 200);
     }
@@ -163,6 +168,7 @@ class BlogController extends Controller
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
         $data->description = request()->description;
+        $data->short_description = request()->short_description;
         $data->save();
         return response()->json($data, 200);
 

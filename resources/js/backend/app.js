@@ -3,6 +3,9 @@ import './plugins/axios_setup.js';
 import './plugins/sweet_alert.js';
 import { createApp } from 'vue';
 import Dashbord from './views/App.vue';
+
+import DynamicSelect from '../backend/views/components/dynamic_select/DynamicSelect.vue';
+
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia'
 
@@ -59,6 +62,8 @@ const pinia = createPinia()
 const app = createApp({});
 
 app.component('dahsboard', Dashbord);
+app.component('dynamicSelect', DynamicSelect);
+
 app.use(pinia)
 app.use(router);
 app.mount('#app')

@@ -355,7 +355,37 @@ class SettingSeeder extends Seeder
             ],
             [
                 "group" => "seo",
+                "title" => "image",
+                "values" => [
+                    [
+                        "value" => "frontend/assets/images/website_logo/logo.png",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "seo",
                 "title" => "keywords",
+                "values" => [
+                    [
+                        "value" => "মুরাদপুর ইসলামিয়া আলিম মাদরাসা,Muradpur Islamia Alim Madrasa, Jurain, Dhaka,মুরাদপুর-ইসলামিয়া-আলিম-মাদরাসা,Muradpur-Islamia-Alim-Madrasa",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "seo",
+                "title" => "tag",
+                "values" => [
+                    [
+                        "value" => "মুরাদপুর ইসলামিয়া আলিম মাদরাসা,Muradpur Islamia Alim Madrasa, Jurain, Dhaka,মুরাদপুর-ইসলামিয়া-আলিম-মাদরাসা,Muradpur-Islamia-Alim-Madrasa",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "seo",
+                "title" => "schema_tag",
                 "values" => [
                     [
                         "value" => "মুরাদপুর ইসলামিয়া আলিম মাদরাসা,Muradpur Islamia Alim Madrasa, Jurain, Dhaka,মুরাদপুর-ইসলামিয়া-আলিম-মাদরাসা,Muradpur-Islamia-Alim-Madrasa",

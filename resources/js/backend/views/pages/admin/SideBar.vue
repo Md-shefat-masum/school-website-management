@@ -16,27 +16,52 @@
                 </router-link>
             </li>
             <li>
-                <router-link :to="{name: `BaseSetup`}" class="sidebar-header">
+                <router-link :to="{ name: `BaseSetup` }" class="sidebar-header">
                     <i class="icon-settings"></i>
                     <span>Base Setup</span>
                 </router-link>
             </li>
             <li>
-                <router-link :to="{name: `Banner`}" class="sidebar-header">
+                <router-link :to="{ name: `Banner` }" class="sidebar-header">
                     <i class="icon-image"></i>
                     <span>Banner</span>
                 </router-link>
             </li>
             <li>
-                <router-link :to="{name: `Success`}" class="sidebar-header">
+                <router-link :to="{ name: `Success` }" class="sidebar-header">
                     <i class="icon-crown"></i>
                     <span>Our Success</span>
                 </router-link>
             </li>
             <li>
-                <router-link :to="{name: `PageContents`}" class="sidebar-header">
+                <router-link :to="{ name: `PageContents` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>Page Contents</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link :to="{ name: `BlogCategory` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Blog Category</span>
+                </router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: `Blog` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Blog</span>
+                </router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: `NewsCategory` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>News Category</span>
+                </router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: `News` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>News</span>
                 </router-link>
             </li>
 
@@ -97,7 +122,7 @@
 import { mapActions } from 'pinia'
 import { use_auth_store } from '../../../store/auth_store';
 export default {
-    created: function(){
+    created: function () {
         setTimeout(() => {
             // sidebar_action_init();
         }, 1000);
@@ -106,7 +131,7 @@ export default {
         ...mapActions(use_auth_store, ['log_out']),
         logout_submit: function () {
             let confirm = window.confirm('logout');
-            if(confirm){
+            if (confirm) {
                 this.log_out();
             }
         }
