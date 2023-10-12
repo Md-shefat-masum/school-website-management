@@ -4,9 +4,11 @@ namespace App\Http\Controllers\api\blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Blog;
+use App\Models\Blog\BlogTag;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -53,29 +55,53 @@ class BlogController extends Controller
 
     public function store()
     {
-        $validator = Validator::make(request()->all(), [
-            'blog_categories_id' => ['required'],
-            'title' => ['required'],
-            'description' => ['required'],
-        ], []);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'err_message' => 'validation error',
-                'errors' => $validator->errors(),
-            ], 422);
+        try {
+            $validator = Validator::make(request()->all(), [
+                'blog_categories_id' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+                'image' => ['required'],
+            ], []);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+            $data = new Blog();
+            $data->blog_categories_id = request()->blog_categories_id;
+            $data->title = request()->title;
+            $data->writer = request()->writer;
+            $data->published_date = request()->published_date;
+            $data->description = request()->description;
+            $data->short_description = request()->short_description;
+            $data->image_alt = request()->image_alt;
+            if (request()->file('image')) {
+                $image = request()->file('image');
+                $titleShorten =  '';
+                if (strlen(request()->title) > 50) {
+                    $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
+                }
+                $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('/uploads/blog/'),  $imageName);
+                $data->image = '/uploads/blog/' . $imageName;
+            }
+
+            if ($data->save()) {
+                $tags = new BlogTag();
+                $tags->blog_id = $data->id;
+                $tags->tags = request()->tags;
+                $tags->save();
+            }
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return response([
+                'status'  => 'server_error',
+                'message' => $e->getMessage(),
+            ], 500);
         }
-
-        $data = new Blog();
-        $data->blog_categories_id = request()->blog_categories_id;
-        $data->title = request()->title;
-        $data->writer = request()->writer;
-        $data->published_date = request()->published_date;
-        $data->description = request()->description;
-        $data->short_description = request()->short_description;
-        $data->save();
-
-        return response()->json($data, 200);
     }
 
     public function canvas_store()
@@ -96,8 +122,12 @@ class BlogController extends Controller
         $data = new Blog();
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
         $data->short_description = request()->short_description;
+        $data->image = request()->image;
+        $data->image_alt = request()->image_alt;
         $data->save();
 
         return response()->json($data, 200);
@@ -132,9 +162,14 @@ class BlogController extends Controller
         }
 
         $data->blog_categories_id = request()->blog_categories_id;
+        $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
         $data->short_description = request()->short_description;
+        $data->image = request()->image;
+        $data->image_alt = request()->image_alt;
         $data->save();
         return response()->json($data, 200);
     }
@@ -167,8 +202,12 @@ class BlogController extends Controller
 
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
         $data->short_description = request()->short_description;
+        $data->image = request()->image;
+        $data->image_alt = request()->image_alt;
         $data->save();
         return response()->json($data, 200);
 

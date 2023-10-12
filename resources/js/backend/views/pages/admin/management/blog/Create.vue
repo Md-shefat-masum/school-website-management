@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store">
+    <form @submit.prevent="store" ref="adminForm">
         <div class="card">
             <div>
                 <div class="card-header py-3 position-sticky d-flex justify-content-between align-items-center">
@@ -17,9 +17,9 @@
                                 Description
                             </label>
                             <div class="mt-1 mb-3">
+                                <div id="description"></div>
                                 <editor api-key="no-api-key" v-model="description" :init="{
                                     height: 600,
-                                    name: `description`,
                                     menubar: false,
                                     plugins: [
                                         'advlist autolink lists link image charmap print preview anchor',
@@ -28,9 +28,10 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                        alignleft aligncenter alignright alignjustify | \
-                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
+
                             </div>
                         </div>
                     </div>
@@ -68,7 +69,7 @@
                                 Publised Date
                             </label>
                             <div class="mt-1 mb-3">
-                                <input type="date" name="publised_date" class="form-control mb-1">
+                                <input type="date" name="published_date" class="form-control mb-1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -81,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">
-                                Tag
+                                Tags
                             </label>
                             <div class="mt-1 mb-3">
                                 <dynamicSelect :setValue="setTags"></dynamicSelect>
@@ -89,22 +90,30 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="">
+                                Image alt title
+                            </label>
                             <div class="mt-1 mb-3">
-                                <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
-                                    class="form-control mb-1">
-                                <img style="height: 60px;" alt="">
+                                <input type="text" class="form-control" name="image_alt">
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Image</label>
+                            <div class="mt-1 mb-3">
+                                <!-- <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
+                                    class="form-control mb-1">
+                                <img style="height: 60px;" alt=""> -->
+                            </div>
+                            <image-component :name="`image`" :multiple="false" :accept="`.jpg,.jpeg,.png`"></image-component>
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div class="card-header py-2 position-sticky d-flex justify-content-start">
                 <button type="submit" class="btn btn-info btn-sm">Create</button>
             </div>
         </div>
-
     </form>
 </template>
 
@@ -118,6 +127,8 @@ export default {
     components: { Editor },
     data: () => ({
         tags: [],
+        shouldSubmitForm: true,
+        description: '',
     }),
     created: function () {
         setTimeout(() => {
@@ -133,13 +144,13 @@ export default {
         ...mapActions(blog_category_store, {
             fetch_all_blog_category: 'all',
         }),
-
         store: function () {
-            let form_data = new FormData(event.target);
+            console.log('store called', event);
+            let form_data = new FormData(this.$refs.adminForm);
             form_data.append('tags', this.tags);
+            form_data.append('description', this.description);
             this.store_blog(form_data)
         },
-
         setTags: function (v) {
             this.tags = v
         },
