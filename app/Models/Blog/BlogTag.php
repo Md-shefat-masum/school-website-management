@@ -24,4 +24,9 @@ class BlogTag extends Model
     {
         return $q->where('status', 'active');
     }
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
 }

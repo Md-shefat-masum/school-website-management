@@ -17,9 +17,9 @@
                                 Description
                             </label>
                             <div class="mt-1 mb-3">
+                                <div id="description"></div>
                                 <editor api-key="no-api-key" v-model="description" :init="{
                                     height: 600,
-                                    name: `description`,
                                     menubar: false,
                                     plugins: [
                                         'advlist autolink lists link image charmap print preview anchor',
@@ -28,8 +28,8 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                        alignleft aligncenter alignright alignjustify | \
-                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
                             </div>
                         </div>
@@ -118,6 +118,7 @@ export default {
     components: { Editor },
     data: () => ({
         tags: [],
+        description: ''
     }),
     created: function () {
         setTimeout(() => {

@@ -28,8 +28,8 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
 
                             </div>
@@ -87,6 +87,7 @@
                             <div class="mt-1 mb-3">
                                 <dynamicSelect :setValue="setTags"></dynamicSelect>
                             </div>
+
                         </div>
 
                         <div class="form-group">
@@ -100,12 +101,9 @@
 
                         <div class="form-group">
                             <label for="">Image</label>
-                            <div class="mt-1 mb-3">
-                                <!-- <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
-                                    class="form-control mb-1">
-                                <img style="height: 60px;" alt=""> -->
-                            </div>
-                            <image-component :name="`image`" :multiple="false" :accept="`.jpg,.jpeg,.png`"></image-component>
+
+                            <image-component :name="`image`" :multiple="false"
+                                :accept="`.jpg,.jpeg,.png`"></image-component>
                         </div>
                     </div>
                 </div>
@@ -147,7 +145,7 @@ export default {
         store: function () {
             console.log('store called', event);
             let form_data = new FormData(this.$refs.adminForm);
-            form_data.append('tags', this.tags);
+            form_data.append('tags', JSON.stringify(this.tags));
             form_data.append('description', this.description);
             this.store_blog(form_data)
         },

@@ -3,6 +3,7 @@ import { defineStore } from "pinia"
 export const news_store = defineStore('news_store', {
     state: () => ({
         all_data: {},
+        single_data: {}
     }),
     getters: {
         doubleCount: (state) => state.count * 2,
@@ -21,6 +22,7 @@ export const news_store = defineStore('news_store', {
         get: async function (id) {
             let response = await axios.get('news/' + id);
             response = response.data
+            this.single_data = response
             for (const key in response) {
                 if (Object.hasOwnProperty.call(response, key)) {
                     const value = response[key];
@@ -37,6 +39,11 @@ export const news_store = defineStore('news_store', {
 
                     var el = document.querySelector(`select[name='${key}']`);
                     if (el) {
+                        el.value = value
+                    }
+
+                    var el = document.querySelector(`input[name='${key}']`);
+                    if (el && (el.type == 'date')) {
                         el.value = value
                     }
                 }

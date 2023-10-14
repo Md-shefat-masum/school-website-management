@@ -19,7 +19,6 @@
                             <div class="mt-1 mb-3">
                                 <editor api-key="no-api-key" v-model="description" :init="{
                                     height: 600,
-                                    name: `description`,
                                     menubar: false,
                                     plugins: [
                                         'advlist autolink lists link image charmap print preview anchor',
@@ -28,12 +27,12 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                                                                                        alignleft aligncenter alignright alignjustify | \
-                                                                                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
                             </div>
                         </div>
-                    </div>
+                    </div>  
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="">

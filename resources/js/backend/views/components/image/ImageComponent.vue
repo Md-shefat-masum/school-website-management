@@ -23,10 +23,14 @@ export default {
         },
         accept: {
             required: true,
+        },
+        images: {
+            default: [],
+            required: false,
         }
     },
     data: () => ({
-        images: [],
+
     }),
     methods: {
         preview: function () {

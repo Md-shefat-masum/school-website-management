@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store">
+    <form @submit.prevent="update">
         <div class="card">
             <div>
                 <div class="card-header py-3 position-sticky d-flex justify-content-between align-items-center">
@@ -17,9 +17,9 @@
                                 Description
                             </label>
                             <div class="mt-1 mb-3">
+                                <div id="description"></div>
                                 <editor api-key="no-api-key" v-model="description" :init="{
                                     height: 600,
-                                    name: `description`,
                                     menubar: false,
                                     plugins: [
                                         'advlist autolink lists link image charmap print preview anchor',
@@ -28,8 +28,8 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                                                                                        alignleft aligncenter alignright alignjustify | \
-                                                                                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 Publised Date
                             </label>
                             <div class="mt-1 mb-3">
-                                <input type="date" name="publised_date" class="form-control mb-1">
+                                <input type="date" name="published_date" class="form-control mb-1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -84,16 +84,15 @@
                                 Tag
                             </label>
                             <div class="mt-1 mb-3">
-                                <dynamicSelect :setValue="setTags"></dynamicSelect>
+                                <dynamicSelect :data="single_data.blog_tags" :setValue="setTags"></dynamicSelect>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="mt-1 mb-3">
-                                <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
-                                    class="form-control mb-1">
-                                <img style="height: 60px;" alt="">
-                            </div>
+                            <label for="">Image</label>
+
+                            <image-component :images="[single_data.image]" :name="`image`" :multiple="false"
+                                :accept="`.jpg,.jpeg,.png`"></image-component>
                         </div>
                     </div>
                 </div>
@@ -118,37 +117,49 @@ export default {
     components: { Editor },
     data: () => ({
         tags: [],
+        description: '',
     }),
-    created: function () {
+    created: async function () {
         setTimeout(() => {
             window.remove_form_action_classes()
         }, 100)
 
-        this.fetch_all_blog_category();
-        this.get_blog(this.$route.params.id)
+        await this.fetch_all_blog_category();
+        await this.get_blog(this.$route.params.id)
+        this.description = this.single_data.description
+        this.single_data.blog_tags.forEach((item) => {
+            this.tags = item.title
+        });
+
     },
     methods: {
         ...mapActions(blog_store, {
-            store_blog: 'store',
+            update_blog: 'update',
             get_blog: 'get',
         }),
         ...mapActions(blog_category_store, {
             fetch_all_blog_category: 'all',
         }),
 
-        store: function () {
+        update: function () {
             let form_data = new FormData(event.target);
+            form_data.append('id', this.$route.params.id);
             form_data.append('tags', this.tags);
-            this.store_blog(form_data)
+            form_data.append('description', this.description);
+            this.update_blog(form_data)
         },
 
         setTags: function (v) {
             this.tags = v
         },
+
     },
     computed: {
         ...mapState(blog_category_store, {
             all_blog_category: 'all_data'
+        }),
+        ...mapState(blog_store, {
+            single_data: 'single_data'
         })
     },
 
