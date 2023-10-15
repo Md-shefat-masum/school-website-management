@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('blog_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('title',100)->nullable();
+            $table->bigInteger('blog_id')->nullable();
+            $table->string('tag_id', 100)->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();
-            $table->string('slug',50)->nullable();
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->string('slug', 50)->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('blog_tag');
     }
 };

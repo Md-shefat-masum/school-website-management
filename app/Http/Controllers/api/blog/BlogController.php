@@ -4,9 +4,12 @@ namespace App\Http\Controllers\api\blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Blog;
+use App\Models\Blog\BlogTag;
+use App\Models\Blog\Tag;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -41,7 +44,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $data = Blog::where('id', $id)->first();
+        $data = Blog::with(['blog_tags'])->where('id', $id)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
@@ -53,26 +56,70 @@ class BlogController extends Controller
 
     public function store()
     {
-        $validator = Validator::make(request()->all(), [
-            'blog_categories_id' => ['required'],
-            'title' => ['required'],
-            'description' => ['required'],
-        ], []);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'err_message' => 'validation error',
-                'errors' => $validator->errors(),
-            ], 422);
+        try {
+            $validator = Validator::make(request()->all(), [
+                'blog_categories_id' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+                'image' => ['required'],
+            ], []);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+            $data = new Blog();
+            $data->blog_categories_id = request()->blog_categories_id;
+            $data->title = request()->title;
+            $data->writer = request()->writer;
+            $data->published_date = request()->published_date;
+            $data->description = request()->description;
+            $data->short_description = request()->short_description;
+            $data->image_alt = request()->image_alt;
+            if (request()->file('image')) {
+                $image = request()->file('image');
+                $titleShorten =  request()->title;
+                if (strlen(request()->title) > 50) {
+                    $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
+                }
+                $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('/uploads/blog/'),  $imageName);
+                $data->image = '/uploads/blog/' . $imageName;
+            }
+
+            if ($data->save()) {
+                $tags = json_decode(request()->input('tags'));
+                if ($tags && count($tags)) {
+                    foreach ($tags as $tag) {
+                        $query = Tag::where('title', $tag)->first();
+                        if ($query) {
+                            $blogTags = new BlogTag();
+                            $blogTags->blog_id = $data->id;
+                            $blogTags->tag_id = $query->id;
+                            $blogTags->save();
+                        } else {
+                            $tagData = new Tag();
+                            $tagData->title = $tag;
+                            if ($tagData->save()) {
+                                $blogTags = new BlogTag();
+                                $blogTags->blog_id = $data->id;
+                                $blogTags->tag_id = $tagData->id;
+                                $blogTags->save();
+                            }
+                        }
+                    }
+                }
+            }
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return response([
+                'status'  => 'server_error',
+                'message' => $e->getMessage(),
+            ], 500);
         }
-
-        $data = new Blog();
-        $data->blog_categories_id = request()->blog_categories_id;
-        $data->title = request()->title;
-        $data->description = request()->description;
-        $data->save();
-
-        return response()->json($data, 200);
     }
 
     public function canvas_store()
@@ -93,8 +140,28 @@ class BlogController extends Controller
         $data = new Blog();
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
-        $data->save();
+        $data->short_description = request()->short_description;
+        $data->image_alt = request()->image_alt;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $titleShorten =  request()->title;
+            if (strlen(request()->title) > 50) {
+                $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
+            }
+            $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('/uploads/blog/'),  $imageName);
+            $data->image = '/uploads/blog/' . $imageName;
+        }
+        if ($data->save()) {
+            $tags = new BlogTag();
+            $tags->blog_id = $data->id;
+            $tags->tags = request()->tags;
+            $tags->save();
+        }
+        return response()->json($data, 200);
 
         return response()->json($data, 200);
     }
@@ -115,7 +182,8 @@ class BlogController extends Controller
             'id' => ['required'],
             'blog_categories_id' => ['required'],
             'title' => ['required'],
-            'description' => ['required'],
+            // 'description' => ['required'],
+            // 'image' => ['required'],
         ];
 
         $validator = Validator::make(request()->all(), $rules, []);
@@ -129,8 +197,29 @@ class BlogController extends Controller
 
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
-        $data->save();
+        $data->short_description = request()->short_description;
+        $data->image_alt = request()->image_alt;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $titleShorten =  request()->title;
+            if (strlen(request()->title) > 50) {
+                $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
+            }
+            $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('/uploads/blog/'),  $imageName);
+            $data->image = '/uploads/blog/' . $imageName;
+        }
+        if ($data->save()) {
+            $tags = BlogTag::where('blog_id', request()->id)->first();
+            if ($tags) {
+                $tags->blog_id = $data->id;
+                $tags->tags = request()->tags;
+                $tags->update();
+            }
+        }
         return response()->json($data, 200);
     }
 
@@ -162,7 +251,12 @@ class BlogController extends Controller
 
         $data->blog_categories_id = request()->blog_categories_id;
         $data->title = request()->title;
+        $data->writer = request()->writer;
+        $data->published_date = request()->published_date;
         $data->description = request()->description;
+        $data->short_description = request()->short_description;
+        $data->image = request()->image;
+        $data->image_alt = request()->image_alt;
         $data->save();
         return response()->json($data, 200);
 

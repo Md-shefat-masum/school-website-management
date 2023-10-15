@@ -3,6 +3,10 @@ import './plugins/axios_setup.js';
 import './plugins/sweet_alert.js';
 import { createApp } from 'vue';
 import Dashbord from './views/App.vue';
+
+import DynamicSelect from '../backend/views/components/dynamic_select/DynamicSelect.vue';
+import ImageComponent from '../backend/views/components/image/ImageComponent.vue';
+
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia'
 
@@ -44,7 +48,6 @@ const routes = [
 
 ];
 
-
 const router = createRouter({
     history: createWebHashHistory(),
     routes, // short for `routes: routes`
@@ -59,6 +62,9 @@ const pinia = createPinia()
 const app = createApp({});
 
 app.component('dahsboard', Dashbord);
+app.component('dynamicSelect', DynamicSelect);
+app.component('image-component', ImageComponent);
+
 app.use(pinia)
 app.use(router);
 app.mount('#app')

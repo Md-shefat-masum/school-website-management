@@ -14,7 +14,7 @@ class BlogCategoryController extends Controller
     {
         $paginate = (int) request()->paginate ?? 10;
         $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+        $orderByType = request()->orderByType ?? 'DESC';
 
         $status = 'active';
         if (request()->has('status')) {

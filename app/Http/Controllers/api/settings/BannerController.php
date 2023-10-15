@@ -49,7 +49,6 @@ class BannerController extends Controller
     {
         $data = Banner::first();
         $data->fill(request()->except('background'))->save();
-
         if(request()->hasFile('background')){
             ini_set('memory_limit', '-1');
             $data->background = upload(request()->file('background'),'uploads/banner',1200);

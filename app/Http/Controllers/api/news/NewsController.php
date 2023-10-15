@@ -21,7 +21,7 @@ class NewsController extends Controller
             $status = request()->status;
         }
 
-        $query = News::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = News::with('news_category')->where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -226,7 +226,7 @@ class NewsController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {
