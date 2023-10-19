@@ -14,14 +14,14 @@ class GalleryVideoController extends Controller
     {
         $paginate = (int) request()->paginate ?? 10;
         $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+        $orderByType = request()->orderByType ?? 'desc';
 
         $status = 'active';
         if (request()->has('status')) {
             $status = request()->status;
         }
 
-        $query = GalleryVideo::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = GalleryVideo::with('gallery_video_categories')->where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -217,7 +217,7 @@ class GalleryVideoController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {

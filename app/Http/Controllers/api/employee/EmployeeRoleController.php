@@ -14,7 +14,7 @@ class EmployeeRoleController extends Controller
     {
         $paginate = (int) request()->paginate ?? 10;
         $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+        $orderByType = request()->orderByType ?? 'desc';
 
         $status = 'active';
         if (request()->has('status')) {
@@ -55,7 +55,6 @@ class EmployeeRoleController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'title' => ['required'],
-            'serial' => ['required'],
         ], []);
 
         if ($validator->fails()) {
@@ -67,7 +66,6 @@ class EmployeeRoleController extends Controller
 
         $data = new EmployeeRole();
         $data->title = request()->title;
-        $data->serial = request()->serial;
         $data->save();
 
         return response()->json($data, 200);
@@ -110,7 +108,6 @@ class EmployeeRoleController extends Controller
         $rules = [
             'id' => ['required'],
             'title' => ['required'],
-            'serial' => ['required'],
         ];
 
         $validator = Validator::make(request()->all(), $rules, []);
@@ -123,7 +120,6 @@ class EmployeeRoleController extends Controller
         }
 
         $data->title = request()->title;
-        $data->serial = request()->serial;
         $data->save();
 
         return response()->json($data, 200);

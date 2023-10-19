@@ -1,8 +1,9 @@
 <template>
     <div>
-        <input @change="preview" type="file" ref="input_files" :accept="accept" :class="classNames" :name="name" :multiple="multiple">
+        <input @change="preview" type="file" ref="input_files" :accept="accept" :class="classNames" :name="name"
+            :multiple="multiple">
         <div class="uploaded_image_preview my-2 d-flex gap-1 flex-wrap">
-            <img v-for="i in images" :key="i" :src="i" class="img-fulid img-thumbnail" style="width: 80px; height: 80px;
+            <img v-for="i in component_images" :key="i" :src="i" class="img-fulid img-thumbnail" style="width: 80px; height: 80px;
                 object-fit: contain;">
         </div>
     </div>
@@ -30,17 +31,23 @@ export default {
         }
     },
     data: () => ({
-
+        component_images: [],
     }),
+    watch: {
+        images: function(v){
+            this.component_images = this.images;
+        }
+    },
     methods: {
         preview: function () {
             let that = this;
-            that.images = [];
+            console.log("image", that)
+            that.component_images = [];
             [...that.$refs.input_files.files].forEach(el => {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const base64String = e.target.result;
-                    that.images.push(base64String);
+                    that.component_images.push(base64String);
                 };
                 reader.readAsDataURL(el);
             })

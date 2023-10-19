@@ -8,6 +8,7 @@ use App\Models\Blog\BlogTag;
 use App\Models\Blog\Tag;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -81,33 +82,22 @@ class BlogController extends Controller
             $data->image_alt = request()->image_alt;
             if (request()->file('image')) {
                 $image = request()->file('image');
-                $titleShorten =  request()->title;
-                if (strlen(request()->title) > 50) {
-                    $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
-                }
-                $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('/uploads/blog/'),  $imageName);
-                $data->image = '/uploads/blog/' . $imageName;
+                $data->image = upload($image, 'uploads/blog', 700, 400);
             }
 
             if ($data->save()) {
                 $tags = json_decode(request()->input('tags'));
                 if ($tags && count($tags)) {
                     foreach ($tags as $tag) {
-                        $query = Tag::where('title', $tag)->first();
+
+                        $query = Tag::where('title', $tag->title)->first();
                         if ($query) {
-                            $blogTags = new BlogTag();
-                            $blogTags->blog_id = $data->id;
-                            $blogTags->tag_id = $query->id;
-                            $blogTags->save();
+                            $data->blog_tags()->attach([$query->id]);
                         } else {
                             $tagData = new Tag();
-                            $tagData->title = $tag;
+                            $tagData->title = $tag->title;
                             if ($tagData->save()) {
-                                $blogTags = new BlogTag();
-                                $blogTags->blog_id = $data->id;
-                                $blogTags->tag_id = $tagData->id;
-                                $blogTags->save();
+                                $data->blog_tags()->attach([$tagData->id]);
                             }
                         }
                     }
@@ -147,13 +137,7 @@ class BlogController extends Controller
         $data->image_alt = request()->image_alt;
         if (request()->file('image')) {
             $image = request()->file('image');
-            $titleShorten =  request()->title;
-            if (strlen(request()->title) > 50) {
-                $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
-            }
-            $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('/uploads/blog/'),  $imageName);
-            $data->image = '/uploads/blog/' . $imageName;
+            $data->image = upload($image, 'uploads/blog', 700, 400);
         }
         if ($data->save()) {
             $tags = new BlogTag();
@@ -161,8 +145,6 @@ class BlogController extends Controller
             $tags->tags = request()->tags;
             $tags->save();
         }
-        return response()->json($data, 200);
-
         return response()->json($data, 200);
     }
 
@@ -204,20 +186,25 @@ class BlogController extends Controller
         $data->image_alt = request()->image_alt;
         if (request()->file('image')) {
             $image = request()->file('image');
-            $titleShorten =  request()->title;
-            if (strlen(request()->title) > 50) {
-                $titleShorten = substr(request()->title, strlen(request()->title) - 50, strlen(request()->title));
-            }
-            $imageName = Str::slug($titleShorten)  . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('/uploads/blog/'),  $imageName);
-            $data->image = '/uploads/blog/' . $imageName;
+            $data->image = upload($image, 'uploads/blogs', 700, 400);
         }
         if ($data->save()) {
-            $tags = BlogTag::where('blog_id', request()->id)->first();
-            if ($tags) {
-                $tags->blog_id = $data->id;
-                $tags->tags = request()->tags;
-                $tags->update();
+            $tags = json_decode(request()->input('tags'));
+            // dd($tags);
+            if ($tags && count($tags)) {
+                $dataId = [];
+                foreach ($tags as $tag) {
+                    $query = Tag::where('title', $tag->title)->first();
+                    if ($query) {
+                        $dataId[] = $query->id;
+                    } else {
+                        $tagData = new Tag();
+                        $tagData->title = $tag->title;
+                        $tagData->save();
+                        $dataId[] = $tagData->id;
+                    }
+                }
+                $data->blog_tags()->sync($dataId);
             }
         }
         return response()->json($data, 200);

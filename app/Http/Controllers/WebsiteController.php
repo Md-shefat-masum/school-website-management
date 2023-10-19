@@ -17,7 +17,7 @@ class WebsiteController extends Controller
         if ($navbar_menu) {
             // $employee = NavbarMenuDetail::where('navbar_menu_id', $navbar_menu->id)->orderBy('id','DESC')->get();
             $sub_menus = NavbarMenuItem::where('navbar_menus_id', $navbar_menu->id)->get();
-            return view('frontend.pages.employee.all-employee', compact('navbar_menu','sub_menus'));
+            return view('frontend.pages.employee.all-employee', compact('navbar_menu', 'sub_menus'));
         }
     }
 
@@ -27,7 +27,7 @@ class WebsiteController extends Controller
         if ($navbar_menu) {
             // $employee = NavbarMenuDetail::where('navbar_menu_id', $navbar_menu->id)->orderBy('id','DESC')->get();
             $sub_menus = NavbarMenuItem::where('navbar_menus_id', $navbar_menu->id)->get();
-            return view('frontend.pages.employee.all-employee', compact('navbar_menu','sub_menus'));
+            return view('frontend.pages.employee.all-employee', compact('navbar_menu', 'sub_menus'));
         }
     }
 
@@ -37,7 +37,7 @@ class WebsiteController extends Controller
         if ($navbar_menu) {
             // $notice = NavbarMenuDetail::where('navbar_menu_id', $navbar_menu->id)->orderBy('id','DESC')->get();
             $sub_menus = NavbarMenuItem::where('navbar_menus_id', $navbar_menu->id)->get();
-            return view('frontend.pages.notice.notice', compact('navbar_menu','sub_menus'));
+            return view('frontend.pages.notice.notice', compact('navbar_menu', 'sub_menus'));
         }
     }
 
@@ -45,17 +45,17 @@ class WebsiteController extends Controller
     {
         $navbar_menu_item = NavbarMenuItem::where('slug', $pageSlug)->first();
         if ($navbar_menu_item) {
-            $notice = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->orderBy('id','DESC')->paginate(10);
-            if(isset($_SERVER["CONTENT_TYPE"]) && $_SERVER["CONTENT_TYPE"] =="application/json"){
-                return view('frontend.pages.notice.notice_list', compact('notice','navbar_menu_item'));
+            $notice = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->orderBy('id', 'DESC')->paginate(10);
+            if (isset($_SERVER["CONTENT_TYPE"]) && $_SERVER["CONTENT_TYPE"] == "application/json") {
+                return view('frontend.pages.notice.notice_list', compact('notice', 'navbar_menu_item'));
             }
-            return view('frontend.pages.notice.notice', compact('notice','navbar_menu_item'));
+            return view('frontend.pages.notice.notice', compact('notice', 'navbar_menu_item'));
         }
     }
 
-    public function getNoticeDetailsBynoticeId($slug,$id)
+    public function getNoticeDetailsBynoticeId($slug, $id)
     {
-        $noticeDetails = NavbarMenuDetail::where('id', $id)->orderBy('id','DESC')->first();
+        $noticeDetails = NavbarMenuDetail::where('id', $id)->orderBy('id', 'DESC')->first();
         return view('frontend.pages.notice.notice_detailse', compact('noticeDetails'));
     }
 
@@ -66,7 +66,7 @@ class WebsiteController extends Controller
             if ($navbar_menu_item->is_multiple) {
                 return redirect()->route('menu_item_list', [$navbar_menu_item->slug]);
             }
-            $pageDetails = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->orderBy('id','DESC')->first();
+            $pageDetails = NavbarMenuDetail::where('navbar_menu_items_id', $navbar_menu_item->id)->orderBy('id', 'DESC')->first();
             return view('frontend.pages.page-details', compact('pageDetails', 'navbar_menu_item'));
         }
     }

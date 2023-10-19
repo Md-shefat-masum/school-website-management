@@ -10,6 +10,13 @@ import blog_category from "./management/blog_category/setup/routes";
 import blog from "./management/blog/setup/routes";
 import news_category from "./management/news_category/setup/routes";
 import news from "./management/news/setup/routes";
+import video_gallery_category from "./management/video_gallery_category/setup/routes";
+import video_gallery from "./management/video_gallery/setup/routes";
+import image_gallery_category from "./management/image_gallery_category/setup/routes";
+import image_gallery from "./management/image_gallery/setup/routes";
+import employee_role from "./management/employee_role/setup/routes";
+import employee from "./management/employee/setup/routes";
+import common_setup from "./management/common_setup/setup/routes";
 
 const routes = {
     path: '/admin',
@@ -28,6 +35,13 @@ const routes = {
         blog,
         news_category,
         news,
+        video_gallery_category,
+        video_gallery,
+        image_gallery_category,
+        image_gallery,
+        employee_role,
+        employee,
+        common_setup
     ]
 };
 

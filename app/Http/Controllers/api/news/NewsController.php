@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\api\news;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\Tag;
 use App\Models\News\News;
+use App\Models\News\NewsTag;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -41,7 +44,7 @@ class NewsController extends Controller
 
     public function show($id)
     {
-        $data = News::where('id', $id)->first();
+        $data = News::with('news_tags')->where('id', $id)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
@@ -53,28 +56,58 @@ class NewsController extends Controller
 
     public function store()
     {
-        $validator = Validator::make(request()->all(), [
-            'news_category_id' => ['required'],
-            'title' => ['required'],
-            'description' => ['required'],
-            'image' => ['required'],
-        ], []);
+        // dd(request()->all());
+        try {
+            $validator = Validator::make(request()->all(), [
+                'news_category_id' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+                'image' => ['required'],
+            ], []);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'err_message' => 'validation error',
-                'errors' => $validator->errors(),
-            ], 422);
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+            $data = new News();
+            $data->news_category_id = request()->news_category_id;
+            $data->title = request()->title;
+            $data->writer = request()->writer;
+            $data->published_date = request()->published_date;
+            $data->description = request()->description;
+            $data->short_description = request()->short_description;
+            $data->image_alt = request()->image_alt;
+            if (request()->file('image')) {
+                $image = request()->file('image');
+                $data->image = upload($image, "uploads/news");
+            }
+            if ($data->save()) {
+                $tags = json_decode(request()->input('tags'));
+                if ($tags && count($tags)) {
+                    foreach ($tags as $tag) {
+                        $query = Tag::where('title', $tag->title)->first();
+                        if ($query) {
+                            $data->news_tags()->attach([$query->id]);
+                        } else {
+                            $tagData = new Tag();
+                            $tagData->title = $tag->title;
+                            if ($tagData->save()) {
+                                $data->news_tags()->attach([$tagData->id]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return response([
+                'status'  => 'server_error',
+                'message' => $e->getMessage(),
+            ], 500);
         }
-
-        $data = new News();
-        $data->news_category_id = request()->news_category_id;
-        $data->title = request()->title;
-        $data->description = request()->description;
-        $data->image = request()->image;
-        $data->save();
-
-        return response()->json($data, 200);
     }
 
     public function canvas_store()
@@ -105,40 +138,71 @@ class NewsController extends Controller
 
     public function update()
     {
+        try {
 
-        $data = News::find(request()->id);
+            $data = News::find(request()->id);
 
-        if (!$data) {
-            return response()->json([
-                'err_message' => 'validation error',
-                'errors' => ['name' => ['Data not found by given id ' . (request()->id ? request()->id : 'null')]],
-            ], 422);
+            if (!$data) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => ['name' => ['Data not found by given id ' . (request()->id ? request()->id : 'null')]],
+                ], 422);
+            }
+
+            $rules = [
+                'id' => ['required'],
+                'news_category_id' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+                'image' => ['required'],
+            ];
+
+            $validator = Validator::make(request()->all(), $rules, []);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $data->news_category_id = request()->news_category_id;
+            $data->title = request()->title;
+            $data->writer = request()->writer;
+            $data->published_date = request()->published_date;
+            $data->description = request()->description;
+            $data->short_description = request()->short_description;
+            $data->image_alt = request()->image_alt;
+            if (request()->file('image')) {
+                $image = request()->file('image');
+                $data->image =  upload($image, "uploads/news");
+            }
+
+            if ($data->save()) {
+                $tags = json_decode(request()->input('tags'));
+                if ($tags && count($tags)) {
+                    $dataId = [];
+                    foreach ($tags as $tag) {
+                        $query = Tag::where('title', $tag->title)->first();
+                        if ($query) {
+                            $dataId[] = $query->id;
+                        } else {
+                            $tagData = new Tag();
+                            $tagData->title = $tag->title;
+                            $tagData->save();
+                            $dataId[] = $tagData->id;
+                        }
+                    }
+                    $data->news_tags()->sync($dataId);
+                }
+            }
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return response([
+                'status'  => 'server_error',
+                'message' => $e->getMessage(),
+            ], 500);
         }
-
-        $rules = [
-            'id' => ['required'],
-            'news_category_id' => ['required'],
-            'title' => ['required'],
-            'description' => ['required'],
-            'image' => ['required'],
-        ];
-
-        $validator = Validator::make(request()->all(), $rules, []);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'err_message' => 'validation error',
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
-        $data->news_category_id = request()->news_category_id;
-        $data->title = request()->title;
-        $data->description = request()->description;
-        $data->image = request()->image;
-        $data->save();
-
-        return response()->json($data, 200);
     }
 
     public function canvas_update()

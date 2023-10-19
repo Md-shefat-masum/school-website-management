@@ -40,28 +40,88 @@
                 </router-link>
             </li>
 
-            <li>
+            <!-- <li class="">
                 <router-link :to="{ name: `BlogCategory` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>Blog Category</span>
                 </router-link>
-            </li>
+
+            </li> -->
             <li>
                 <router-link :to="{ name: `Blog` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>Blog</span>
                 </router-link>
             </li>
-            <li>
+            <!-- <li>
                 <router-link :to="{ name: `NewsCategory` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>News Category</span>
                 </router-link>
-            </li>
+            </li> -->
             <li>
                 <router-link :to="{ name: `News` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>News</span>
+                </router-link>
+            </li>
+            <!-- <li>
+                <router-link :to="{ name: `VideoGalleryCategory` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Video Gallery Category</span>
+                </router-link>
+            </li> -->
+            <li>
+                <router-link :to="{ name: `VideoGallery` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Video Gallery</span>
+                </router-link>
+            </li>
+
+            <!-- <li>
+                <router-link :to="{ name: `ImageGalleryCategory` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Image Gallery Category</span>
+                </router-link>
+            </li> -->
+            <li>
+                <router-link :to="{ name: `ImageGallery` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Image Gallery</span>
+                </router-link>
+            </li>
+
+            <!-- <li>
+                <router-link :to="{ name: `EmployeeRole` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Employee Role</span>
+                </router-link>
+            </li> -->
+
+            <li>
+                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Employee</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Subject</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Class</span>
+                </router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Student</span>
                 </router-link>
             </li>
 

@@ -15,11 +15,60 @@ class EmployeeSeeder extends Seeder
     {
         Employee::truncate();
         Employee::create([
-            "employee_roles_id" =>  "1",
-            "name" => "Md Lutfor Rahman",
-            "designation" => "Principal",
+            "employee_roles_id" =>  "2",
+            "name" => "Md Ashraful Alam",
+            "designation" => "Principal(Incharge)",
             "description" => "",
-            "joining_date" => "10-10-10"
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Masudur Rahman",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Hasem Mahmud",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Abdur Rob",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Sahid Ullah",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Jamal Hossain",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
+        ]);
+        Employee::create([
+            "employee_roles_id" =>  "4",
+            "name" => "Md Sajahan",
+            "designation" => "Senior Teacher",
+            "description" => "",
+            "joining_date" => "10-10-05",
+            "image" => "frontend/assets/images/avatar.png"
         ]);
     }
 }

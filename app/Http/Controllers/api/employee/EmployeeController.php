@@ -21,7 +21,7 @@ class EmployeeController extends Controller
             $status = request()->status;
         }
 
-        $query = Employee::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = Employee::with('employee_roles')->where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -70,10 +70,14 @@ class EmployeeController extends Controller
         $data = new Employee();
         $data->employee_roles_id = request()->employee_roles_id;
         $data->name = request()->name;
-        $data->image = request()->image;
         $data->designation = request()->designation;
         $data->description = request()->description;
         $data->joining_date = request()->joining_date;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/employee');
+        }
+
         $data->save();
 
         return response()->json($data, 200);
@@ -138,10 +142,13 @@ class EmployeeController extends Controller
 
         $data->employee_roles_id = request()->employee_roles_id;
         $data->name = request()->name;
-        $data->image = request()->image;
         $data->designation = request()->designation;
         $data->description = request()->description;
         $data->joining_date = request()->joining_date;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/employee');
+        }
         $data->save();
 
         return response()->json($data, 200);
@@ -232,7 +239,7 @@ class EmployeeController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {

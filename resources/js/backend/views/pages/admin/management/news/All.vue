@@ -11,8 +11,12 @@
                         <input v-else type="checkbox" @change="toggle">
                         <span class="switch-state" style="background-color: #4c6887;"></span>
                     </label> -->
-                    <div class="ps-3"><router-link :to="{ name: `NewsCreate` }" class="btn btn-sm btn-info"> Create
-                        </router-link></div>
+                    <div class="ps-3 d-flex gap-2">
+                        <router-link :to="{ name: `NewsCategory` }" class="btn btn-sm btn-info"> All Category
+                        </router-link>
+                        <router-link :to="{ name: `NewsCreate` }" class="btn btn-sm btn-info"> Create
+                        </router-link>
+                    </div>
                 </div>
             </div>
             <div class="card-body px-4 py-2 form_area custom_scroll">

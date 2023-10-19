@@ -14,14 +14,14 @@ class GalleryPhotoController extends Controller
     {
         $paginate = (int) request()->paginate ?? 10;
         $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+        $orderByType = request()->orderByType ?? 'desc';
 
         $status = 'active';
         if (request()->has('status')) {
             $status = request()->status;
         }
 
-        $query = GalleryPhoto::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = GalleryPhoto::with('gallery_photo_categories')->where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -68,6 +68,10 @@ class GalleryPhotoController extends Controller
         $data = new GalleryPhoto();
         $data->gallery_photo_categories_id = request()->gallery_photo_categories_id;
         $data->title = request()->title;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/gallery');
+        }
         $data->save();
 
         return response()->json($data, 200);
@@ -124,6 +128,10 @@ class GalleryPhotoController extends Controller
 
         $data->gallery_photo_categories_id = request()->gallery_photo_categories_id;
         $data->title = request()->title;
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/gallery');
+        }
         $data->save();
 
         return response()->json($data, 200);
@@ -208,7 +216,7 @@ class GalleryPhotoController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required' ],
+            'id' => ['required'],
         ]);
 
         if ($validator->fails()) {

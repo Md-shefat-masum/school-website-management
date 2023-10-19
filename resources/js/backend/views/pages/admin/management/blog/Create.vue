@@ -102,7 +102,7 @@
                         <div class="form-group">
                             <label for="">Image</label>
 
-                            <image-component :name="`image`" :multiple="false"
+                            <image-component  :name="`image`" :multiple="false"
                                 :accept="`.jpg,.jpeg,.png`"></image-component>
                         </div>
                     </div>

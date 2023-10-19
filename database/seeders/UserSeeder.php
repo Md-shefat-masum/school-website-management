@@ -27,17 +27,21 @@ class UserSeeder extends Seeder
             "password" => Hash::make('12345678'),
             "role_sl" => 2,
         ]);
-        User::create([
-            "full_name" => "Student",
-            "email" => "student@gmail.com",
-            "password" => Hash::make('12345678'),
-            "role_sl" => 3,
-        ]);
+
         User::create([
             "full_name" => "Subscriber",
             "email" => "subscriber@gmail.com",
             "password" => Hash::make('12345678'),
             "role_sl" => 4,
         ]);
+
+        for ($i = 1; $i < 10; $i++) {
+            User::create([
+                "full_name" => "Student_$i",
+                "email" => "student$i@gmail.com",
+                "password" => Hash::make('12345678'),
+                "role_sl" => 3,
+            ]);
+        }
     }
 }

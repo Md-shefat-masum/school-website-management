@@ -24,4 +24,9 @@ class Employee extends Model
     {
         return $q->where('status', 'active');
     }
+
+    public function employee_roles()
+    {
+        return $this->belongsTo(EmployeeRole::class);
+    }
 }

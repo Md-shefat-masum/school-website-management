@@ -28,8 +28,8 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                                                                                        alignleft aligncenter alignright alignjustify | \
-                                                                                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                 Select Category
                             </label>
                             <div class="mt-1 mb-3">
-                                <select class="form-control" name="news_categories_id" v-if="all_news_category?.data">
+                                <select class="form-control" name="news_category_id" v-if="all_news_category?.data">
                                     <option v-for="item in all_news_category.data" :value="item.id" :key="item.id">
                                         {{ item.title }}
                                     </option>
@@ -68,7 +68,7 @@
                                 Publised Date
                             </label>
                             <div class="mt-1 mb-3">
-                                <input type="date" name="publised_date" class="form-control mb-1">
+                                <input type="date" name="published_date" class="form-control mb-1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,12 +87,20 @@
                                 <dynamicSelect :setValue="setTags"></dynamicSelect>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="">
+                                Image alt title
+                            </label>
+                            <div class="mt-1 mb-3">
+                                <input type="text" class="form-control" name="image_alt">
+                            </div>
+                        </div>
 
                         <div class="form-group">
-                            <div class="mt-1 mb-3">
-                                <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
-                                    class="form-control mb-1">
-                                <img style="height: 60px;" alt="">
+                            <div class="form-group">
+                                <label for="">Image</label>
+                                <image-component  :name="`image`" :multiple="false"
+                                    :accept="`.jpg,.jpeg,.png`"></image-component>
                             </div>
                         </div>
                     </div>
@@ -137,7 +145,8 @@ export default {
 
         store: function () {
             let form_data = new FormData(event.target);
-            form_data.append('tags', this.tags);
+            form_data.append('tags', JSON.stringify(this.tags));
+            form_data.append('description', this.description);
             this.store_news(form_data)
         },
 

@@ -64,7 +64,7 @@ Route::post('/login', function () {
 Route::post('/api-logout', function () {
     auth()->logout();
 });
-
+Route::get('/{pageSlug}', [App\Http\Controllers\WebsiteController::class, 'pageDetails']);
 
 
 
@@ -79,6 +79,3 @@ Route::get('/data-reload', function () {
     \Illuminate\Support\Facades\Artisan::call('db:seed');
     return redirect()->back();
 });
-
-
-Route::get('/{pageSlug}', [App\Http\Controllers\WebsiteController::class, 'pageDetails']);

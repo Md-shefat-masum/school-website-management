@@ -10,7 +10,7 @@
             </div>
 
             <div class="card-body">
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label for="">
                         Category Name
                     </label>

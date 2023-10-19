@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store">
+    <form @submit.prevent="update">
         <div class="card">
             <div>
                 <div class="card-header py-3 position-sticky d-flex justify-content-between align-items-center">
@@ -27,19 +27,19 @@
                                     ],
                                     toolbar:
                                         'undo redo | formatselect | bold italic backcolor | \
-                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
-                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         bullist numlist outdent indent | removeformat | help'
                                 }" />
                             </div>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="">
                                 Select Category
                             </label>
                             <div class="mt-1 mb-3">
-                                <select class="form-control" name="news_categories_id" v-if="all_news_category?.data">
+                                <select class="form-control" name="news_category_id" v-if="all_news_category?.data">
                                     <option v-for="item in all_news_category.data" :value="item.id" :key="item.id">
                                         {{ item.title }}
                                     </option>
@@ -67,7 +67,7 @@
                                 Publised Date
                             </label>
                             <div class="mt-1 mb-3">
-                                <input type="date" name="publised_date" class="form-control mb-1">
+                                <input type="date" name="published_date" class="form-control mb-1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,15 +83,23 @@
                                 Tag
                             </label>
                             <div class="mt-1 mb-3">
-                                <dynamicSelect :setValue="setTags"></dynamicSelect>
+                                <dynamicSelect :data="single_data.news_tags" :setValue="setTags"></dynamicSelect>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">
+                                Image alt title
+                            </label>
+                            <div class="mt-1 mb-3">
+                                <input type="text" class="form-control" name="image_alt">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="mt-1 mb-3">
-                                <input @change="$event.target.files[0]" type="file" name="image" accept=".jpg,jpeg,.png"
-                                    class="form-control mb-1">
-                                <img style="height: 60px;" alt="">
+                            <div class="form-group">
+                                <label for="">Image</label>
+                                <image-component :images="[single_data.image]" :name="`image`" :multiple="false"
+                                    :accept="`.jpg,.jpeg,.png`"></image-component>
                             </div>
                         </div>
                     </div>
@@ -117,28 +125,33 @@ export default {
     components: { Editor },
     data: () => ({
         tags: [],
+        description: ''
     }),
-    created: function () {
+    created: async function () {
         setTimeout(() => {
             window.remove_form_action_classes()
         }, 100)
 
-        this.fetch_all_news_category();
-        this.get_news(this.$route.params.id)
+        await this.fetch_all_news_category();
+        await this.get_news(this.$route.params.id)
+        this.description = this.single_data.description
+        this.tags = this.single_data.news_tags
     },
     methods: {
         ...mapActions(news_store, {
-            store_news: 'store',
+            update_news: 'update',
             get_news: 'get',
         }),
         ...mapActions(news_category_store, {
             fetch_all_news_category: 'all',
         }),
 
-        store: function () {
+        update: function () {
             let form_data = new FormData(event.target);
-            form_data.append('tags', this.tags);
-            this.store_news(form_data)
+            form_data.append('id', this.$route.params.id);
+            form_data.append('tags', JSON.stringify(this.tags));
+            form_data.append('description', this.description);
+            this.update_news(form_data)
         },
 
         setTags: function (v) {
@@ -148,6 +161,9 @@ export default {
     computed: {
         ...mapState(news_category_store, {
             all_news_category: 'all_data'
+        }),
+        ...mapState(news_store, {
+            single_data: 'single_data'
         })
     },
 

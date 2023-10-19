@@ -2,6 +2,7 @@
 
 namespace App\Models\News;
 
+use App\Models\Blog\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -28,5 +29,10 @@ class News extends Model
     public function news_category()
     {
         return $this->belongsTo(NewsCategory::class);
+    }
+
+    public function news_tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

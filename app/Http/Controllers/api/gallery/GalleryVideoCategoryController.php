@@ -14,7 +14,7 @@ class GalleryVideoCategoryController extends Controller
     {
         $paginate = (int) request()->paginate ?? 10;
         $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+        $orderByType = request()->orderByType ?? 'desc';
 
         $status = 'active';
         if (request()->has('status')) {

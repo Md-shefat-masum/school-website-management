@@ -6,6 +6,7 @@ import Dashbord from './views/App.vue';
 
 import DynamicSelect from '../backend/views/components/dynamic_select/DynamicSelect.vue';
 import ImageComponent from '../backend/views/components/image/ImageComponent.vue';
+import CommonInput from '../backend/views/components/common_inputs/CommonInput.vue';
 
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia'
@@ -64,6 +65,7 @@ const app = createApp({});
 app.component('dahsboard', Dashbord);
 app.component('dynamicSelect', DynamicSelect);
 app.component('image-component', ImageComponent);
+app.component('common-input', CommonInput);
 
 app.use(pinia)
 app.use(router);

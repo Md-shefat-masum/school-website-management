@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -49,6 +51,11 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
 
             SettingSeeder::class,
+
+            StudentClassSeeder::class,
+            SubjectSeeder::class
+
+
 
         ]);
     }

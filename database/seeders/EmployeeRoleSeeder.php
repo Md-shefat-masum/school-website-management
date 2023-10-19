@@ -21,23 +21,23 @@ class EmployeeRoleSeeder extends Seeder
         ]);
         EmployeeRole::create([
             "title" => "অধ্যক্ষ",
-            "serial" => 1
+            "serial" => 2
         ]);
         EmployeeRole::create([
             "title" => "উপাধ্যক্ষ",
-            "serial" => 1
+            "serial" => 3
         ]);
         EmployeeRole::create([
             "title" => "শিক্ষক",
-            "serial" => 1
+            "serial" => 4
         ]);
         EmployeeRole::create([
             "title" => "অফিস",
-            "serial" => 1
+            "serial" => 5
         ]);
         EmployeeRole::create([
             "title" => "কর্মচারী",
-            "serial" => 1
+            "serial" => 6
         ]);
     }
 }
