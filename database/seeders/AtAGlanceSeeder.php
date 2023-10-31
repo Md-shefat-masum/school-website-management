@@ -15,20 +15,28 @@ class AtAGlanceSeeder extends Seeder
     {
         AtAGlance::truncate();
         AtAGlance::create([
-            "title" => "টোটাল A+ পেয়েছে",
-            "description" => "২৩ জন"
+            "title" => "মোট ছাত্র ছাত্রী",
+            "description" => "৪৮৬ জন"
         ]);
         AtAGlance::create([
-            "title" => "বিজ্ঞান থেকে A+ পেয়েছে",
-            "description" => "১৫ জন"
+            "title" => "মোট ছাত্রী",
+            "description" => "১৯১ জন"
         ]);
         AtAGlance::create([
-            "title" => "মানবিক থেকে A+ পেয়েছে",
-            "description" => "৮ জন"
+            "title" => "মোট ছাত্র",
+            "description" => "২৯৫ জন"
         ]);
         AtAGlance::create([
-            "title" => "টোটাল হাফেজ হয়েছে",
-            "description" => "৩০ জন"
+            "title" => "শিক্ষক নিয়মিত",
+            "description" => "১২ জন"
+        ]);
+        AtAGlance::create([
+            "title" => "খন্ড কালীন",
+            "description" => "৭  জন"
+        ]);
+        AtAGlance::create([
+            "title" => "কর্মচারী",
+            "description" => "৩ জন"
         ]);
     }
 }

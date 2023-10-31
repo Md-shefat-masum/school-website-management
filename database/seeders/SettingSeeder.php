@@ -202,7 +202,16 @@ class SettingSeeder extends Seeder
                 "title" => "principal_name",
                 "values" => [
                     [
-                        "value" => "মোঃ আশরাফুল আলম ( ভারপ্রাপ্ত )",
+                        "value" => "মোঃ আশরাফুল আলম",
+                    ],
+                ]
+            ],
+            [
+
+                "title" => "principal_type",
+                "values" => [
+                    [
+                        "value" => "ভারপ্রাপ্ত",
                     ],
                 ]
             ],

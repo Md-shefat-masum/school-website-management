@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input @change="preview" type="file" ref="input_files" :accept="accept" :class="classNames" :name="name"
+        <input @change="preview" class="form-control" type="file" ref="input_files" :accept="accept" :class="classNames" :name="name"
             :multiple="multiple">
         <div class="uploaded_image_preview my-2 d-flex gap-1 flex-wrap">
             <img v-for="i in component_images" :key="i" :src="i" class="img-fulid img-thumbnail" style="width: 80px; height: 80px;

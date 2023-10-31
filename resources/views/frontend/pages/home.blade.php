@@ -335,7 +335,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                                 {{setting('principal_name')}}
                             </p>
                             <p class="school_name_text text">
-                                অধ্যক্ষ, {{setting('institue_name_bangla')}}
+                                অধ্যক্ষ ({{setting('principal_type')}}), {{setting('institue_name_bangla')}}
                             </p>
                         </div>
                     </div>
