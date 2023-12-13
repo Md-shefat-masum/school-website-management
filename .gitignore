@@ -18,3 +18,4 @@ yarn-error.log
 /.idea
 /public/frontend/assets/icon/**/*.svg
 /*.zip
+git rm -r --cached .env
