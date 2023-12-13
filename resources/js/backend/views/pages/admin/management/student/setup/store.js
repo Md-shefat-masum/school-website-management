@@ -1,12 +1,12 @@
 import { defineStore } from "pinia"
 
-export const employee_store = defineStore('employee_store', {
+export const store = defineStore('student_store', {
     state: () => ({
         all_data: {},
         single_data: {},
     }),
     getters: {
-        doubleCount: (state) => state.count * 2,
+
     },
     actions: {
         all: async function (url) {
@@ -14,26 +14,15 @@ export const employee_store = defineStore('employee_store', {
             if (url) {
                 response = await axios.get(url)
             } else {
-                response = await axios.get('/employee/all')
-            }
-            // console.log(response.data);
-            this.all_data = response.data;
-        },
-        all_teachers: async function (url) {
-            let response
-            if (url) {
-                response = await axios.get(url)
-            } else {
-                response = await axios.get('/employee/all?all_teachers=1')
+                response = await axios.get('user/all-students')
             }
             // console.log(response.data);
             this.all_data = response.data;
         },
         get: async function (id) {
-            let response = await axios.get('employee/' + id);
+            let response = await axios.get('user/student/' + id);
             response = response.data
             this.single_data = response
-            console.log("sngdata",  this.single_data)
             for (const key in response) {
                 if (Object.hasOwnProperty.call(response, key)) {
                     const value = response[key];
@@ -58,19 +47,18 @@ export const employee_store = defineStore('employee_store', {
 
         },
         store: async function (form) {
-            let response = await axios.post('/employee/store', form)
+            let response = await axios.post('user/store-student', form)
             window.s_alert("Data created")
             console.log("res", response.data);
         },
         update: async function (form) {
-            let response = await axios.post('/employee/update', form)
+            let response = await axios.post('user/update-student', form)
             window.s_alert("Data  updated")
-            console.log(response.data);
         },
         delete: async function (id) {
             var data = await window.s_confirm()
             if (data) {
-                let response = await axios.post('/employee/destroy?id=' + id)
+                let response = await axios.post('user/destroy?id=' + id)
                 window.s_alert("Data deleted")
                 this.all();
                 console.log(response.data);

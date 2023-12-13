@@ -21,19 +21,21 @@
                 <div v-if="data.details" class="card-body px-4 py-2 form_area custom_scroll">
                     <div class="row">
                         <div class="col-lg-8">
-                            <editor api-key="no-api-key" v-model="data.details.description" :init="{
-                                height: 500,
-                                menubar: false,
-                                plugins: [
-                                    'advlist autolink lists link image charmap print preview anchor',
-                                    'searchreplace visualblocks code fullscreen',
-                                    'insertdatetime media table paste code help wordcount'
-                                ],
-                                toolbar:
-                                    'undo redo | formatselect | bold italic backcolor | \
-                                                                    alignleft aligncenter alignright alignjustify | \
-                                                                    bullist numlist outdent indent | removeformat | help'
-                            }" />
+                            <div v-if="data.details && data.details.description">
+                                <editor api-key="no-api-key" v-model="data.details.description" :init="{
+                                    height: 500,
+                                    menubar: false,
+                                    plugins: [
+                                        'advlist autolink lists link image charmap print preview anchor',
+                                        'searchreplace visualblocks code fullscreen',
+                                        'insertdatetime media table paste code help wordcount'
+                                    ],
+                                    toolbar:
+                                        'undo redo | formatselect | bold italic backcolor | \
+                                                                        alignleft aligncenter alignright alignjustify | \
+                                                                        bullist numlist outdent indent | removeformat | help'
+                                }" />
+                            </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">

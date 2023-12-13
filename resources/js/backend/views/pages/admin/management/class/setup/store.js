@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 
-export const employee_store = defineStore('employee_store', {
+export const class_store = defineStore('class_store', {
     state: () => ({
         all_data: {},
         single_data: {},
@@ -14,23 +14,23 @@ export const employee_store = defineStore('employee_store', {
             if (url) {
                 response = await axios.get(url)
             } else {
-                response = await axios.get('/employee/all')
+                response = await axios.get('/academic-class/all')
             }
             // console.log(response.data);
             this.all_data = response.data;
         },
-        all_teachers: async function (url) {
+        all_class: async function (url) {
             let response
             if (url) {
                 response = await axios.get(url)
             } else {
-                response = await axios.get('/employee/all?all_teachers=1')
+                response = await axios.get('/academic-class/all?get_all=1')
             }
             // console.log(response.data);
             this.all_data = response.data;
         },
         get: async function (id) {
-            let response = await axios.get('employee/' + id);
+            let response = await axios.get('academic-class/' + id);
             response = response.data
             this.single_data = response
             console.log("sngdata",  this.single_data)
@@ -58,19 +58,17 @@ export const employee_store = defineStore('employee_store', {
 
         },
         store: async function (form) {
-            let response = await axios.post('/employee/store', form)
+            let response = await axios.post('/academic-class/store', form)
             window.s_alert("Data created")
-            console.log("res", response.data);
         },
         update: async function (form) {
-            let response = await axios.post('/employee/update', form)
+            let response = await axios.post('/academic-class/update', form)
             window.s_alert("Data  updated")
-            console.log(response.data);
         },
         delete: async function (id) {
             var data = await window.s_confirm()
             if (data) {
-                let response = await axios.post('/employee/destroy?id=' + id)
+                let response = await axios.post('/academic-class/destroy?id=' + id)
                 window.s_alert("Data deleted")
                 this.all();
                 console.log(response.data);

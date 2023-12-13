@@ -3,7 +3,7 @@
         <div class="card rounded-none">
             <div class="card-header pt-3 pb-1 d-flex justify-content-between align-items-center">
                 <div>
-                    <h4 class="bn" style="font-size: 22px !important;">All image gallery</h4>
+                    <h4 class="bn" style="font-size: 22px !important;">All employee</h4>
                 </div>
                 <div class="d-flex justify-content-between">
                     <!-- <label class="switch">
@@ -12,9 +12,8 @@
                         <span class="switch-state" style="background-color: #4c6887;"></span>
                     </label> -->
                     <div class="ps-3 d-flex gap-2">
-                        <router-link :to="{ name: `ImageGalleryCategory` }" class="btn btn-sm btn-info"> Image Category
-                        </router-link>
-                        <router-link :to="{ name: `ImageGalleryCreate` }" class="btn btn-sm btn-info"> Create
+                        <router-link :to="{ name: `ClassCreate` }" class="btn btn-sm btn-info">
+                            Create
                         </router-link>
                     </div>
                 </div>
@@ -26,37 +25,24 @@
                             <tr>
                                 <th class="text-start" style="width: 5px;"><input type="checkbox"></th>
                                 <th class="text-start" style="width: 50px;"> Sl</th>
-                                <th class="text-start" style="width: 50px;"> Image</th>
-                                <th class="text-start" style="width: 400px;"> Category</th>
-                                <th class="text-start" style="width: 400px;"> Title</th>
+                                <th class="" style="width: 400px;"> Title</th>
                                 <th style="width: 200px;">Status</th>
                                 <th class="text-center" style="width: 200px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item) in all_gallery_photo?.data" :key="item.id">
+                            <tr v-for="(item, index) in all_blog?.data" :key="item.id">
                                 <td class="text-start"> <input type="checkbox" name="" id=""></td>
-                                <td class="text-start"> {{ item.id }}</td>
-                                <td class="text-start">
-                                    <div v-if="item.image">
-                                        <img style="height: 40px;" :src="item.image" alt="">
-                                    </div>
-                                    <div v-if="item.link?.length > 5">
-                                        <a :href="item.link" target="_blank">
-                                            {{ item.link }}
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="text-start">{{ item.gallery_photo_categories?.title }}</td>
-                                <td class="text-start">{{ item.title ?? "N/A" }}</td>
+                                <td class="text-start"> {{ index + 1 }}</td>
+                                <td class="">{{ item.title }}</td>
                                 <td>
                                     <p class="badge badge-success">{{ item.status }}</p>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-flex justify-content-end gap-3">
-                                        <router-link :to="{ name: `ImageGalleryEdit`, params: { id: item.id } }"
+                                        <router-link :to="{ name: `ClassEdit`, params: { id: item.id } }"
                                             class="btn btn-sm btn-outline-info"> Edit </router-link>
-                                        <a @click.prevent="gallery_photo_delete(item.id)" href="#"
+                                        <a @click.prevent="blog_delete(item.id)" href="#"
                                             class="btn btn-sm btn-outline-danger"> delete </a>
                                     </div>
                                 </td>
@@ -89,20 +75,20 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-import { gallery_photo_store } from './setup/store';
+import { class_store } from './setup/store';
 export default {
     created: function () {
-        this.fetch_all_gallery_photo();
+        this.fetch_all_blog();
     },
     methods: {
-        ...mapActions(gallery_photo_store, {
-            fetch_all_gallery_photo: 'all',
-            gallery_photo_delete: 'delete',
+        ...mapActions(class_store, {
+            fetch_all_blog: 'all',
+            blog_delete: 'delete',
         })
     },
     computed: {
-        ...mapState(gallery_photo_store, {
-            all_gallery_photo: 'all_data'
+        ...mapState(class_store, {
+            all_blog: 'all_data'
         })
 
     },

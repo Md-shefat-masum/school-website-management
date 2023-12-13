@@ -3,8 +3,8 @@
         <div class="card">
             <div>
                 <div class="card-header py-3 position-sticky d-flex justify-content-between align-items-center">
-                    <h6>Create video gallery </h6>
-                    <router-link :to="{ name: `ImageGallery` }" class="btn btn-info btn-sm">Back</router-link>
+                    <h6>Update Class </h6>
+                    <router-link :to="{ name: `Class` }" class="btn btn-info btn-sm">Back</router-link>
                 </div>
             </div>
 
@@ -13,29 +13,19 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="">
-                                Select Category
+                                Title
                             </label>
                             <div class="mt-1 mb-3">
-                                <select class="form-control" name="gallery_photo_categories_id" v-if="all_category?.data">
-                                    <option v-for="item in all_category.data" :value="item.id" :key="item.id">
-                                        {{ item.title }}
-                                    </option>
-                                </select>
+                                <textarea class="form-control" type="text" name="title"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">
-                                title
+                                Serial
                             </label>
                             <div class="mt-1 mb-3">
-                                <input type="text" name="title" class="form-control mb-1">
+                                <input class="form-control" type="text" name="serial"/>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Image</label>
-
-                            <image-component :images="[single_data.image]" :name="`image`" :multiple="false"
-                                :accept="`.jpg,.jpeg,.png`"></image-component>
                         </div>
                     </div>
                 </div>
@@ -44,16 +34,18 @@
                 <button type="submit" class="btn btn-info btn-sm">Update</button>
             </div>
         </div>
+
     </form>
 </template>
 
 <script>
+
 import { mapActions, mapState } from 'pinia'
-import { gallery_photo_store } from './setup/store';
-import { gallery_photo_category_store } from '../image_gallery_category/setup/store';
-
+import { class_store } from './setup/store';
+import { employee_role_store } from '../employee_role/setup/store';
+import Editor from '@tinymce/tinymce-vue'
 export default {
-
+    components: { Editor },
     data: () => ({
         tags: [],
         description: '',
@@ -63,7 +55,7 @@ export default {
             window.remove_form_action_classes()
         }, 100)
 
-        await this.fetch_all_gallery_photo_category();
+        await this.fetch_all_employee_role();
         await this.get_blog(this.$route.params.id)
         this.description = this.single_data.description
         this.single_data.blog_tags.forEach((item) => {
@@ -72,18 +64,20 @@ export default {
 
     },
     methods: {
-        ...mapActions(gallery_photo_store, {
-            update_gallery_photo: 'update',
+        ...mapActions(class_store, {
+            update_blog: 'update',
             get_blog: 'get',
         }),
-        ...mapActions(gallery_photo_category_store, {
-            fetch_all_gallery_photo_category: 'all',
+        ...mapActions(employee_role_store, {
+            fetch_all_employee_role: 'all',
         }),
 
         update: function () {
             let form_data = new FormData(event.target);
             form_data.append('id', this.$route.params.id);
-            this.update_gallery_photo(form_data)
+            form_data.append('tags', this.tags);
+            form_data.append('description', this.description);
+            this.update_blog(form_data)
         },
 
         setTags: function (v) {
@@ -92,10 +86,10 @@ export default {
 
     },
     computed: {
-        ...mapState(gallery_photo_category_store, {
-            all_category: 'all_data'
+        ...mapState(employee_role_store, {
+            all_employee_role: 'all_data'
         }),
-        ...mapState(gallery_photo_store, {
+        ...mapState(class_store, {
             single_data: 'single_data'
         })
     },

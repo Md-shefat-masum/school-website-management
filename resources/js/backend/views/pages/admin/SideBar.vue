@@ -106,20 +106,22 @@
             </li>
 
             <li>
-                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                <router-link :to="{ name: `Class` }" class="sidebar-header">
+                    <i class="icon-files"></i>
+                    <span>Class</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link :to="{ name: `Subject` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>Subject</span>
                 </router-link>
             </li>
 
+
             <li>
-                <router-link :to="{ name: `Employee` }" class="sidebar-header">
-                    <i class="icon-files"></i>
-                    <span>Class</span>
-                </router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: `Employee` }" class="sidebar-header">
+                <router-link :to="{ name: `Student` }" class="sidebar-header">
                     <i class="icon-files"></i>
                     <span>Student</span>
                 </router-link>

@@ -23,102 +23,22 @@
 
         <!-- Container-fluid starts -->
         <div class="container-fluid">
-            <div class="card border-widgets shadow  mb-4">
+            <div v-for="(items, index) in titles" :key="index" class="card border-widgets shadow  mb-4">
                 <div class="row m-0 ">
-                    <div class="col-xl-3 col-6 xs-width-100">
+                    <div v-for="(item, index2) in items" :key="index2" class="col-xl-3 col-6 xs-width-100">
                         <div class="crm-top-widget card-body">
                             <div class="d-flex">
-                                <i class="icon-user font-primary align-self-center me-3"></i>
+                                <i :class="`${item.icon} font-primary align-self-center me-3`"></i>
                                 <div>
-                                    <span class="mt-0">Teachers</span>
-                                    <h4 class="counter">15</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-id-badge font-secondary align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Students</span>
-                                    <h4 class="counter">457</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-camera font-success align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Photos</span>
-                                    <h4 class="counter">37</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-video-camera font-info align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Videos</span>
-                                    <h4 class="counter">16</h4>
+                                    <span class="mt-0">{{ item.title }}</span>
+                                    <h4 class="counter">{{ at_at_glance[item.key] }}</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card border-widgets shadow mb-4">
-                <div class="row m-0 ">
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-harddrives font-primary align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Blog Posts</span>
-                                    <h4 class="counter">27</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-files font-secondary align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Notices</span>
-                                    <h4 class="counter">457</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-zip font-success align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">News</span>
-                                    <h4 class="counter">37</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-6 xs-width-100">
-                        <div class="crm-top-widget card-body">
-                            <div class="d-flex">
-                                <i class="icon-book font-info align-self-center me-3"></i>
-                                <div>
-                                    <span class="mt-0">Digital Books</span>
-                                    <h4 class="counter">16</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <!-- Container-fluid starts -->
     </div>
@@ -126,7 +46,59 @@
 
 <script>
 export default {
-
+    data: ()=>({
+        titles: [
+            [
+                {
+                    title: "Total Employee",
+                    key:  'employees',
+                    icon: 'icon-user',
+                },
+                {
+                    title: "Total Students",
+                    key:  'students',
+                    icon: 'icon-user',
+                },
+                {
+                    title: "Total Photos",
+                    key:  'photos',
+                    icon: 'icon-camera',
+                },
+                {
+                    title: "Total Videos",
+                    key:  'videos',
+                    icon: 'icon-video-camera',
+                },
+            ],
+            [
+                {
+                    title: "Total Blogs",
+                    key:  'blogs',
+                    icon: 'icon-harddrives',
+                },
+                {
+                    title: "Total News",
+                    key:  'news',
+                    icon: 'icon-files',
+                },
+                {
+                    title: "Total Notice",
+                    key:  'notice',
+                    icon: 'icon-zip',
+                },
+            ]
+        ],
+        at_at_glance: {},
+    }),
+    created: function(){
+        this.get_at_a_glance();
+    },
+    methods: {
+        get_at_a_glance: async function(){
+            let res = await axios.get('/dashboard/at-a-glance');
+            this.at_at_glance = res.data;
+        }
+    }
 }
 </script>
 
