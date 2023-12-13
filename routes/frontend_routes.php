@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('frontend.pages.home');
 })->middleware('check_token');
@@ -24,6 +26,11 @@ Route::get('/blog-details/{id}', [App\Http\Controllers\BlogController::class, 'g
 Route::get('/blog-search', [App\Http\Controllers\BlogController::class, 'searchBlog'])->name('blogs.search');
 Route::get('/submit-blog-comment', [App\Http\Controllers\BlogController::class, 'submitBlogCommnet'])->name('submit-blog-comment');
 
-
 Route::get('gallery/photo', [App\Http\Controllers\GalleryController::class, 'getAllGalleryPhotos']);
 Route::get('gallery/video', [App\Http\Controllers\GalleryController::class, 'getAllGalleryVideos']);
+
+Route::get('digital-class-content', [App\Http\Controllers\WebsiteController::class, 'digital_class_content']);
+Route::get('library', [App\Http\Controllers\WebsiteController::class, 'library']);
+Route::get('lab', [App\Http\Controllers\WebsiteController::class, 'lab']);
+Route::get('playground', [App\Http\Controllers\WebsiteController::class, 'playground']);
+Route::get('co-curricular-activities', [App\Http\Controllers\WebsiteController::class, 'co_curriculam']);

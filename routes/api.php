@@ -5,6 +5,7 @@ use App\Http\Controllers\api\academic\AcademicClassController;
 use App\Http\Controllers\api\blog\BlogCategoryController;
 use App\Http\Controllers\api\blog\BlogController;
 use App\Http\Controllers\api\blog\TagController;
+use App\Http\Controllers\api\Dashboard\DashboardController;
 use App\Http\Controllers\api\digital_book\DigitalBookCategoryController;
 use App\Http\Controllers\api\digital_book\DigitalBookController;
 use App\Http\Controllers\api\employee\EmployeeController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\api\settings\SettingsTitleValueController;
 use App\Http\Controllers\api\student\StudentDueController;
 use App\Http\Controllers\api\student\StudentInformationController;
 use App\Http\Controllers\api\student\StudentResultController;
+use App\Http\Controllers\api\User\UserController;
 use App\Http\Controllers\api\website\SuccessAtAGlanceController;
 use App\Http\Controllers\Auth\ApiLoginController;
 use Database\Seeders\DigitalBookCategorySeeder;
@@ -71,6 +73,35 @@ Route::prefix('v1')
         "auth:api"
     ])
     ->group(function () {
+        Route::controller(DashboardController::class)
+            ->prefix('/dashboard')
+            ->group(function () {
+                Route::get('/at-a-glance', 'at_a_glance');
+            });
+
+
+        Route::controller(UserController::class)
+            ->prefix('/user')
+            ->group(function () {
+                Route::get('/all', 'all');
+                Route::get('/all-students', 'all_students');
+
+                Route::post('/store', 'store');
+                Route::post('/store-student', 'store_student');
+                Route::post('/canvas-store', 'canvas_store');
+
+                Route::post('/update', 'update');
+                Route::post('/update-student', 'update_student');
+                Route::post('/canvas-update', 'canvas_update');
+
+                Route::post('/soft-delete', 'soft_delete');
+                Route::post('/restore', 'restore');
+                Route::post('/destroy', 'destroy');
+                Route::post('/bulk-import', 'bulk_import');
+
+                Route::get('/student/{id}', 'student_show');
+                Route::get('/{id}', 'show');
+            });
 
         Route::controller(AcademicClassController::class)
             ->prefix('/academic-class')

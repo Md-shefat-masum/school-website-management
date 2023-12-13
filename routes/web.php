@@ -20,28 +20,27 @@ use Illuminate\Support\Facades\Route;
 
 require_once "frontend_routes.php";
 
+// Route::get('/tuser', function () {
+//     $response = Http::withHeaders([
+//         'Accept' => 'application/json',
+//         'Authorization' => 'Bearer ' . request()->cookie("AXRF-TOKEN"),
+//     ])->get('http://127.0.0.1:8000/api/user');
 
-Route::get('/tuser', function () {
-    $response = Http::withHeaders([
-        'Accept' => 'application/json',
-        'Authorization' => 'Bearer ' . request()->cookie("AXRF-TOKEN"),
-    ])->get('http://127.0.0.1:8000/api/user');
+//     dd($response->json());
+// })->middleware('check_token');
 
-    dd($response->json());
-})->middleware('check_token');
+// Route::get('/tu', function () {
+//     $user = User::find(2);
+//     $token = $user->createToken('access-token');
+//     return redirect('/')->withCookie(set_token_coockie($token->accessToken));
+// });
 
-Route::get('/tu', function () {
-    $user = User::find(2);
-    $token = $user->createToken('access-token');
-    return redirect('/')->withCookie(set_token_coockie($token->accessToken));
-});
-
-Route::controller(\App\Http\Controllers\WebsiteController::class)
-    ->prefix('/user')
-    ->middleware(['auth'])
-    ->group(function () {
-        Route::get('/t1', 'index');
-    });
+// Route::controller(\App\Http\Controllers\WebsiteController::class)
+//     ->prefix('/user')
+//     ->middleware(['auth'])
+//     ->group(function () {
+//         Route::get('/t1', 'index');
+//     });
 
 Auth::routes();
 
@@ -64,18 +63,15 @@ Route::post('/login', function () {
 Route::post('/api-logout', function () {
     auth()->logout();
 });
+
 Route::get('/{pageSlug}', [App\Http\Controllers\WebsiteController::class, 'pageDetails']);
 
-
-
-
-
-Route::get('/data-reload', function () {
-    \Illuminate\Support\Facades\Artisan::call('db:wipe');
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/', '--force' => true]);
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/*', '--force' => true]);
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'vendor/laravel/passport/database/migrations', '--force' => true]);
-    // \Illuminate\Support\Facades\Artisan::call('passport:install');
-    \Illuminate\Support\Facades\Artisan::call('db:seed');
-    return redirect()->back();
-});
+// Route::get('/data-reload', function () {
+//     \Illuminate\Support\Facades\Artisan::call('db:wipe');
+//     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/', '--force' => true]);
+//     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'database/migrations/*', '--force' => true]);
+//     \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'vendor/laravel/passport/database/migrations', '--force' => true]);
+//     // \Illuminate\Support\Facades\Artisan::call('passport:install');
+//     \Illuminate\Support\Facades\Artisan::call('db:seed');
+//     return redirect()->back();
+// });
