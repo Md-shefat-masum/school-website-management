@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\academic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Academic\AcademicClass;
+use App\Models\Student\StudentClass;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class AcademicClassController extends Controller
             $status = request()->status;
         }
 
-        $query = AcademicClass::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = StudentClass::where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -35,13 +36,17 @@ class AcademicClassController extends Controller
             });
         }
 
-        $query = $query->paginate($paginate);
+        if(request()->has('get_all')){
+            $query = $query->get();
+        }else{
+            $query = $query->paginate($paginate);
+        }
         return response()->json($query);
     }
 
     public function show($id)
     {
-        $data = AcademicClass::where('id', $id)->first();
+        $data = StudentClass::where('id', $id)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
@@ -64,8 +69,9 @@ class AcademicClassController extends Controller
             ], 422);
         }
 
-        $data = new AcademicClass();
+        $data = new StudentClass();
         $data->title = request()->title;
+        $data->serial = request()->serial;
         $data->save();
 
         return response()->json($data, 200);
@@ -84,7 +90,7 @@ class AcademicClassController extends Controller
             ], 422);
         }
 
-        $data = new AcademicClass();
+        $data = new StudentClass();
         $data->title = request()->title;
         $data->save();
 
@@ -94,7 +100,7 @@ class AcademicClassController extends Controller
     public function update()
     {
 
-        $data = AcademicClass::find(request()->id);
+        $data = StudentClass::find(request()->id);
 
         if (!$data) {
             return response()->json([
@@ -118,6 +124,7 @@ class AcademicClassController extends Controller
         }
 
         $data->title = request()->title;
+        $data->serial = request()->serial;
         $data->save();
 
         return response()->json($data, 200);
@@ -125,7 +132,7 @@ class AcademicClassController extends Controller
 
     public function canvas_update()
     {
-        $data = AcademicClass::find(request()->id);
+        $data = StudentClass::find(request()->id);
 
         if (!$data) {
             return response()->json([
@@ -167,7 +174,7 @@ class AcademicClassController extends Controller
             ], 422);
         }
 
-        $data = AcademicClass::find(request()->id);
+        $data = StudentClass::find(request()->id);
         $data->status = "inactive";
         $data->save();
 
@@ -189,7 +196,7 @@ class AcademicClassController extends Controller
             ], 422);
         }
 
-        $data = AcademicClass::find(request()->id);
+        $data = StudentClass::find(request()->id);
         if ($data) {
             $data->delete();
             return response()->json([
@@ -211,7 +218,7 @@ class AcademicClassController extends Controller
             ], 422);
         }
 
-        $data = AcademicClass::find(request()->id);
+        $data = StudentClass::find(request()->id);
         $data->status = "active";
         $data->save();
 
@@ -237,10 +244,10 @@ class AcademicClassController extends Controller
             $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']) : Carbon::now()->toDateTimeString();
             $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']) : Carbon::now()->toDateTimeString();
             $item = (object) $item;
-            $check = AcademicClass::where('id', $item->id)->first();
+            $check = StudentClass::where('id', $item->id)->first();
             if (!$check) {
                 try {
-                    AcademicClass::create((array) $item);
+                    StudentClass::create((array) $item);
                 } catch (\Throwable $th) {
                     return response()->json([
                         'err_message' => 'validation error',
