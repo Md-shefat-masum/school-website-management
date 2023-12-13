@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\navbar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Navbar\NavbarMenu;
 use App\Models\Navbar\NavbarMenuDetail;
 use App\Models\Navbar\NavbarMenuItem;
 use Illuminate\Http\Request;
@@ -78,8 +79,9 @@ class NavbarMenuDetailsController extends Controller
             ], 422);
         }
 
+        $navbar_menu = NavbarMenuItem::find(request()->navbar_menu_items_id);
         $data = new NavbarMenuDetail();
-        $data->navbar_menu_id = request()->navbar_menu_id;
+        $data->navbar_menu_id = $navbar_menu->navbar_menus_id;
         $data->navbar_menu_items_id = request()->navbar_menu_items_id;
         $data->title = request()->title;
         $data->description = request()->description;
@@ -107,6 +109,7 @@ class NavbarMenuDetailsController extends Controller
             ], 422);
         }
 
+        $navbar_menu = NavbarMenuItem::find(request()->navbar_menu_items_id);
         $data = new NavbarMenuDetail();
         $data->navbar_menus_id = request()->navbar_menus_id;
         $data->title = request()->title;
@@ -135,7 +138,7 @@ class NavbarMenuDetailsController extends Controller
             'id' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
-            'navbar_menus_id' => ['required'],
+            // 'navbar_menus_id' => ['required'],
         ];
 
         $validator = Validator::make(request()->all(), $rules, []);
@@ -147,7 +150,8 @@ class NavbarMenuDetailsController extends Controller
             ], 422);
         }
 
-        $data->navbar_menu_id = request()->navbar_menu_id;
+        $navbar_menu = NavbarMenuItem::find(request()->id);
+        $data->navbar_menu_id = $navbar_menu->navbar_menu_id;
         $data->navbar_menu_items_id = request()->navbar_menu_items_id;
         $data->title = request()->title;
         $data->description = request()->description;
