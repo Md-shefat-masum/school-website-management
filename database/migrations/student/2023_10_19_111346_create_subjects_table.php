@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 250)->nullable();
             $table->bigInteger('student_class_id')->nullable();
+            $table->bigInteger('teacher_id')->nullable();
             $table->string('image', 100)->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
