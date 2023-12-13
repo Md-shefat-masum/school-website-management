@@ -1,5 +1,5 @@
-.router-link-active.router-link-exact-active,
-body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.active {
+body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.active body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.router-link-active,
+body[main-theme-layout="main-theme-layout-4"] .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.router-link-exact-active {
   color: #ab8ce4;
 }
 @font-face {
