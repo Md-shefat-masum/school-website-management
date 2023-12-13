@@ -14,13 +14,18 @@ return new class extends Migration
         Schema::create('student_information', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('student_id')->nullable();
-            $table->string('full_name', 100)->nullable();
-            $table->string('class', 100)->nullable();
-            $table->string('personal_phone_number', 100)->nullable();
-            $table->string('parent_phone_number', 100)->nullable();
-            $table->string('parent_details', 100)->nullable();
-            $table->string('image', 100)->nullable();
+            $table->string('full_name', 200)->nullable();
+
+            $table->bigInteger('class')->nullable();
             $table->string('department', 100)->nullable();
+
+            $table->text('address')->nullable();
+            $table->string('personal_phone_number', 40)->nullable();
+            $table->string('parent_phone_number', 40)->nullable();
+            $table->text('parent_details')->nullable();
+
+            $table->string('image', 100)->nullable();
+
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
