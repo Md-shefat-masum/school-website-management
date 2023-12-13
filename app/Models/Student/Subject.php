@@ -2,6 +2,7 @@
 
 namespace App\Models\Student;
 
+use App\Models\Employee\Employee;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -23,5 +24,15 @@ class Subject extends Model
     public function scopeActive($q)
     {
         return $q->where('status', 'active');
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(StudentClass::class,'student_class_id');
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Employee::class,'teacher_id');
     }
 }
