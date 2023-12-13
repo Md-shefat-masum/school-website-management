@@ -13,10 +13,10 @@
 <meta name="rating" content="General">
 <meta name="target" content="all">
 <meta name="HandheldFriendly" content="True">
-<meta name="author" content="{{$meta->author ?? ''}}">
-<meta name="developer" content="{{$meta->developer ?? ''}}">
-<meta name="developer-email" content="{{$meta->developer_email ?? ''}}">
-<meta name="developer-company" content="{{$meta->developer_company ?? ''}}">
+<meta name="author" content="{{$meta->author ?? 'muradpur islamia alim madrasha'}}">
+<meta name="developer" content="Muhammad shefat ullah masum, +8801646376015">
+<meta name="developer-email" content="mshefat924@gmail.com">
+<meta name="developer-company" content="tech park IT">
 <meta name="copyright" content="{{url('')}}">
 <meta name="price" content="Call for price - {{$meta->contact_number ?? ''}}">
 
