@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api\academic;
 
 use App\Http\Controllers\Controller;
-use App\Models\Academic\AcademicClassSubject;
+use App\Models\Student\Subject;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +21,9 @@ class AcademicClassSubjectController extends Controller
             $status = request()->status;
         }
 
-        $query = AcademicClassSubject::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = Subject::where('status', $status)
+            ->with('class','teacher')
+            ->orderBy('student_class_id', 'ASC');
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -41,7 +43,7 @@ class AcademicClassSubjectController extends Controller
 
     public function show($id)
     {
-        $data = AcademicClassSubject::where('id', $id)->first();
+        $data = Subject::where('id', $id)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'not found',
@@ -55,7 +57,7 @@ class AcademicClassSubjectController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'title' => ['required'],
-            'academy_classes_id' => ['required'],
+            'student_class_id' => ['required'],
             'teacher_id' => ['required'],
         ], []);
 
@@ -66,10 +68,17 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data = new AcademicClassSubject();
-        $data->academy_classes_id = request()->academy_classes_id;
+        $data = new Subject();
+        $data->student_class_id = request()->student_class_id;
         $data->teacher_id = request()->teacher_id;
         $data->title = request()->title;
+        $data->save();
+
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/subjects', 300, 500);
+        }
+
         $data->save();
 
         return response()->json($data, 200);
@@ -90,9 +99,10 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data = new AcademicClassSubject();
+        $data = new Subject();
+        $data->student_class_id = request()->student_class_id;
+        $data->teacher_id = request()->teacher_id;
         $data->title = request()->title;
-        $data->academy_classes_id = request()->academy_classes_id;
         $data->save();
 
         return response()->json($data, 200);
@@ -101,7 +111,7 @@ class AcademicClassSubjectController extends Controller
     public function update()
     {
 
-        $data = AcademicClassSubject::find(request()->id);
+        $data = Subject::find(request()->id);
 
         if (!$data) {
             return response()->json([
@@ -113,7 +123,7 @@ class AcademicClassSubjectController extends Controller
         $rules = [
             'id' => ['required'],
             'title' => ['required'],
-            'academy_classes_id' => ['required'],
+            'student_class_id' => ['required'],
             'teacher_id' => ['required'],
         ];
 
@@ -126,9 +136,16 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data->title = request()->title;
-        $data->academy_classes_id = request()->academy_classes_id;
+        $data->student_class_id = request()->student_class_id;
         $data->teacher_id = request()->teacher_id;
+        $data->title = request()->title;
+        $data->save();
+
+        if (request()->file('image')) {
+            $image = request()->file('image');
+            $data->image = upload($image, 'uploads/subjects', 300, 500);
+        }
+
         $data->save();
 
         return response()->json($data, 200);
@@ -136,7 +153,7 @@ class AcademicClassSubjectController extends Controller
 
     public function canvas_update()
     {
-        $data = AcademicClassSubject::find(request()->id);
+        $data = Subject::find(request()->id);
 
         if (!$data) {
             return response()->json([
@@ -182,7 +199,7 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data = AcademicClassSubject::find(request()->id);
+        $data = Subject::find(request()->id);
         $data->status = "inactive";
         $data->save();
 
@@ -204,7 +221,7 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data = AcademicClassSubject::find(request()->id);
+        $data = Subject::find(request()->id);
         if ($data) {
             $data->delete();
             return response()->json([
@@ -226,7 +243,7 @@ class AcademicClassSubjectController extends Controller
             ], 422);
         }
 
-        $data = AcademicClassSubject::find(request()->id);
+        $data = Subject::find(request()->id);
         $data->status = "active";
         $data->save();
 
@@ -252,10 +269,10 @@ class AcademicClassSubjectController extends Controller
             $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']) : Carbon::now()->toDateTimeString();
             $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']) : Carbon::now()->toDateTimeString();
             $item = (object) $item;
-            $check = AcademicClassSubject::where('id', $item->id)->first();
+            $check = Subject::where('id', $item->id)->first();
             if (!$check) {
                 try {
-                    AcademicClassSubject::create((array) $item);
+                    Subject::create((array) $item);
                 } catch (\Throwable $th) {
                     return response()->json([
                         'err_message' => 'validation error',
