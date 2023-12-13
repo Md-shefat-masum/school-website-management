@@ -18,6 +18,7 @@ import SuperAdminUserAll from "./views/pages/superadmin/management/users/All.vue
 
 import App from "./views/App.vue"
 import admin_routes from "./views/pages/admin/routes"
+import Pagination from "./views/components/Pagination.vue";
 
 const routes = [
     {
@@ -66,6 +67,7 @@ app.component('dahsboard', Dashbord);
 app.component('dynamicSelect', DynamicSelect);
 app.component('image-component', ImageComponent);
 app.component('common-input', CommonInput);
+app.component('pagination', Pagination);
 
 app.use(pinia)
 app.use(router);
