@@ -35,7 +35,12 @@ class EmployeeController extends Controller
             });
         }
 
-        $query = $query->paginate($paginate);
+        if(request()->has('all_teachers')){
+            $query = $query->get();
+        }else{
+            $query = $query->paginate($paginate);
+        }
+
         return response()->json($query);
     }
 
@@ -75,7 +80,7 @@ class EmployeeController extends Controller
         $data->joining_date = request()->joining_date;
         if (request()->file('image')) {
             $image = request()->file('image');
-            $data->image = upload($image, 'uploads/employee');
+            $data->image = upload($image, 'uploads/employee', 200, 200);
         }
 
         $data->save();
@@ -147,7 +152,7 @@ class EmployeeController extends Controller
         $data->joining_date = request()->joining_date;
         if (request()->file('image')) {
             $image = request()->file('image');
-            $data->image = upload($image, 'uploads/employee');
+            $data->image = upload($image, 'uploads/employee', 200, 200);
         }
         $data->save();
 
