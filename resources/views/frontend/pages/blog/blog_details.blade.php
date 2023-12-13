@@ -35,7 +35,7 @@
                             <!-- date_area start -->
                             <div class="date_area d_c_area">
                                 <p class="date_text d_c_text">
-                                    {{$blogDetails->created_at->format('d MM')}} <span
+                                    {{$blogDetails->created_at->format('d M')}} <span
                                         class="year_text text">{{$blogDetails->created_at->format('Y')}}</span>
                                 </p>
                             </div>
@@ -60,7 +60,7 @@
 
                         <div class="news_details_text_area">
                             <p class="details_text">
-                                {{$blogDetails->description}}
+                                {!!$blogDetails->description!!}
                             </p>
 
                         </div>

@@ -49,7 +49,7 @@
                             <div class="date_and_comment_area">
                                 <div class="date_area d_c_area">
                                     <p class="date_text d_c_text">
-                                        {{$item->created_at->format('d MM')}} <span
+                                        {{$item->created_at->format('d M')}} <span
                                             class="text">{{$item->created_at->format('Y')}}</span>
                                     </p>
                                 </div>

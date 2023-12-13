@@ -186,8 +186,9 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                         $notice = \App\Models\Navbar\NavbarMenu::where("title","নোটিশ")->first();
 
                         $subMenuDetails = \App\Models\Navbar\NavbarMenuDetail::query()
-                        ->where('navbar_menu_id',$notice->id)->orderBy('id','DESC')->limit(3)
-                        ->get();
+                            ->where('navbar_menu_id',$notice->id)->orderBy('id','DESC')
+                            ->limit(3)
+                            ->get();
 
                         // dd($subMenuDetails);
                         @endphp
@@ -224,9 +225,13 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                                                 class="title_text">{{$item->title}}</a>
                                         </div>
                                         <div class="notice_description">
-                                            <span class="description_text">{{substr($item->description,0,100)}}<a
+                                            <span class="description_text">
+                                                {{substr(strip_tags($item->description),0,100)}}
+                                                <a
                                                     href="{{route('menu_details',[$item->slug,$item->id])}}"
-                                                    class="read_more_area">Read more ...</a>
+                                                    class="read_more_area">
+                                                    Read more ...
+                                                </a>
                                             </span>
                                         </div>
                                     </div>
@@ -259,7 +264,7 @@ $banner = \App\Models\WebsiteSection\Banner::first();
 <!-- introduction_and_notice_area end -->
 
 <!-- countdown_area start -->
-<section class="countdown_area"
+<section class="countdown_area d-none"
     style="background-image: url({{ asset('frontend/assets/images/countdoun_image/bg.jpg') }});" data-aos="fade-up"
     data-aos-duration="1000">
     <div class="countdown_area_bg_color">
@@ -300,6 +305,70 @@ $banner = \App\Models\WebsiteSection\Banner::first();
                 <!-- countdown_content end -->
 
             </div>
+        </div>
+    </div>
+</section>
+<!-- countdown_area end -->
+
+<!-- countdown_area start -->
+<section class="countdown_area"
+    style="background-image: url({{ asset('frontend/assets/images/countdoun_image/bg.jpg') }});" data-aos="fade-up"
+    data-aos-duration="1000">
+    <div class="countdown_area_bg_color">
+        <div class="container text-light ">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    @php
+                        $list = [
+                            "নূরানী পদ্ধতিতে কুরআন শিক্ষা",
+                            "সহীহ শুদ্ধরুপ কুরআন হাদীস শিক্ষা ও তদানুযায়ী জীবন গঠন",
+                            "উত্তম চরিত্র সম্পন্ন জাতি গঠন",
+                            "সর্বোপরি শিরক মুক্ত আল্লাহ নির্দেশিত ও রাসুল (স) প্রদর্শিত জীবন ব্যাবস্থার আলোকে যুগপোযোগী করে গড়ে তোলা",
+                            "মনোরম পরিবেশে খেলাধুলার মাধ্যমে শিক্ষাদানের ব্যবস্থা।",
+                            "আধুনিক কম্পিউটার ল্যাব",
+                            "ইসলাম ও আধুনিক শিক্ষার সমন্বয়",
+                            "সুসজ্জিত কক্ষ",
+                            "কম খরচে ভর্তি ও বেতন সুবিধা",
+                        ];
+                        $list2 = [
+                            "যুগোপযোগী শিক্ষা ব্যবস্থার মডেল অনুযাযী পরিচালিত",
+                            "ক্লাস টেষ্ট, মাসিক টেষ্ট, ও সেমিষ্টার পরিক্ষা",
+                            "অভিভাবকের চাহিদা অনুযায়ী অতিরিক্ত ক্লাস নেয়া",
+                            "অভিজ্ঞ ও মেধাবী শিক্ষক/শিক্ষিকা দ্বারা পরিচালিত",
+                            "দক্ষ ও অভিজ্ঞ গভর্নিং বডি দ্বারা পরিচালিত",
+                            "দুর্বল শিক্ষার্থীদের extra care নেয়া হয়",
+                            "সার্বক্ষনিক নিরাপত্তা ও কঠোর নিয়মানুবর্তিতা",
+                            "সুনিপুণ পাঠ পরিকল্পনা (সিডিউল)",
+                        ];
+                    @endphp
+                    <h2>প্রাথমিক শাখার জন্য বিশেষ আকর্ষন</h2>
+                    <ul class="d-grid gap-2 mt-3">
+                        @foreach ($list as $item)
+                            <li class="d-flex align-items-center">
+                                <i class="fa me-2 fa-angle-right"></i>
+                                <span>
+                                    {{$item}}
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h2>বিশেষ দিক সমূহ</h2>
+                    <ul class="d-grid gap-2 mt-3">
+                        @foreach ($list2 as $item)
+                            <li class="d-flex align-items-center">
+                                <i class="fa me-2 fa-angle-right"></i>
+                                <div>
+                                    {{$item}}
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -352,14 +421,14 @@ $banner = \App\Models\WebsiteSection\Banner::first();
 <!-- all_index_area start -->
 @php
 $menus = \App\Models\Navbar\NavbarMenu::where('is_visible',1)
-->with([
-"sub_menus" => function ($q) {
-$q->where('is_visible',1)
-->orderBy('serial', 'ASC');
-}
-])
-->orderBy('serial', 'ASC')
-->get();
+    ->with([
+        "sub_menus" => function ($q) {
+            $q->where('is_visible',1)
+            ->orderBy('serial', 'ASC');
+        }
+    ])
+    ->orderBy('serial', 'ASC')
+    ->get();
 // dd($menus);
 @endphp
 <section class="all_index_area">
@@ -407,7 +476,11 @@ $q->where('is_visible',1)
 </section>
 <!-- all_index_area end -->
 @php
-$news = \App\Models\News\News::with('news_category')->where('status','active')->get();
+$news = \App\Models\News\News::with('news_category')
+    ->where('status','active')
+    ->orderBy('id','DESC')
+    ->limit(5)
+    ->get();
 // dd($news);
 @endphp
 <!-- news_area start -->
@@ -439,7 +512,7 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                                 <!-- date_area start -->
                                 <div class="date_area d_c_area">
                                     <p class="date_text d_c_text">
-                                        {{$news[0]->created_at->format('d MM')}} <span class="year_text text">
+                                        {{$news[0]->created_at->format('d M')}} <span class="year_text text">
                                             {{$news[0]->created_at->format('Y')}}</span>
                                     </p>
                                 </div>
@@ -458,7 +531,7 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                             <!-- news_title_area start -->
                             <div class="news_title_area">
                                 <a href="{{url('news-details')}}/{{$news[0]->id}}"
-                                    class="news_title_text">{{$news[0]->description}}
+                                    class="news_title_text">{{$news[0]->short_description}}
                                 </a>
                             </div>
                             <!-- news_title_area end -->
@@ -474,7 +547,10 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                     <div class="right_area">
                         <!-- news_item_area start -->
                         <div class="news_item_area">
-                            @foreach ($news as $item )
+                            @php
+                                $news->shift(1);
+                            @endphp
+                            @foreach ($news->all() as $item )
                             <!-- news_item start -->
                             <div class="news_item">
                                 <!-- news_image start -->
@@ -498,7 +574,7 @@ $news = \App\Models\News\News::with('news_category')->where('status','active')->
                                         <!-- date_area start -->
                                         <div class="date_area d_c_area">
                                             <p class="date_text d_c_text">
-                                                {{$item->created_at->format('d MM')}} <span class="year_text text">
+                                                {{$item->created_at->format('d M')}} <span class="year_text text">
                                                     {{$item->created_at->format('Y')}}</span>
                                             </p>
                                         </div>
@@ -619,15 +695,19 @@ $blog = \App\Models\Blog\Blog::with('blog_categories')->withCount('blog_comments
 <!-- youtube_video_area start -->
 <section class="youtube_video_area" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
-        <div class="youtube_video_content">
+        <div class="youtube_video_content text-center">
             {!! setting(key:'intro_video') !!}
         </div>
     </div>
 </section>
 <!-- youtube_video_area end-->
 @php
-$videoGallery = \App\Models\Gallery\GalleryVideo::with('gallery_video_categories')->where('status','active')->get();
-// dd($videoGallery);
+    $videoGallery = \App\Models\Gallery\GalleryVideo::with('gallery_video_categories')
+        ->where('status','active')
+        ->orderBy('id','DESC')
+        ->limit(9)
+        ->get();
+    // dd($videoGallery);
 @endphp
 <!-- video_gallery_area start -->
 <div class="video_gallery_area" data-aos="fade-up" data-aos-duration="1000">
@@ -711,7 +791,11 @@ $videoGallery = \App\Models\Gallery\GalleryVideo::with('gallery_video_categories
 </div>
 <!-- video_gallery_area end -->
 @php
-$photoGallery = \App\Models\Gallery\GalleryPhoto::with('gallery_photo_categories')->where('status','active')->get();
+$photoGallery = \App\Models\Gallery\GalleryPhoto::with('gallery_photo_categories')
+    ->where('status','active')
+    ->orderBy('id','DESC')
+    ->limit(9)
+    ->get();
 // dd($photoGallery);
 @endphp
 <!-- image_gallery_area start -->
@@ -733,7 +817,7 @@ $photoGallery = \App\Models\Gallery\GalleryPhoto::with('gallery_photo_categories
                         <img src="{{$item->image}}" alt="image">
                     </div>
                     <!-- overlay-area start -->
-                    <a href="{{$item->image}}" data-lightbox="compulsory" data-title="Office" class="overlay-area">
+                    <a href="{{$item->image}}" data-lightbox="compulsory" data-title="{{$item->title}}" class="overlay-area">
                         <div class="date_area">
                             <p class="date_text">
                                 {{$item->created_at->format('d MM Y')}}
@@ -742,7 +826,7 @@ $photoGallery = \App\Models\Gallery\GalleryPhoto::with('gallery_photo_categories
 
                         <div class="image_title_area">
                             <h2 class="title_text">
-                                {{$item->gallery_photo_categories->title}}
+                                {{$item->title}}
                             </h2>
                         </div>
 

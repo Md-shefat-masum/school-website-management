@@ -37,7 +37,9 @@
                                 <div class="title_text">{{$noticeDetails->title}}</div>
                             </div>
                             <div class="notice_description">
-                                <p class="description_text inner_description_text">{{$noticeDetails->description}} </p>
+                                <p class="description_text inner_description_text">
+                                    {!!$noticeDetails->description!!}
+                                </p>
                             </div>
                         </div>
                         <!-- notice_title_and_description_area end-->
