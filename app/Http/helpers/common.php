@@ -50,12 +50,14 @@ function upload($source, $path, $width = null, $height = null, $file_name = null
     // dd($source->getClientMimeType(), $source->getClientOriginalExtension(), $source->getClientOriginalName());
     $mime_type = $source->getClientMimeType();
 
-    if ($mime_type != "image/png") {
+    $types = ["image/png","image/jpg","image/jpeg"];
+
+    if (!array_search($mime_type, $types)) {
         $path = Storage::putFile($path, $source);
         return $path;
     }
 
-    if ($mime_type == "image/png") {
+    if (array_search($mime_type, $types)) {
         $image = Image::make($source);
         if (!$path) {
             $path = public_path('uploads');
