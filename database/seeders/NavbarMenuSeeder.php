@@ -296,6 +296,34 @@ class NavbarMenuSeeder extends Seeder
                 "icon_image" => 'frontend/assets/images/all_index-area_image/board.png',
                 "childrens" => [
                     [
+                        "title" =>   "সবার জন্য নোটিশ",
+                        "serial" => "",
+                        "is_visible" => true,
+                        "goto_external_link" => 0,
+                        "description" => "description",
+                        "is_multiple" => 1,
+                    ],
+
+                    [
+                        "title" =>   "শিক্ষক ও স্টাফ নোটিশ",
+                        "serial" => "",
+                        "is_visible" => true,
+                        "goto_external_link" => 0,
+                        "description" => "description",
+                        "is_multiple" => 1,
+                    ],
+                    [
+                        "title" =>   "ছাত্রদের নোটিশ",
+                        "serial" => "",
+                        "is_visible" => true,
+                        "goto_external_link" => 0,
+                        "description" => "description",
+                        "is_multiple" => 1,
+                    ],
+
+
+
+                    [
                         "title" =>   "ভর্তি নোটিশ",
                         "serial" => "",
                         "is_visible" => true,
