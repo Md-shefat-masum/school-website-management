@@ -4,7 +4,7 @@
             <div>
                 <div class="card-header py-3 position-sticky d-flex justify-content-between align-items-center">
                     <h6>Update video gallery </h6>
-                    <router-link :to="{ name: `Blog` }" class="btn btn-info btn-sm">Back</router-link>
+                    <router-link :to="{ name: `VideoGallery` }" class="btn btn-info btn-sm">Back</router-link>
                 </div>
             </div>
 
@@ -39,12 +39,9 @@
                                 Link
                             </label>
                             <div class="mt-1 mb-3">
-                                <input class="form-control" type="text" name="link">
+                                <textarea class="form-control" type="text" rows="8" name="link"></textarea>
                             </div>
                         </div>
-
-
-                        
                     </div>
                 </div>
             </div>
