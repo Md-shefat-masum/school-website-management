@@ -20,8 +20,8 @@ return new class extends Migration
             $table->tinyInteger('is_published')->default(0);
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
-            $table->string('image', 100)->nullable();
-            $table->string('image_alt', 100)->nullable();
+            $table->string('image', 200)->nullable();
+            $table->text('image_alt')->nullable();
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 250)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
