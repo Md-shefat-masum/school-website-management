@@ -71,6 +71,27 @@ class WebsiteController extends Controller
         }
     }
 
+    public function digital_class_content()
+    {
+       return view('frontend.pages.resource.digital_content');
+    }
+    public function library()
+    {
+       return view('frontend.pages.resource.library');
+    }
+    public function lab()
+    {
+       return view('frontend.pages.resource.lab');
+    }
+    public function playground()
+    {
+       return view('frontend.pages.resource.playground');
+    }
+    public function co_curriculam()
+    {
+       return view('frontend.pages.resource.co_curriculam_activities');
+    }
+
     public function databaseBackup()
     {
         Artisan::call('app:backup');
